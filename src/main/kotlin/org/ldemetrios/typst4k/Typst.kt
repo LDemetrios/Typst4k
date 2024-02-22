@@ -1,4 +1,4 @@
-package org.example.org.ldemetrios.typst4k
+package org.ldemetrios.typst4k
 
 import kotlinx.serialization.json.Json
 import org.ldemetrios.typst4k.TElement
@@ -123,6 +123,7 @@ object Typst {
 //            --input <key=value>
 //                    Add a string key-value pair visible through `sys.inputs`
 
+            "typst"(*list.toTypedArray())
         }
     }
 
@@ -131,15 +132,15 @@ object Typst {
         internal val params: Array<String>
     ) {
         //TODO
-        operator fun get(selector: String) { //by label!
-            json.decodeFromString<TElement>(
-                "typst"("query", *params, "<$selector>").joinToString("\n")
+        operator fun get(selector: String): List<TElement> { //by label!
+            return json.decodeFromString<List<TElement>>(
+                "typst"(*params, "<$selector>").joinToString("\n")
             )
         }
 
-        inline fun <reified E : TElement> getAs(selector: String): E { //by label!
-            return json.decodeFromString<E>(
-                "typst"("query", *params, "<$selector>").joinToString("\n")
+        inline fun <reified E : TElement> getAs(selector: String): List<E> { //by label!
+            return json.decodeFromString<List<E>>(
+                "typst"(*params, "<$selector>").joinToString("\n")
             )
         }
 
