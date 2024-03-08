@@ -1,6 +1,4 @@
-package org.ldemetrios.typst4k
-
-import java.util.Scanner
+package org.ldemetrios.typst4k.utils
 
 
 data class Lines internal constructor(val lines: List<Pair<String, Int>>) {
@@ -16,7 +14,7 @@ data class Lines internal constructor(val lines: List<Pair<String, Int>>) {
         fun of() = Lines(listOf())
     }
 
-    fun toList() = lines.map { "\t".repeat(it.second) + it.first }
+    fun toList() = lines.map { "|   ".repeat(it.second) + it.first }
 
     override fun toString() = toList().joinToString("\n")
 

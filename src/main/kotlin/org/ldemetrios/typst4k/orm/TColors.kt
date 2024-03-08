@@ -30,11 +30,11 @@ data class TColorRGB(
     val blue: TIntOrRatio,
     val alpha: TIntOrRatio? = null
 ) : TColor {
-    constructor(hex: String) : this(
-        TInt(dehex(hex)[0]),
-        TInt(dehex(hex)[1]),
-        TInt(dehex(hex)[2]),
-        dehex(hex).getOrNull(3)?.let { TInt(it) }
+    constructor(hex: TStr) : this(
+        TInt(dehex(hex.value)[0]),
+        TInt(dehex(hex.value)[1]),
+        TInt(dehex(hex.value)[2]),
+        dehex(hex.value).getOrNull(3)?.let { TInt(it) }
     )
 }
 
@@ -59,3 +59,9 @@ data class TColorCMYK(
     val black: TRatio,
     val alpha: TRatio? = null
 ) : TColor
+
+
+data class TColorLuma(
+    val lightness: TIntOrRatio,
+) : TColor
+

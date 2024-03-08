@@ -2,7 +2,6 @@ package org.ldemetrios.typst4k.orm
 
 
 import kotlinx.serialization.SerialName
-import org.ldemetrios.typst4k.TElement
 
 data object TParbreak : TContent;
 data class TStrong(val delta: TInt? = null, val body: TContent) : TContent
@@ -31,7 +30,7 @@ data class TList(
     val indent: TLength? = null,
     val bodyIndent: TLength? = null,
     val spacing: TAutoOrRelativeOrFraction? = null,
-    val children: List<TListItem>,
+    val children: TArray<TListItem>,
 ) : TContent
 
 data class TListItem(
@@ -47,7 +46,7 @@ data class TEnum(
     @SerialName("body-indent") val bodyIndent: TStr? = null,
     val spacing: TAutoOrRelativeOrFraction? = null,
     @SerialName("number-align") val numberAlign: TAlignment? = null,
-    val children: List<TEnumItem>,
+    val children: TArray<TEnumItem>,
 ) : TContent
 
 data class TEnumItem(
@@ -61,7 +60,7 @@ data class TTerms(
     val indent: TLength? = null,
     @SerialName("hanging-indent") val hangingIndent: TLength? = null,
     val spacing: TAutoOrRelativeOrFraction? = null,
-    val children: List<TTermItem>,
+    val children: TArray<TTermItem>,
 ) : TContent
 
 data class TTermItem(
@@ -71,14 +70,16 @@ data class TTermItem(
 
 data class TLinebreak(val justify: TBool? = null) : TContent
 
-data class TMetadata<T : TypstValue>(val value: T) : TContent
+data class TMetadata<T : TypstValue>(val value: T) : TContent {
+    override fun toString(): String = "metadata($value)"
+}
 
 data class TH(
     val amount: TRelativeOrFraction,
     val weak: TBool? = null,
 ) : TContent
 
-data class TV(val amount: TRelativeOrFraction, val weak: TBool? = null) : TElement
+data class TV(val amount: TRelativeOrFraction, val weak: TBool? = null) : TContent
 
 data class TText(
     val font: TStrOrArray<*>? = null,
@@ -87,7 +88,7 @@ data class TText(
     val weight: TIntOrStr? = null,
     val stretch: TRatio? = null,
     val size: TLength? = null,
-    val fill: TColorOrGradientOrPattern, //TODO
+    val fill: TColorOrGradientOrPattern? = null, //TODO
     val tracking: TLength? = null,
     val spacing: TRelative? = null,
     val cjkLatinSpacing: TNoneOrAuto?? = null,
@@ -120,4 +121,4 @@ data class TText(
 }
 
 data object TSpace : TContent
-data class TSequence(val children: List<TContent>) : TContent
+data class TSequence(val children: TArray<TContent>) : TContent

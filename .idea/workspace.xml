@@ -4,20 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c967e36e-cb69-4fcb-bf98-4d403610b0b0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Content.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Deserializers.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/EitherDeserializer.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/ReflectionDeserializer.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/TColors.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/TypstTypes.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/aws.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="c967e36e-cb69-4fcb-bf98-4d403610b0b0" name="Changes" comment="Init">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers/CommonPool.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers/ContentDeserializers.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers/Deserializers.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers/ScriptingValueDeserializers.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers/Utils.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/selectors/BasicSelectors.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/selectors/Combinators.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/selectors/Selector.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test.typ" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/Selectors.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/Lines.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/Lines.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/utils/Lines.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/ORM.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/Typst.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/Typst.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Content.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/TContent.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Deserializers.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/EitherDeserializer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers/EitherDeserializer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/ReflectionDeserializer.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/TColors.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/TColors.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/TypstTypes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/TScripting.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +68,16 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GroovyConsoleState">
+    <option name="list">
+      <list>
+        <Entry>
+          <option name="moduleName" value="typst4k.main" />
+          <option name="url" value="file://$APPLICATION_CONFIG_DIR$/consoles/groovy/groovy_console.groovy" />
+        </Entry>
+      </list>
+    </option>
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -72,8 +90,13 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Gradle.Build Typst4k.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Kotlin.CombinatorsKt.executor": "Run",
+    "Kotlin.CommonPoolKt.executor": "Run",
+    "Kotlin.DeserializersKt.executor": "Run",
     "Kotlin.MainKt.executor": "Run",
     "Kotlin.ReflectionDeserializerKt.executor": "Run",
+    "Kotlin.TypstKt.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -91,10 +114,12 @@
       <recent name="$PROJECT_DIR$/src/test/resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/utils" />
+      <recent name="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers" />
       <recent name="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.ReflectionDeserializerKt">
+  <component name="RunManager" selected="Kotlin.TypstKt">
     <configuration default="true" type="Babashka" factoryName="BabashkaLocalRepl" activateToolWindowBeforeRun="false">
       <setting name="displayName" value="" />
       <setting name="bbPath" value="" />
@@ -124,15 +149,36 @@
       <setting name="focusEditor" value="false" />
       <method v="2" />
     </configuration>
-    <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.ldemetrios.typst4k.MainKt" />
-      <module name="Typst4k.main" />
+    <configuration name="CombinatorsKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.ldemetrios.typst4k.selectors.CombinatorsKt" />
+      <module name="typst4k.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CommonPoolKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.ldemetrios.typst4k.deserializers.CommonPoolKt" />
+      <module name="typst4k.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DeserializersKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.ldemetrios.typst4k.deserializers.DeserializersKt" />
+      <module name="typst4k.main" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="ReflectionDeserializerKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.ldemetrios.typst4k.orm.ReflectionDeserializerKt" />
+      <module name="typst4k.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TypstKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.ldemetrios.typst4k.TypstKt" />
       <module name="typst4k.main" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -179,8 +225,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.TypstKt" />
+        <item itemvalue="Kotlin.CombinatorsKt" />
+        <item itemvalue="Kotlin.CommonPoolKt" />
+        <item itemvalue="Kotlin.DeserializersKt" />
         <item itemvalue="Kotlin.ReflectionDeserializerKt" />
-        <item itemvalue="Kotlin.MainKt" />
       </list>
     </recent_temporary>
   </component>
@@ -201,5 +250,34 @@
       <updated>1708360122712</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers/CommonPool.kt</url>
+          <line>73</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers/ScriptingValueDeserializers.kt</url>
+          <line>113</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/Typst.kt</url>
+          <line>239</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers/Deserializers.kt</url>
+          <line>39</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

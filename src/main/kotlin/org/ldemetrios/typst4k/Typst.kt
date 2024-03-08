@@ -1,9 +1,15 @@
 package org.ldemetrios.typst4k
 
 import kotlinx.serialization.json.Json
-import org.ldemetrios.typst4k.TElement
+import org.ldemetrios.js.JSParser
+import org.ldemetrios.typst4k.deserializers.TypstDeserializerPool
+import org.ldemetrios.typst4k.orm.*
+import org.ldemetrios.typst4k.selectors.Selector
+import org.ldemetrios.typst4k.selectors.heading
+import org.ldemetrios.typst4k.selectors.or
 import org.ldemetrios.utilities.invoke
 import java.nio.file.Path
+import kotlin.reflect.typeOf
 
 val FROM_STDIN: Path? = null
 
@@ -131,13 +137,13 @@ object Typst {
         internal val params: Array<String>
     ) {
         //TODO
-        operator fun get(selector: String): List<TElement> { //by label!
-            return json.decodeFromString<List<TElement>>(
+        operator fun get(selector: String): List<TypstValue> { //by label!
+            return json.decodeFromString<List<TypstValue>>(
                 "typst"(*params, "<$selector>").joinToString("\n")
             )
         }
 
-        inline fun <reified E : TElement> getAs(selector: String): List<E> { //by label!
+        inline fun <reified E : TypstValue> getAs(selector: String): List<E> { //by label!
             return json.decodeFromString<List<E>>(
                 "typst"(*params, "<$selector>").joinToString("\n")
             )
@@ -158,16 +164,13 @@ object Typst {
     }
 
     object query {
-        fun help() {
-            "typst"("query", "--help")
-        }
-
-        operator fun invoke(
+        @PublishedApi
+        internal fun inferParamList(
             input: Path?,
             root: Path? = null,
             fontPath: Path? = null,
             diagnosticFormat: Typst.DiagnosticFormat = DiagnosticFormat.HUMAN,
-        ): Queryer {
+        ): Array<String> {
             val list = mutableListOf("query")
 
             if (root != null) {
@@ -188,8 +191,57 @@ object Typst {
             } else {
                 list.add("-")
             }
+            return list.toTypedArray();
+        }
 
-            return Queryer(list.toTypedArray());
+        fun help() {
+            "typst"("query", "--help")
         }
     }
+
+    inline fun <reified T : TypstValue> query(
+        input: Path?,
+        selector: String,
+        root: Path? = null,
+        fontPath: Path? = null,
+        diagnosticFormat: Typst.DiagnosticFormat = DiagnosticFormat.HUMAN
+    ): TArray<T> {
+        val list = query.inferParamList(input, root, fontPath, diagnosticFormat)
+
+        val result = "typst"(*list, selector).joinToString("\n")
+        val json = JSParser.parseArray(result)
+
+        println(json.toString(4))
+
+        val data = TypstDeserializerPool.deserialize<TArray<T>>(json)
+        return data
+    }
+
+    inline fun <reified T : TypstValue> query(
+        input: Path?,
+        selector: Selector<T>,
+        root: Path? = null,
+        fontPath: Path? = null,
+        diagnosticFormat: Typst.DiagnosticFormat = DiagnosticFormat.HUMAN
+    ): TArray<T> {
+        val list = query.inferParamList(input, root, fontPath, diagnosticFormat)
+
+        val result = "typst"(*list, selector.toString()).joinToString("\n")
+        val json = JSParser.parseArray(result)
+
+        println(json.toString(4))
+
+        val data = TypstDeserializerPool.deserialize<TArray<T>>(json)
+        return data
+    }
+}
+
+fun main() {
+    val x = Typst.query(
+        Path.of("test.typ"),
+        heading.where(level = TInt(2)).or("c")
+    )
+    println(
+        x
+    )
 }

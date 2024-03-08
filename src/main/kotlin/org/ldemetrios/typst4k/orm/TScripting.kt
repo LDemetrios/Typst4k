@@ -1,5 +1,7 @@
 package org.ldemetrios.typst4k.orm
 
+import org.ldemetrios.utilities.replaceAll
+
 sealed interface TypstValue
 
 sealed interface TIntOrRatio : TypstValue
@@ -20,18 +22,27 @@ sealed interface TAutoOrStr : TypstValue
 sealed interface TAutoOrDirection : TypstValue
 sealed interface TArrayOrDictionary<out E : TypstValue, out V : TypstValue> : TypstValue
 
-object TNone : TypstValue, TStrOrNone, TIntOrNone, TNoneOrAuto
+object TNone : TypstValue, TStrOrNone, TIntOrNone, TNoneOrAuto {
+    override fun toString(): String = "none"
+}
 
 object TAuto : TypstValue, TAutoOrBool, TAutoOrRelativeOrFraction, TNoneOrAuto, TAutoOrStr, TAutoOrDirection,
-    TAutoOrArray<Nothing>
+    TAutoOrArray<Nothing> {
+    override fun toString(): String = "auto"
+}
 
-data class TAngle(val value: Double) : TypstValue
+data class TAngle(val value: Double) : TypstValue {
+    override fun toString(): String = "${value}deg"
+}
 
 data class TArray<out E : TypstValue>(val list: List<E>) : TypstValue, TStrOrArray<E>, TContentOrArray<E>,
-    TArrayOrDictionary<E, Nothing>,
-    TAutoOrArray<E>
+    TArrayOrDictionary<E, Nothing>, TAutoOrArray<E> {
+    override fun toString(): String = list.toString()
+}
 
-data class TBool(val boolean: Boolean) : TypstValue, TAutoOrBool
+data class TBool(val boolean: Boolean) : TypstValue, TAutoOrBool {
+    override fun toString(): String = boolean.toString()
+}
 
 data class TBytes(private val list: ByteArray) : TypstValue {
     override fun equals(other: Any?): Boolean {
@@ -49,46 +60,92 @@ data class TBytes(private val list: ByteArray) : TypstValue {
 sealed interface TContent : TypstValue, TContentOrArray<Nothing>
 
 data class TDatetime(
-    val year: TInt, val month: TInt, val day: TInt, val hour: TInt, val minute: TInt, val second: TInt,
+    val year: TInt,
+    val month: TInt,
+    val day: TInt,
+    val hour: TInt? = null,
+    val minute: TInt? = null,
+    val second: TInt? = null,
 ) : TypstValue
 
-data class TDictionary<V : TypstValue>(val map: Map<String, V>) : TypstValue, TArrayOrDictionary<Nothing, V>
+data class TDictionary<V : TypstValue>(val map: Map<String, V>) : TypstValue, TArrayOrDictionary<Nothing, V> {
+    override fun toString(): String = map.toString()
+}
 
 data class TDuration(
-    val seconds: TInt, val minutes: TInt, val hours: TInt, val days: TInt, val weeks: TInt,
+    val seconds: TInt?, val minutes: TInt?, val hours: TInt?, val days: TInt?, val weeks: TInt?,
 ) : TypstValue
 
-data class TFloat(val value: Double) : TypstValue, TFloatOrRatio
+data class TFloat(val value: Double) : TypstValue, TFloatOrRatio {
+    override fun toString(): String = value.toString()
+}
 
-data class TFraction(val value: Double) : TypstValue, TRelativeOrFraction
+operator fun TFloat?.plus(other: TFloat?) = TFloat((this?.value ?: .0) + (other?.value ?: .0))
+operator fun TFloat?.minus(other: TFloat?) = TFloat((this?.value ?: .0) - (other?.value ?: .0))
+operator fun TFloat?.unaryMinus() = TFloat(-(this?.value ?: .0))
+operator fun TFloat?.times(other: TFloat?) = TFloat((this?.value ?: .0) * (other?.value ?: .0))
+operator fun TFloat?.div(other: TFloat) = TFloat((this?.value ?: .0) / other.value)
 
-data class TInt(val value: Long) : TypstValue, TIntOrRatio, TIntOrNone, TIntOrStr
+data class TFraction(val value: Double) : TypstValue, TRelativeOrFraction {
+    override fun toString(): String = "${value}fr"
+}
 
-data class TLabel(val value: TStr) : TypstValue
+data class TInt(val value: Long) : TypstValue, TIntOrRatio, TIntOrNone, TIntOrStr {
+    override fun toString(): String = value.toString()
+}
+
+data class TLabel(val value: TStr) : TypstValue {
+    override fun toString(): String = "<${value.value}>"
+}
 
 data class TRegex(val value: TStr) : TypstValue
 
-data class TStr(val value: String) : TypstValue, TStrOrNone, TStrOrArray<Nothing>, TIntOrStr, TLengthOrStr, TAutoOrStr
+data class TStr(val value: String) : TypstValue, TStrOrNone, TStrOrArray<Nothing>, TIntOrStr, TLengthOrStr, TAutoOrStr {
+    override fun toString(): String =
+        "\"" + value.replaceAll(mapOf("\\" to "\\\\", "\r" to "\\r", "\n" to "\\n", "\"" to "\\\"")) + "\""
+}
 
-data class TVersion(val numbers: List<Int>) : TypstValue
-
+data class TVersion(val numbers: List<TInt>) : TypstValue {
+    override fun toString(): String = "version(${ numbers.joinToString(", ") })"
+}
 
 enum class TType : TypstValue {
-    array, bool, bytes, content, datetime, dictionary, duration, float, int, label, regex, str, version, type, none, auto, length, ratio, relative, alignment, color, angle, direction, pattern;
+    array, bool, bytes, content, datetime, dictionary, duration, float, integer, label, regex, str, version, type, none, auto, length, ratio, relative, alignment, color, angle, direction, pattern;
 }
 
-
-open class TRelative(private val _length: List<Pair<TFloat, TLengthUnit>>?, private val _ratio: TFloat?) : TypstValue,
-    TRelativeOrFraction  {
-    val length get() = TLength(_length ?: listOf())
+open class TRelative(private val _length: Pair<TFloat?, TFloat?>?, private val _ratio: TFloat?) : TypstValue,
+    TRelativeOrFraction {
+    val length get() = _length?.run { TLength(first, second) }
     val ratio get() = TRatio(_ratio ?: TFloat(.0))
+
+    operator fun plus(other: TRelative): TRelative {
+        return TRelative(
+            _length?.first + other._length?.first to _length?.second + other._length?.second,
+            _ratio + other._ratio
+        )
+    }
+
+    operator fun minus(other: TRelative): TRelative {
+        return TRelative(
+            _length?.first - other._length?.first to _length?.second - other._length?.second,
+            _ratio - other._ratio
+        )
+    }
+
+    operator fun unaryMinus(): TRelative {
+        return TRelative(
+            -_length?.first to -_length?.second,
+            -_ratio
+        )
+    }
 }
 
-enum class TLengthUnit {
-    pt, mm, cm, inc, em
-}
+//enum class TLengthUnit {
+//    pt, mm, cm, inc, em
+//}
 
-data class TLength(val data: List<Pair<TFloat, TLengthUnit>>) : TRelative(data, null), TLengthOrStr
+//data class TLength(val data: List<Pair<TFloat, TLengthUnit>>) : TRelative(data, null), TLengthOrStr
+data class TLength(val pts: TFloat?, val ems: TFloat?) : TRelative(pts to ems, null), TLengthOrStr
 
 data class TRatio(val data: TFloat) : TRelative(null, data), TIntOrRatio, TFloatOrRatio
 
@@ -131,11 +188,17 @@ data class TAlignment private constructor(
 
     val x get() = if (_x == null) TNone else TAlignment(_x, null)
     val y get() = if (_y == null) TNone else TAlignment(null, _y)
+
+    operator fun plus(other: TAlignment): TAlignment {
+        if (_x != null && other._x != null) throw IllegalArgumentException("Cannot add two horizontal alignments")
+        if (_y != null && other._y != null) throw IllegalArgumentException("Cannot add two vertical alignments")
+        return TAlignment(_x ?: other._x, _y ?: other._y)
+    }
 }
 
 sealed interface TColor : TypstValue, TColorOrGradientOrPattern
 
-enum class Direction : TAutoOrDirection, TypstValue {
+enum class TDirection : TAutoOrDirection, TypstValue {
     ltr,
     rtl,
     ttb,
@@ -171,12 +234,12 @@ fun type(x: TypstValue): TType = when (x) {
     is TDuration -> TType.duration
     is TFloat -> TType.float
     is TFraction -> TType.ratio
-    is TInt -> TType.int
+    is TInt -> TType.integer
     is TLabel -> TType.label
     is TRegex -> TType.regex
     is TStr -> TType.str
     is TVersion -> TType.version
-    is Direction -> TType.direction
+    is TDirection -> TType.direction
     is TAlignment -> TType.alignment
     is TColor -> TType.color
     is TPattern -> TType.pattern
@@ -188,3 +251,4 @@ fun type(x: TypstValue): TType = when (x) {
     is TAngle -> TType.angle
     is TType -> TType.type
 }
+
