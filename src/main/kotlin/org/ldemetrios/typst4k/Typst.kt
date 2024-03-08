@@ -8,7 +8,6 @@ import java.nio.file.Path
 val FROM_STDIN: Path? = null
 
 object Typst {
-
     @PublishedApi
     internal val json = Json {
         ignoreUnknownKeys = true

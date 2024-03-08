@@ -18,6 +18,7 @@ repositories {
 
 dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
+   implementation("org.jetbrains.kotlin:kotlin-reflection")
     implementation("org.ldemetrios:common-utils:1.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
 }
@@ -53,5 +54,5 @@ tasks.test {
 }
 
 kotlin {
-    jvmToolchain(21)
+    jvmToolchain(17)
 }
