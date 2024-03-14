@@ -3,9 +3,29 @@ package org.ldemetrios.typst4k.orm
 
 import kotlinx.serialization.SerialName
 
-data object TParbreak : TContent;
-data class TStrong(val delta: TInt? = null, val body: TContent) : TContent
-data class TEmph(val body: TContent) : TContent
+data object TParbreak : TContent {
+    override fun toTypstRepr(): String = "parbreak()"
+}
+
+data class TStrong(val delta: TInt? = null, val body: TContent) : TContent {
+    override fun toTypstRepr(): String = scriptingRepr(
+        "strong",
+        listOf(
+            "delta" to delta,
+            null to body,
+        )
+    )
+}
+
+data class TEmph(val body: TContent) : TContent {
+    override fun toTypstRepr(): String = scriptingRepr(
+        "emph",
+        listOf(
+            null to body,
+        )
+    )
+}
+
 data class TRaw(
     val text: TStr,
     val block: TBool? = null,
@@ -14,7 +34,20 @@ data class TRaw(
     val syntaxes: TStrOrArray<*>? = null,
     val theme: TStrOrNone? = null,
     /*@SerialName("tab-size")*/ val tabSize: TInt? = null,
-) : TContent
+) : TContent {
+    override fun toTypstRepr(): String = scriptingRepr(
+        "raw",
+        listOf(
+            null to text,
+            "block" to block,
+            "lang" to lang,
+            "align" to align,
+            "syntaxes" to syntaxes,
+            "theme" to theme,
+            "tab-size" to tabSize,
+        )
+    )
+}
 
 data class THeading(
     val level: TInt? = null,
@@ -22,7 +55,18 @@ data class THeading(
     val outlined: TBool? = null,
     val bookmarked: TAutoOrBool? = null,
     val body: TContent,
-) : TContent
+) : TContent {
+    override fun toTypstRepr(): String = scriptingRepr(
+        "heading",
+        listOf(
+            null to body,
+            "level" to level,
+            "numbering" to numbering,
+            "outlined" to outlined,
+            "bookmarked" to bookmarked,
+        )
+    )
+}
 
 data class TList(
     val tight: TBool? = null,
@@ -31,11 +75,30 @@ data class TList(
     val bodyIndent: TLength? = null,
     val spacing: TAutoOrRelativeOrFraction? = null,
     val children: TArray<TListItem>,
-) : TContent
+) : TContent {
+    override fun toTypstRepr(): String = scriptingRepr(
+        "list",
+        listOf(
+            "tight" to tight,
+            "marker" to marker,
+            "indent" to indent,
+            "bodyIndent" to bodyIndent,
+            "spacing" to spacing,
+            null to children,
+        )
+    )
+}
 
 data class TListItem(
     val body: TContent,
-) : TContent
+) : TContent {
+    override fun toTypstRepr(): String = scriptingRepr(
+        "list.item",
+        listOf(
+            null to body,
+        )
+    )
+}
 
 data class TEnum(
     val tight: TBool? = null,
@@ -47,12 +110,35 @@ data class TEnum(
     val spacing: TAutoOrRelativeOrFraction? = null,
     @SerialName("number-align") val numberAlign: TAlignment? = null,
     val children: TArray<TEnumItem>,
-) : TContent
+) : TContent {
+    override fun toTypstRepr(): String = scriptingRepr(
+        "enum",
+        listOf(
+            "tight" to tight,
+            "numbering" to numbering,
+            "start" to start,
+            "full" to full,
+            "indent" to indent,
+            "body-indent" to bodyIndent,
+            "spacing" to spacing,
+            "number-align" to numberAlign,
+            null to children,
+        )
+    )
+}
 
 data class TEnumItem(
     val number: TIntOrNone? = null,
     val body: TContent,
-) : TContent
+) : TContent {
+    override fun toTypstRepr(): String = scriptingRepr(
+        "enum.item",
+        listOf(
+            "number" to number,
+            null to body,
+        )
+    )
+}
 
 data class TTerms(
     val tight: TBool? = null,
@@ -61,25 +147,75 @@ data class TTerms(
     @SerialName("hanging-indent") val hangingIndent: TLength? = null,
     val spacing: TAutoOrRelativeOrFraction? = null,
     val children: TArray<TTermItem>,
-) : TContent
+) : TContent {
+    override fun toTypstRepr(): String = scriptingRepr(
+        "terms",
+        listOf(
+            "tight" to tight,
+            "separator" to separator,
+            "indent" to indent,
+            "hanging-indent" to hangingIndent,
+            "spacing" to spacing,
+            null to children
+        )
+    )
+}
 
 data class TTermItem(
     val term: TContent,
     val body: TContent,
-) : TContent
+) : TContent {
+    override fun toTypstRepr(): String = scriptingRepr(
+        "terms.item",
+        listOf(
+            null to term,
+            null to body,
+        )
+    )
+}
 
-data class TLinebreak(val justify: TBool? = null) : TContent
+data class TLinebreak(val justify: TBool? = null) : TContent {
+    override fun toTypstRepr(): String = scriptingRepr(
+        "linebreak",
+        listOf(
+            "justify" to justify,
+        )
+    )
+}
 
 data class TMetadata<T : TypstValue>(val value: T) : TContent {
     override fun toString(): String = "metadata($value)"
+
+    override fun toTypstRepr(): String = scriptingRepr(
+        "metadata",
+        listOf(
+            null to value,
+        )
+    )
 }
 
 data class TH(
     val amount: TRelativeOrFraction,
     val weak: TBool? = null,
-) : TContent
+) : TContent {
+    override fun toTypstRepr(): String = scriptingRepr(
+        "h",
+        listOf(
+            null to amount,
+            "weak" to weak,
+        )
+    )
+}
 
-data class TV(val amount: TRelativeOrFraction, val weak: TBool? = null) : TContent
+data class TV(val amount: TRelativeOrFraction, val weak: TBool? = null) : TContent {
+    override fun toTypstRepr(): String = scriptingRepr(
+        "v",
+        listOf(
+            null to amount,
+            "weak" to weak,
+        )
+    )
+}
 
 data class TText(
     val font: TStrOrArray<*>? = null,
@@ -118,7 +254,51 @@ data class TText(
     init {
         require(body != null || text != null) { "Either body or text is required" }
     }
+
+    override fun toTypstRepr(): String = scriptingRepr(
+        "text",
+        listOf(
+            "font" to font,
+            "fallback" to fallback,
+            "style" to style,
+            "weight" to weight,
+            "stretch" to stretch,
+            "size" to size,
+            "fill" to fill,
+            "tracking" to tracking,
+            "spacing" to spacing,
+            "cjk-latin-spacing" to cjkLatinSpacing,
+            "baseline" to baseline,
+            "overhang" to overhang,
+            "top-edge" to topEdge,
+            "bottom-edge" to bottomEdge,
+            "lang" to lang,
+            "region" to region,
+            "script" to script,
+            "dir" to dir,
+            "hyphenate" to hyphenate,
+            "kerning" to kerning,
+            "alternates" to alternates,
+            "stylistic-set" to stylisticSet,
+            "ligatures" to ligatures,
+            "discretionary-ligatures" to discretionaryLigatures,
+            "historical-ligatures" to historicalLigatures,
+            "number-type" to numberType,
+            "number-width" to numberWidth,
+            "slashed-zero" to slashedZero,
+            "fractions" to fractions,
+            "features" to features,
+            null to text, null to body,
+        )
+    )
 }
 
-data object TSpace : TContent
-data class TSequence(val children: TArray<TContent>) : TContent
+data object TSpace : TContent {
+    override fun toTypstRepr(): String = "[ ]"
+}
+
+data class TSequence(val children: TArray<TContent>) : TContent {
+    override fun toTypstRepr(): String {
+        return children.list.joinToString(", #", "[ #", " ]") { it.toTypstRepr() }
+    }
+}

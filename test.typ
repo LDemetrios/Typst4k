@@ -52,11 +52,9 @@
             color.hsv(2deg, 2%, 2, 2%),
             color.hsv(2deg, 2%, 2),
         ),
-        // pattern
-        // gradient
-        content: [
-        _aaa_ bbb
-        ]
+
+        pat:pattern(size:auto, spacing:(20pt, 20pt), relative:"self", [aaa]),
+        grad:gradient.linear(red, blue),
     )
 ) <lbl>
 

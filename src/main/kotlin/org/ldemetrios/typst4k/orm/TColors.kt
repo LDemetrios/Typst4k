@@ -2,17 +2,53 @@ package org.ldemetrios.typst4k.orm
 
 
 data class TColorOklab(val lightness: TRatio, val a: TFloatOrRatio, val b: TFloatOrRatio, val alpha: TRatio? = null) :
-    TColor
+    TColor {
+    override fun toTypstRepr(): String {
+        return scriptingRepr(
+            "oklab",
+            listOf(
+                null to lightness,
+                null to a,
+                null to b,
+                null to alpha,
+            )
+        )
+    }
+}
 
 data class TColorOklch(val lightness: TRatio, val chroma: TFloatOrRatio, val hue: TAngle, val alpha: TRatio? = null) :
-    TColor
+    TColor {
+    override fun toTypstRepr(): String {
+        return scriptingRepr(
+            "oklch",
+            listOf(
+                null to lightness,
+                null to chroma,
+                null to hue,
+                null to alpha,
+            )
+        )
+    }
+}
 
 data class TColorLinearRGB(
     val red: TIntOrRatio,
     val green: TIntOrRatio,
     val blue: TIntOrRatio,
     val alpha: TIntOrRatio? = null
-) : TColor
+) : TColor {
+    override fun toTypstRepr(): String {
+        return scriptingRepr(
+            "color.linear-rgb",
+            listOf(
+                null to red,
+                null to green,
+                null to blue,
+                null to alpha,
+            )
+        )
+    }
+}
 
 
 private fun dehex(x: String): List<Long> {
@@ -36,6 +72,17 @@ data class TColorRGB(
         TInt(dehex(hex.value)[2]),
         dehex(hex.value).getOrNull(3)?.let { TInt(it) }
     )
+    override fun toTypstRepr(): String {
+        return scriptingRepr(
+            "rgb",
+            listOf(
+                null to red,
+                null to green,
+                null to blue,
+                null to alpha,
+            )
+        )
+    }
 }
 
 data class TColorHSL(
@@ -43,14 +90,38 @@ data class TColorHSL(
     val saturation: TRatio,
     val lightness: TRatio,
     val alpha: TRatio? = null
-) : TColor
+) : TColor {
+    override fun toTypstRepr(): String {
+        return scriptingRepr(
+            "color.hsl",
+            listOf(
+                null to hue,
+                null to saturation,
+                null to lightness,
+                null to alpha,
+            )
+        )
+    }
+}
 
 data class TColorHSV(
     val hue: TAngle,
     val saturation: TIntOrRatio,
     val value: TIntOrRatio,
     val alpha: TIntOrRatio? = null
-) : TColor
+) : TColor {
+    override fun toTypstRepr(): String {
+        return scriptingRepr(
+            "color.hsv",
+            listOf(
+                null to hue,
+                null to saturation,
+                null to value,
+                null to alpha,
+            )
+        )
+    }
+}
 
 data class TColorCMYK(
     val cyan: TRatio,
@@ -58,10 +129,31 @@ data class TColorCMYK(
     val yellow: TRatio,
     val black: TRatio,
     val alpha: TRatio? = null
-) : TColor
-
+) : TColor {
+    override fun toTypstRepr(): String {
+        return scriptingRepr(
+            "cmyk",
+            listOf(
+                null to cyan,
+                null to magenta,
+                null to yellow,
+                null to black,
+                null to alpha,
+            )
+        )
+    }
+}
 
 data class TColorLuma(
     val lightness: TIntOrRatio,
-) : TColor
+) : TColor {
+    override fun toTypstRepr(): String {
+        return scriptingRepr(
+            "luma",
+            listOf(
+                null to lightness,
+            )
+        )
+    }
+}
 
