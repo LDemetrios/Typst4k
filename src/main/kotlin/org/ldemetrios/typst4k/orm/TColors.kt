@@ -1,5 +1,7 @@
 package org.ldemetrios.typst4k.orm
 
+import java.awt.Color
+
 
 data class TColorOklab(val lightness: TRatio, val a: TFloatOrRatio, val b: TFloatOrRatio, val alpha: TRatio? = null) :
     TColor {
@@ -72,6 +74,7 @@ data class TColorRGB(
         TInt(dehex(hex.value)[2]),
         dehex(hex.value).getOrNull(3)?.let { TInt(it) }
     )
+
     override fun toTypstRepr(): String {
         return scriptingRepr(
             "rgb",
@@ -156,4 +159,6 @@ data class TColorLuma(
         )
     }
 }
+
+val Color.typst get() = TColorRGB(TInt(red.toLong()), TInt(green.toLong()), TInt(blue.toLong()), TInt(alpha.toLong()))
 
