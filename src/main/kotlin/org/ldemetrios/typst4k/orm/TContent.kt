@@ -68,9 +68,43 @@ data class THeading(
     )
 }
 
+data class TBibliography(
+    val path : TStrOrArray<TStr>,
+    val title : TNoneOrAutoOrContent? = null,
+    val full : TBool? = null,
+    val style : TStr? = null,
+) : TContent {
+    override fun toTypstRepr(): String = scriptingRepr(
+        "bibliography",
+        listOf(
+            null to path,
+            "title" to title,
+            "full" to full,
+            "style" to style,
+        )
+    )
+}
+
+data class TCite(
+   val key: TLabel,
+   val supplement: TNoneOrContent? = null,
+   val form: TStrOrNone? = null,
+   val style: TAutoOrStr? = null,
+) : TContent {
+    override fun toTypstRepr(): String = scriptingRepr(
+        "cite",
+        listOf(
+            null to key,
+            "supplement" to supplement,
+            "form" to form,
+            "style" to style,
+        )
+    )
+}
+
 data class TList(
     val tight: TBool? = null,
-    val marker: TContentOrArray<*>? = null,
+    val marker: TContentOrArray<TContent>? = null,
     val indent: TLength? = null,
     val bodyIndent: TLength? = null,
     val spacing: TAutoOrRelativeOrFraction? = null,

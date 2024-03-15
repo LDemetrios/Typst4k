@@ -19,18 +19,20 @@ sealed interface TIntOrNone : TypstValue
 sealed interface TIntOrStr : TypstValue
 sealed interface TColorOrGradient : TColorOrGradientOrPattern
 sealed interface TColorOrGradientOrPattern : TypstValue
-sealed interface TNoneOrAuto : TypstValue
+sealed interface TNoneOrAuto : TypstValue, TNoneOrAutoOrContent
 sealed interface TLengthOrStr : TypstValue
 sealed interface TAutoOrStr : TypstValue
 sealed interface TAutoOrDirection : TypstValue
 sealed interface TArrayOrDictionary<out E : TypstValue, out V : TypstValue> : TypstValue
+sealed interface TNoneOrAutoOrContent : TypstValue
+sealed interface TNoneOrContent : TNoneOrAutoOrContent
 
-object TNone : TypstValue, TStrOrNone, TIntOrNone, TNoneOrAuto {
+object TNone : TypstValue, TStrOrNone, TIntOrNone, TNoneOrAuto, TNoneOrAutoOrContent , TNoneOrContent{
     override fun toTypstRepr(): String = "none"
 }
 
 object TAuto : TypstValue, TAutoOrBool, TAutoOrRelativeOrFraction, TNoneOrAuto, TAutoOrStr, TAutoOrDirection,
-    TAutoOrArray<Nothing> {
+    TAutoOrArray<Nothing> , TNoneOrAutoOrContent{
     override fun toTypstRepr(): String = "auto"
 }
 
@@ -48,7 +50,7 @@ data class TBool(val boolean: Boolean) : TypstValue, TAutoOrBool {
     override fun toTypstRepr(): String = boolean.toString()
 }
 
-sealed interface TContent : TypstValue, TContentOrArray<Nothing>
+sealed interface TContent : TypstValue, TContentOrArray<Nothing>, TNoneOrAutoOrContent, TNoneOrContent
 
 internal fun scriptingRepr(name: String, values: List<Pair<String?, TypstValue?>>) =
     name + "(" + values.mapNotNull {

@@ -1,6 +1,7 @@
 package org.ldemetrios.typst4k.deserializers
 
 import org.ldemetrios.js.*
+import org.ldemetrios.typst4k.orm.TNoneOrAutoOrContent
 import org.ldemetrios.typst4k.utils.Lines
 import org.ldemetrios.typst4k.utils.join
 import org.ldemetrios.utilities.Either
@@ -35,6 +36,7 @@ val EitherContentDeserializer = EitherDeserializer(
         EmphDeserializer,
         RawDeserializer,
         HeadingDeserializer,
+        CiteDeserializer,
         ListDeserializer,
         EnumDeserializer,
         TermsDeserializer,
@@ -47,7 +49,8 @@ val EitherContentDeserializer = EitherDeserializer(
         TextDeserializer,
         SpaceDeserializer,
         SequenceDeserializer,
-        MetadataDeserializer
+        MetadataDeserializer,
+        BibliographyDeserializer,
     ), name = "ContentDeserializer"
 )
 
@@ -108,4 +111,8 @@ val TAutoOrDirectionDeserializer =
     EitherDeserializer(listOf(AutoDeserializer, DirectionDeserializer), "(Auto|Direction)Deserializer")
 val TArrayOrDictionaryDeserializer =
     EitherDeserializer(listOf(ArrayDeserializer, DictionaryDeserializer), "(Array|Dictionary)Deserializer")
+val TNoneOrAutoOrContentDeserializer =
+    EitherDeserializer(listOf(NoneDeserializer, AutoDeserializer, EitherContentDeserializer), "(Array|Dictionary|Content)Deserializer")
+val TNoneOrContentDeserializer =
+    EitherDeserializer(listOf(NoneDeserializer, EitherContentDeserializer), "(Array|Dictionary|Content)Deserializer")
 

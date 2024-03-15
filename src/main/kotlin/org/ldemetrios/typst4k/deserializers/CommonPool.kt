@@ -22,6 +22,8 @@ val TypstDeserializerPool = run {
     pool.register<TAutoOrStr>(TAutoOrStrDeserializer)
     pool.register<TAutoOrDirection>(TAutoOrDirectionDeserializer)
     pool.register<TArrayOrDictionary<*, *>>(TArrayOrDictionaryDeserializer)
+    pool.register<TNoneOrAutoOrContent>(TNoneOrAutoOrContentDeserializer)
+    pool.register<TNoneOrAutoOrContent>(TNoneOrContentDeserializer)
 
     pool.register<TypstValue>(EitherValueDeserializer)
     pool.register<TContent>(EitherContentDeserializer)

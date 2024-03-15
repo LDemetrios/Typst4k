@@ -63,6 +63,10 @@
 === ccc <c>
 ==== ddd <d>
 
+#[
+    aaa <bbb>
+] <ccc>
+
 #metadata(
     (
         a : 1,

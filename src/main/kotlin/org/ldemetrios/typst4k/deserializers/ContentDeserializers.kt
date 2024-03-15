@@ -79,6 +79,18 @@ object EmphDeserializer : ContentDeserializer(
     )
 }
 
+object BibliographyDeserializer : ContentDeserializer(
+    typeOf<TBibliography>(),
+    "bibliography"
+) {
+    override fun construct(parser: ParameterParser): Any = TBibliography(
+        path = parser.parse<TStrOrArray<TStr>>("path"),
+        title = parser.parseOptional<TNoneOrAutoOrContent>("title"),
+        full = parser.parseOptional<TBool>("full"),
+        style = parser.parseOptional<TStr>("style")
+    )
+}
+
 object RawDeserializer : ContentDeserializer(
     typeOf<TRaw>(),
     "raw",
@@ -91,6 +103,18 @@ object RawDeserializer : ContentDeserializer(
         syntaxes = parser.parseOptional<TStrOrArray<TypstValue>>("syntaxes"),
         theme = parser.parseOptional<TStrOrNone>("theme"),
         tabSize = parser.parseOptional<TInt>("tab-size"),
+    )
+}
+
+object CiteDeserializer : ContentDeserializer(
+    typeOf<TCite>(),
+    "cite",
+) {
+    override fun construct(parser: ParameterParser): Any = TCite(
+        key = parser.parse<TLabel>("key"),
+        supplement = parser.parseOptional<TNoneOrContent>("supplement"),
+        form = parser.parseOptional<TStrOrNone>("form"),
+        style = parser.parseOptional<TAutoOrStr>("style")
     )
 }
 
@@ -113,7 +137,7 @@ object ListDeserializer : ContentDeserializer(
 ) {
     override fun construct(parser: ParameterParser): Any = TList(
         tight = parser.parseOptional<TBool>("tight"),
-        marker = parser.parseOptional<TContentOrArray<TypstValue>>("marker"),
+        marker = parser.parseOptional<TContentOrArray<TContent>>("marker"),
         indent = parser.parseOptional<TLength>("indent"),
         bodyIndent = parser.parseOptional<TLength>("body-indent"),
         spacing = parser.parseOptional<TAutoOrRelativeOrFraction>("spacing"),
@@ -268,7 +292,8 @@ object MetadataDeserializer : Deserializer {
             if (JSString("metadata") != json["func"]) {
                 error("Expected func = metadata")
             } else {
-                pool.deserializeAs(json["value"], type.arguments[0].type!!, what / "value").mapRight { TMetadata(it.cast()) }
+                pool.deserializeAs(json["value"], type.arguments[0].type!!, what / "value")
+                    .mapRight { TMetadata(it.cast()) }
             }
         }
     }
