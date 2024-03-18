@@ -15,7 +15,7 @@ fun <T : Any> intersect(x: T?, y: T?, what: String) =
 
 data class HeadingSelector(
     val level: TInt? = null,
-    val numbering: TStrOrNone? = null, /*or function*/
+    val numbering: TNoneOrStr? = null, /*or function*/
     val outlined: TBool? = null,
     val bookmarked: TAutoOrBool? = null,
 ) : Selector<THeading> {
@@ -33,7 +33,7 @@ data class HeadingSelector(
 
     fun where(
         level: TInt? = null,
-        numbering: TStrOrNone? = null,
+        numbering: TNoneOrStr? = null,
         outlined: TBool? = null,
         bookmarked: TAutoOrBool? = null,
     ) = HeadingSelector(

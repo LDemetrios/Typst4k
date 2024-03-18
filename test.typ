@@ -52,7 +52,7 @@
             color.hsv(2deg, 2%, 2, 2%),
             color.hsv(2deg, 2%, 2),
         ),
-
+        stroke: (blue + 1pt),
         pat:pattern(size:auto, spacing:(20pt, 20pt), relative:"self", [aaa]),
         grad:gradient.linear(red, blue),
     )
@@ -74,6 +74,12 @@
     )
 ) <sample>
 
+#metadata(heading.where(level:1)) <selector>
+
+#[
+- a
+- b
+] <list>
 
 
 
@@ -81,7 +87,10 @@
 
 
 
+#type(1pt + blue)
 
+
+#stroke()
 
 
 

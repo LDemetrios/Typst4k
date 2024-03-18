@@ -9,7 +9,7 @@ sealed interface TypstValue {
 sealed interface TIntOrRatio : TypstValue
 sealed interface TFloatOrRatio : TypstValue
 sealed interface TRelativeOrFraction : TypstValue, TAutoOrRelativeOrFraction
-sealed interface TStrOrNone : TypstValue
+sealed interface TNoneOrStr : TypstValue
 sealed interface TStrOrArray<out E : TypstValue> : TypstValue
 sealed interface TAutoOrBool : TypstValue
 sealed interface TContentOrArray<out E : TypstValue> : TypstValue
@@ -18,21 +18,29 @@ sealed interface TAutoOrRelativeOrFraction : TypstValue
 sealed interface TIntOrNone : TypstValue
 sealed interface TIntOrStr : TypstValue
 sealed interface TColorOrGradient : TColorOrGradientOrPattern
-sealed interface TColorOrGradientOrPattern : TypstValue
-sealed interface TNoneOrAuto : TypstValue, TNoneOrAutoOrContent
+sealed interface TColorOrGradientOrPatternOrStroke : TypstValue
+sealed interface TColorOrGradientOrPattern : TColorOrGradientOrPatternOrStroke
+sealed interface TNoneOrAuto : TypstValue, TNoneOrAutoOrContent, TNoneOrAutoOrDatetime, TNoneOrAutoOrAlignment
 sealed interface TLengthOrStr : TypstValue
 sealed interface TAutoOrStr : TypstValue
 sealed interface TAutoOrDirection : TypstValue
 sealed interface TArrayOrDictionary<out E : TypstValue, out V : TypstValue> : TypstValue
 sealed interface TNoneOrAutoOrContent : TypstValue
-sealed interface TNoneOrContent : TNoneOrAutoOrContent
+sealed interface TNoneOrContent : TNoneOrAutoOrContent, TNoneOrLabelOrContent
+sealed interface TNoneOrLabelOrContent : TypstValue
+sealed interface TNoneOrAutoOrDatetime : TNoneOrAutoOrContent
+sealed interface TLengthOrAuto : TypstValue
+sealed interface TNoneOrAutoOrAlignment : TypstValue
+sealed interface TContentOrLabel : TypstValue
+sealed interface TIntOrLength : TypstValue
+sealed interface TStrOrLabelOrDictionary<V> : TypstValue
 
-object TNone : TypstValue, TStrOrNone, TIntOrNone, TNoneOrAuto, TNoneOrAutoOrContent , TNoneOrContent{
+object TNone : TypstValue, TNoneOrStr, TIntOrNone, TNoneOrAuto, TNoneOrAutoOrContent, TNoneOrContent {
     override fun toTypstRepr(): String = "none"
 }
 
 object TAuto : TypstValue, TAutoOrBool, TAutoOrRelativeOrFraction, TNoneOrAuto, TAutoOrStr, TAutoOrDirection,
-    TAutoOrArray<Nothing> , TNoneOrAutoOrContent{
+    TAutoOrArray<Nothing>, TNoneOrAutoOrContent, TLengthOrAuto {
     override fun toTypstRepr(): String = "auto"
 }
 
@@ -50,7 +58,9 @@ data class TBool(val boolean: Boolean) : TypstValue, TAutoOrBool {
     override fun toTypstRepr(): String = boolean.toString()
 }
 
-sealed interface TContent : TypstValue, TContentOrArray<Nothing>, TNoneOrAutoOrContent, TNoneOrContent
+val Boolean.typ get() = TBool(this)
+
+sealed interface TContent : TypstValue, TContentOrArray<Nothing>, TContentOrLabel, TNoneOrAutoOrContent, TNoneOrContent
 
 internal fun scriptingRepr(name: String, values: List<Pair<String?, TypstValue?>>) =
     name + "(" + values.mapNotNull {
@@ -70,7 +80,7 @@ data class TDatetime(
     val hour: TInt? = null,
     val minute: TInt? = null,
     val second: TInt? = null,
-) : TypstValue {
+) : TypstValue, TNoneOrAutoOrDatetime {
     override fun toTypstRepr(): String = scriptingRepr(
         "datetime", listOf(
             "year" to year,
@@ -83,7 +93,7 @@ data class TDatetime(
     )
 }
 
-data class TDictionary<V : TypstValue>(val map: Map<String, V>) : TypstValue, TArrayOrDictionary<Nothing, V> {
+data class TDictionary<V : TypstValue>(val map: Map<String, V>) : TypstValue, TArrayOrDictionary<Nothing, V>, TStrOrLabelOrDictionary<V> {
     override fun toString(): String = map.toString()
 
     override fun toTypstRepr(): String = "(" + map.entries.joinToString(", ") {
@@ -120,6 +130,9 @@ data class TFloat(val value: Double) : TypstValue, TFloatOrRatio {
     override fun toTypstRepr(): String = value.toString()
 }
 
+val Float.typ  get() = TFloat(this.toDouble())
+val Double.typ get() = TFloat(this)
+
 operator fun TFloat?.plus(other: TFloat?) = TFloat((this?.value ?: .0) + (other?.value ?: .0))
 operator fun TFloat?.minus(other: TFloat?) = TFloat((this?.value ?: .0) - (other?.value ?: .0))
 operator fun TFloat?.unaryMinus() = TFloat(-(this?.value ?: .0))
@@ -131,12 +144,21 @@ data class TFraction(val value: Double) : TypstValue, TRelativeOrFraction {
     override fun toTypstRepr(): String = "${value}fr"
 }
 
-data class TInt(val value: Long) : TypstValue, TIntOrRatio, TIntOrNone, TIntOrStr {
+data class TInt(val value: Long) : TypstValue, TIntOrRatio, TIntOrNone, TIntOrStr, TIntOrLength {
     override fun toString(): String = value.toString()
     override fun toTypstRepr(): String = value.toString()
 }
 
-data class TLabel(val value: TStr) : TypstValue {
+val Int.typ get() = TInt(this.toLong())
+val Long.typ get() = TInt(this)
+
+operator fun TInt?.plus(other: TInt?) = TInt((this?.value ?: 0) + (other?.value ?: 0))
+operator fun TInt?.minus(other: TInt?) = TInt((this?.value ?: 0) - (other?.value ?: 0))
+operator fun TInt?.unaryMinus() = TInt(-(this?.value ?: 0))
+operator fun TInt?.times(other: TInt?) = TInt((this?.value ?: 0) * (other?.value ?: 0))
+operator fun TInt?.div(other: TInt) = TInt((this?.value ?: 0) / other.value)
+
+data class TLabel(val value: TStr) : TypstValue, TContentOrLabel, TNoneOrLabelOrContent, TStrOrLabelOrDictionary<Nothing> {
     override fun toString(): String = "<${value.value}>"
     override fun toTypstRepr(): String = "label(\"" + value.value.escapeTypstStr() + "\")"
 }
@@ -145,9 +167,12 @@ data class TRegex(val value: TStr) : TypstValue {
     override fun toTypstRepr(): String = "regex(\"" + value.value.escapeTypstStr() + "\")"
 }
 
-data class TStr(val value: String) : TypstValue, TStrOrNone, TStrOrArray<Nothing>, TIntOrStr, TLengthOrStr, TAutoOrStr {
+data class TStr(val value: String) : TypstValue, TNoneOrStr, TStrOrArray<Nothing>, TIntOrStr, TLengthOrStr, TAutoOrStr, TStrOrLabelOrDictionary<Nothing> {
     override fun toTypstRepr(): String = "\"" + value.escapeTypstStr() + "\""
 }
+
+val String.typ get() = TStr(this)
+operator fun TStr?.plus(other: TStr?) = TStr((this?.value ?: "") + (other?.value ?: ""))
 
 data class TVersion(val numbers: List<TInt>) : TypstValue {
     override fun toString(): String = "version(${numbers.joinToString(", ")})"
@@ -155,7 +180,7 @@ data class TVersion(val numbers: List<TInt>) : TypstValue {
 }
 
 enum class TType : TypstValue {
-    array, bool, bytes, content, datetime, dictionary, duration, float, integer, label, regex, str, version, type, none, auto, length, ratio, relative, alignment, color, angle, direction, pattern, gradient;
+    array, bool, bytes, content, datetime, dictionary, duration, float, integer, label, regex, str, version, type, none, auto, length, ratio, relative, alignment, color, angle, direction, pattern, gradient, stroke;
 
     override fun toTypstRepr(): String = name
 }
@@ -196,7 +221,21 @@ open class TRelative(private val _length: Pair<TFloat?, TFloat?>?, private val _
     }
 }
 
-data class TLength(val pts: TFloat?, val ems: TFloat?) : TRelative(pts to ems, null), TLengthOrStr
+data class TLength(val pts: TFloat?, val ems: TFloat?) : TRelative(pts to ems, null), TLengthOrStr, TLengthOrAuto , TIntOrLength{
+    override fun toTypstRepr(): String {
+        return listOfNotNull(
+            pts?.let { "${it}pt" },
+            ems?.let { "${it}em" }
+        )
+            .joinToString(" + ")
+    }
+
+    operator fun plus(other: TLength): TLength = TLength(pts + other.pts, ems + other.ems)
+    operator fun minus(other: TLength): TLength = TLength(pts - other.pts, ems - other.ems)
+}
+
+val Number.pt get() = TLength(TFloat(toDouble()), TFloat(.0))
+val Number.em get() = TLength(TFloat(.0), TFloat(toDouble()))
 
 data class TRatio(val data: TFloat) : TRelative(null, data), TIntOrRatio, TFloatOrRatio
 
@@ -211,7 +250,7 @@ private enum class TVerticalAlignment {
 data class TAlignment private constructor(
     private val _x: THorisontalAlignment?,
     private val _y: TVerticalAlignment?
-) : TypstValue {
+) : TypstValue, TNoneOrAutoOrAlignment {
     companion object {
         val start = TAlignment(THorisontalAlignment.start, null)
         val left = TAlignment(THorisontalAlignment.left, null)
@@ -262,6 +301,7 @@ enum class TDirection : TAutoOrDirection, TypstValue {
     rtl,
     ttb,
     btt;
+
     override fun toTypstRepr(): String = name
 }
 
@@ -311,5 +351,30 @@ fun type(x: TypstValue): TType = when (x) {
     is TRelative -> TType.relative
     is TAngle -> TType.angle
     is TType -> TType.type
+    is TStroke -> TType.stroke
 }
 
+data class TStroke(
+    val paint: TColorOrGradientOrPattern? = null,
+    val thickness: TLength? = null,
+    val cap: TAutoOrStr? = null,
+    val join: TAutoOrStr? = null,
+    val dash: TNoneOrStr? = null,
+    val miterLimit: TFloat? = null,
+) : TypstValue , TColorOrGradientOrPatternOrStroke{
+    override fun toTypstRepr(): String = scriptingRepr(
+        "stroke", listOf(
+            "paint" to paint,
+            "thickness" to thickness,
+            "cap" to cap,
+            "join" to join,
+            "dash" to dash,
+            "miter-limit" to miterLimit,
+        )
+    )
+}
+
+operator fun TLength.plus(other: TColor) = TStroke(
+    thickness = this,
+    paint = other,
+)

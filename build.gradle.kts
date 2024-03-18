@@ -1,3 +1,7 @@
+
+import org.gradle.internal.impldep.org.apache.maven.building.StringSource
+import java.lang.StringBuilder
+
 plugins {
     kotlin("jvm") version "1.9.22"
     kotlin("plugin.serialization") version "1.9.22"
@@ -31,7 +35,12 @@ kotlin {
     jvmToolchain(21)
 }
 
+fun polymorphic(vararg args: Any) = args[0]
+fun obj(vararg args: Any) = args[0]
+fun clazz(vararg args: Any) = args[0]
+fun primitive(vararg args: Any) = args[0]
 
+val datamodel = File("${project.rootDir}/datamodel").readText()
 
 publishing {
     publications.create<MavenPublication>("maven") {
@@ -57,3 +66,5 @@ tasks.test {
 kotlin {
     jvmToolchain(17)
 }
+
+//

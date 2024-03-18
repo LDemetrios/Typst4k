@@ -2,6 +2,7 @@ package org.ldemetrios.typst4k.orm
 
 
 import kotlinx.serialization.SerialName
+import javax.management.Attribute
 
 data object TParbreak : TContent {
     override fun toTypstRepr(): String = "parbreak()"
@@ -26,13 +27,43 @@ data class TEmph(val body: TContent) : TContent {
     )
 }
 
+data class TQuote(
+    val block : TBool? = null,
+    val quotes: TAutoOrBool? = null,
+    val attributes : TNoneOrLabelOrContent? = null,
+    val body : TContent,
+) : TContent {
+    override fun toTypstRepr(): String = scriptingRepr(
+        "quote",
+        listOf(
+            "block" to block,
+            "quotes" to quotes,
+            "attributes" to attributes,
+            null to body,
+        )
+    )
+}
+
+data class TLink(
+    val dest: TStrOrLabelOrDictionary<TIntOrLength>,
+    val body : TContent,
+) : TContent {
+    override fun toTypstRepr(): String = scriptingRepr(
+        "link",
+        listOf(
+            null to dest,
+            null to body,
+        )
+    )
+}
+
 data class TRaw(
     val text: TStr,
     val block: TBool? = null,
-    val lang: TStrOrNone? = null,
+    val lang: TNoneOrStr? = null,
     val align: TAlignment? = null,
     val syntaxes: TStrOrArray<*>? = null,
-    val theme: TStrOrNone? = null,
+    val theme: TNoneOrStr? = null,
     /*@SerialName("tab-size")*/ val tabSize: TInt? = null,
 ) : TContent {
     override fun toTypstRepr(): String = scriptingRepr(
@@ -51,7 +82,7 @@ data class TRaw(
 
 data class THeading(
     val level: TInt? = null,
-    val numbering: TStrOrNone? = null, /*or function*/
+    val numbering: TNoneOrStr? = null, /*or function*/
     val outlined: TBool? = null,
     val bookmarked: TAutoOrBool? = null,
     val body: TContent,
@@ -86,10 +117,10 @@ data class TBibliography(
 }
 
 data class TCite(
-   val key: TLabel,
-   val supplement: TNoneOrContent? = null,
-   val form: TStrOrNone? = null,
-   val style: TAutoOrStr? = null,
+    val key: TLabel,
+    val supplement: TNoneOrContent? = null,
+    val form: TNoneOrStr? = null,
+    val style: TAutoOrStr? = null,
 ) : TContent {
     override fun toTypstRepr(): String = scriptingRepr(
         "cite",
@@ -267,7 +298,7 @@ data class TText(
     val topEdge: TLengthOrStr? = null,
     val bottomEdge: TLengthOrStr? = null,
     val lang: TStr? = null,
-    val region: TStrOrNone? = null,
+    val region: TNoneOrStr? = null,
     val script: TAutoOrStr? = null,
     val dir: TAutoOrDirection? = null,
     val hyphenate: TAutoOrBool? = null,
@@ -335,4 +366,42 @@ data class TSequence(val children: TArray<TContent>) : TContent {
     override fun toTypstRepr(): String {
         return children.list.joinToString(", #", "[ #", " ]") { it.toTypstRepr() }
     }
+}
+
+data class TFigure(
+    val body: TContent,
+    val placement : TNoneOrAutoOrAlignment? = null,
+    val caption: TNoneOrContent? = null,
+    val kind: TAutoOrStr? = null,
+    val supplement: TNoneOrAutoOrContent? = null,
+    val numbering: TNoneOrStr? = null,
+    val gap: TLength? = null,
+    val outlined: TBool? = null,
+) : TContent {
+    override fun toTypstRepr(): String = scriptingRepr(
+        "figure",
+        listOf(
+            null to body,
+            "placement" to placement,
+            "caption" to caption,
+            "kind" to kind,
+            "supplement" to supplement,
+            "numbering" to numbering,
+            "gap" to gap,
+            "outlined" to outlined,
+        )
+    )
+}
+
+data class TFootnote(
+    val numbering: TStr? = null,
+    val body: TContentOrLabel,
+) : TContent {
+    override fun toTypstRepr(): String = scriptingRepr(
+        "footnote",
+        listOf(
+            "numbering" to numbering,
+            null to body,
+        )
+    )
 }

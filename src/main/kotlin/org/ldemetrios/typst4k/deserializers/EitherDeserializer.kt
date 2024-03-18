@@ -1,7 +1,8 @@
 package org.ldemetrios.typst4k.deserializers
 
 import org.ldemetrios.js.*
-import org.ldemetrios.typst4k.orm.TNoneOrAutoOrContent
+import org.ldemetrios.typst4k.orm.TLengthOrAuto
+import org.ldemetrios.typst4k.orm.TypstValue
 import org.ldemetrios.typst4k.utils.Lines
 import org.ldemetrios.typst4k.utils.join
 import org.ldemetrios.utilities.Either
@@ -32,6 +33,8 @@ data class EitherDeserializer(val variants: List<Deserializer>, val name: String
 val EitherContentDeserializer = EitherDeserializer(
     listOf(
         ParbreakDeserializer,
+        LinkDeserializer,
+        QuoteDeserializer,
         StrongDeserializer,
         EmphDeserializer,
         RawDeserializer,
@@ -51,6 +54,8 @@ val EitherContentDeserializer = EitherDeserializer(
         SequenceDeserializer,
         MetadataDeserializer,
         BibliographyDeserializer,
+        FigureDeserializer,
+        FootnoteDeserializer
     ), name = "ContentDeserializer"
 )
 
@@ -86,7 +91,7 @@ val TFloatOrRatioDeserializer =
     EitherDeserializer(listOf(FloatDeserializer, RatioDeserializer), "(Float|Ratio)Deserializer")
 val TRelativeOrFractionDeserializer =
     EitherDeserializer(listOf(RelativeDeserializer, FractionDeserializer), "(Relative|Fraction)Deserializer")
-val TStrOrNoneDeserializer = EitherDeserializer(listOf(NoneDeserializer, StrDeserializer), "(Str|None)Deserializer")
+val TNoneOrStrDeserializer = EitherDeserializer(listOf(NoneDeserializer, StrDeserializer), "(Str|None)Deserializer")
 val TStrOrArrayDeserializer = EitherDeserializer(listOf(ArrayDeserializer, StrDeserializer), "(Str|Array)Deserializer")
 val TAutoOrBoolDeserializer = EitherDeserializer(listOf(AutoDeserializer, BoolDeserializer), "(Auto|Bool)Deserializer")
 val TContentOrArrayDeserializer =
@@ -112,7 +117,12 @@ val TAutoOrDirectionDeserializer =
 val TArrayOrDictionaryDeserializer =
     EitherDeserializer(listOf(ArrayDeserializer, DictionaryDeserializer), "(Array|Dictionary)Deserializer")
 val TNoneOrAutoOrContentDeserializer =
-    EitherDeserializer(listOf(NoneDeserializer, AutoDeserializer, EitherContentDeserializer), "(Array|Dictionary|Content)Deserializer")
-val TNoneOrContentDeserializer =
-    EitherDeserializer(listOf(NoneDeserializer, EitherContentDeserializer), "(Array|Dictionary|Content)Deserializer")
+    EitherDeserializer(listOf(NoneDeserializer, AutoDeserializer, EitherContentDeserializer), "(None|Content|Auto)Deserializer")
+val TNoneOrContentDeserializer =    EitherDeserializer(listOf(NoneDeserializer, EitherContentDeserializer), "(None|Content)Deserializer")
+val TLengthOrAutoDeserializer =    EitherDeserializer(listOf(LengthDeserializer, AutoDeserializer), "(Length|Auto)Deserializer")
 
+val TNoneOrAutoOrAlignmentDeserializer =    EitherDeserializer(listOf(NoneDeserializer, AutoDeserializer, AlignmentDeserializer), "(None|Auto|Alignment)Deserializer")
+val TContentOrLabelDeserializer =    EitherDeserializer(listOf(EitherContentDeserializer, LabelDeserializer), "(Content|Label)Deserializer")
+val TIntOrLengthDeserializer =    EitherDeserializer(listOf(IntDeserializer, LengthDeserializer), "(Int|Length)Deserializer")
+val TStrOrLabelOrDictionaryDeserializer =    EitherDeserializer(listOf(StrDeserializer, LabelDeserializer, DictionaryDeserializer), "(Str|Label|Dictionary)Deserializer")
+val TNoneOrLabelOrContentDeserializer =    EitherDeserializer(listOf(NoneDeserializer, LabelDeserializer, EitherContentDeserializer), "(None|Label|Content)Deserializer")

@@ -4,13 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c967e36e-cb69-4fcb-bf98-4d403610b0b0" name="Changes" comment="+ awt.Color to TColor">
+    <list default="true" id="c967e36e-cb69-4fcb-bf98-4d403610b0b0" name="Changes" comment="+ Bibliography, Cite">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/buildSrc/src/main/kotlin/generator/Generator.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/buildSrc/src/main/kotlin/parsers/BaseParser.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/buildSrc/src/main/kotlin/parsers/CharSource.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/buildSrc/src/main/kotlin/parsers/ModelParser.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/buildSrc/src/main/kotlin/parsers/StringSource.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datamodel" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/repr/PrimitiveRepresentations.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers/CommonPool.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers/CommonPool.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers/ContentDeserializers.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers/ContentDeserializers.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers/EitherDeserializer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers/EitherDeserializer.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/TContent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/TContent.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/TScripting.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/TScripting.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/selectors/BasicSelectors.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/selectors/BasicSelectors.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.typ" beforeDir="false" afterPath="$PROJECT_DIR$/test.typ" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,9 +54,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Kotlin Interface" />
         <option value="Kotlin Class" />
+        <option value="Interface" />
         <option value="Class" />
         <option value="Kotlin File" />
       </list>
@@ -65,35 +76,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.Build Typst4k.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Typst4k [:Test.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.CombinatorsKt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.CommonPoolKt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.DeserializersKt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.MainKt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.ReflectionDeserializerKt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.TypstKt.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;/home/ldemetrios/Workspace/Typst4k/src/main/java&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/ldemetrios/Workspace/Typst4GradleNew&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;/home/ldemetrios/Workspace/Typst4k/src/main/kotlin/Main.kt&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.tmp.Test.executor": "Run",
+    "Gradle.Build Typst4k.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.Typst4k [:Test.main()].executor": "Run",
+    "Kotlin.AlignmentKt.executor": "Run",
+    "Kotlin.AngleKt.executor": "Run",
+    "Kotlin.CombinatorsKt.executor": "Run",
+    "Kotlin.CommonPoolKt.executor": "Run",
+    "Kotlin.DeserializersKt.executor": "Run",
+    "Kotlin.GeneratorKt.executor": "Run",
+    "Kotlin.MainKt.executor": "Run",
+    "Kotlin.ModelParserKt.executor": "Run",
+    "Kotlin.ReflectionDeserializerKt.executor": "Run",
+    "Kotlin.TypstKt.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "/home/ldemetrios/Workspace/Typst4k/src/main/java",
+    "last_opened_file_path": "/home/ldemetrios/Workspace/Typst4GradleNew",
+    "onboarding.tips.debug.path": "/home/ldemetrios/Workspace/Typst4k/src/main/kotlin/Main.kt",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;kotlin-gradle-user-dirs&quot;: [
-      &quot;/home/ldemetrios/.gradle&quot;
+  "keyToStringList": {
+    "kotlin-gradle-user-dirs": [
+      "/home/ldemetrios/.gradle"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/test/resources" />
@@ -103,15 +119,11 @@
       <recent name="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers" />
       <recent name="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="exp" />
+    </key>
   </component>
-  <component name="RunManager" selected="Application.tmp.Test">
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Test" />
-      <module name="typst4k.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Kotlin.GeneratorKt">
     <configuration name="tmp.Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="tmp.Test" />
       <module name="typst4k.main" />
@@ -154,43 +166,82 @@
       <setting name="focusEditor" value="false" />
       <method v="2" />
     </configuration>
-    <configuration name="CombinatorsKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.ldemetrios.typst4k.selectors.CombinatorsKt" />
+    <configuration name="AlignmentKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.ldemetrios.typst4k.dom.AlignmentKt" />
       <module name="typst4k.main" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CommonPoolKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.ldemetrios.typst4k.deserializers.CommonPoolKt" />
+    <configuration name="AngleKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.ldemetrios.typst4k.dom.AngleKt" />
       <module name="typst4k.main" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TypstKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.ldemetrios.typst4k.TypstKt" />
-      <module name="typst4k.main" />
+    <configuration name="GeneratorKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="generator.GeneratorKt" />
+      <module name="typst4k.buildSrc.main" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration name="ModelParserKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="parsers.ModelParserKt" />
+      <module name="typst4k.buildSrc.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="aws.lambda" factoryName="Local">
+      <option name="credentialProviderId" />
+      <option name="regionId" />
+      <option name="debugHost" value="localhost" />
+      <option name="architecture" />
+      <option name="environmentVariables">
+        <map />
+      </option>
+      <option name="handler" />
+      <option name="image" value="false" />
+      <option name="logicalFunctionName" />
+      <option name="memorySize" value="128" />
+      <option name="pathMappings">
+        <list />
+      </option>
+      <option name="platform" />
+      <option name="runtime" />
+      <option name="templateFile" />
+      <option name="timeout" value="300" />
+      <option name="useTemplate" value="false" />
+      <option name="input" />
+      <option name="inputIsFile" value="false" />
+      <sam>
+        <option name="additionalBuildArgs" />
+        <option name="additionalLocalArgs" />
+        <option name="buildInContainer" value="false" />
+        <option name="dockerNetwork" />
+        <option name="skipImagePull" value="false" />
+      </sam>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="aws.lambda" factoryName="Remote">
+      <option name="credentialProviderId" />
+      <option name="regionId" />
+      <option name="functionName" />
+      <option name="input" />
+      <option name="inputIsFile" value="false" />
+      <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Kotlin.TypstKt" />
-        <item itemvalue="Kotlin.CommonPoolKt" />
-        <item itemvalue="Kotlin.CombinatorsKt" />
+        <item itemvalue="Kotlin.GeneratorKt" />
+        <item itemvalue="Kotlin.AlignmentKt" />
+        <item itemvalue="Kotlin.AngleKt" />
+        <item itemvalue="Kotlin.ModelParserKt" />
         <item itemvalue="Application.tmp.Test" />
-        <item itemvalue="Application.Test" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-78a6f59c" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -225,21 +276,30 @@
       <option name="project" value="LOCAL" />
       <updated>1710449835689</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="+ Bibliography, Cite">
+      <option name="closed" value="true" />
+      <created>1710532954283</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1710532954283</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Redesign object model" />
     <MESSAGE value="+ Gradient&#10;+ toTypstRepr" />
     <MESSAGE value="+ awt.Color to TColor" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ awt.Color to TColor" />
+    <MESSAGE value="+ Bibliography, Cite" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ Bibliography, Cite" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers/CommonPool.kt</url>
-          <line>74</line>
+          <line>81</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
@@ -259,6 +319,21 @@
           <url>file://$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers/Deserializers.kt</url>
           <line>39</line>
           <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/buildSrc/src/main/kotlin/parsers/ModelParser.kt</url>
+          <line>91</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/buildSrc/src/main/kotlin/generator/Generator.kt</url>
+          <line>129</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/buildSrc/src/main/kotlin/generator/Generator.kt</url>
+          <line>290</line>
+          <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

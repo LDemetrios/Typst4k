@@ -98,11 +98,59 @@ object RawDeserializer : ContentDeserializer(
     override fun construct(parser: ParameterParser): Any = TRaw(
         parser.parse<TStr>("text"),
         block = parser.parseOptional<TBool>("block"),
-        lang = parser.parseOptional<TStrOrNone>("lang"),
+        lang = parser.parseOptional<TNoneOrStr>("lang"),
         align = parser.parseOptional<TAlignment>("align"),
         syntaxes = parser.parseOptional<TStrOrArray<TypstValue>>("syntaxes"),
-        theme = parser.parseOptional<TStrOrNone>("theme"),
+        theme = parser.parseOptional<TNoneOrStr>("theme"),
         tabSize = parser.parseOptional<TInt>("tab-size"),
+    )
+}
+
+object FigureDeserializer : ContentDeserializer(
+    typeOf<TFigure>(),
+    "figure",
+){
+    override fun construct(parser: ParameterParser): Any = TFigure(
+        parser.parse<TContent>("body"),
+            placement = parser.parseOptional<TNoneOrAutoOrAlignment>("placement"),
+            caption = parser.parseOptional<TNoneOrContent>("caption"),
+            kind = parser.parseOptional<TAutoOrStr>("kind"),
+            supplement = parser.parseOptional<TNoneOrAutoOrContent>("supplement"),
+            numbering = parser.parseOptional<TNoneOrStr>("numbering"),
+            gap = parser.parseOptional<TLength>("gap"),
+            outlined = parser.parseOptional<TBool>("outlined"),
+    )
+}
+
+object FootnoteDeserializer :  ContentDeserializer(
+    typeOf<TFootnote>(),
+    "footnote",
+){
+    override fun construct(parser: ParameterParser): Any = TFootnote(
+        numbering = parser.parseOptional<TStr>("numbering"),
+        body = parser.parse<TContentOrLabel>("body"),
+    )
+}
+
+object LinkDeserializer : ContentDeserializer(
+    typeOf<TLink>(),
+    "link",
+) {
+    override fun construct(parser: ParameterParser): Any = TLink(
+        dest = parser.parse<TStrOrLabelOrDictionary<TIntOrLength>>("dest"),
+        body = parser.parse<TContent>("body"),
+    )
+}
+
+object QuoteDeserializer : ContentDeserializer(
+    typeOf<TQuote>(),
+    "quote",
+) {
+    override fun construct(parser: ParameterParser): Any = TQuote(
+        block = parser.parseOptional<TBool>("block"),
+        quotes = parser.parseOptional<TAutoOrBool>("quotes"),
+        attributes = parser.parseOptional<TNoneOrLabelOrContent>("attributes"),
+        body = parser.parse<TContent>("body"),
     )
 }
 
@@ -113,7 +161,7 @@ object CiteDeserializer : ContentDeserializer(
     override fun construct(parser: ParameterParser): Any = TCite(
         key = parser.parse<TLabel>("key"),
         supplement = parser.parseOptional<TNoneOrContent>("supplement"),
-        form = parser.parseOptional<TStrOrNone>("form"),
+        form = parser.parseOptional<TNoneOrStr>("form"),
         style = parser.parseOptional<TAutoOrStr>("style")
     )
 }
@@ -124,7 +172,7 @@ object HeadingDeserializer : ContentDeserializer(
 ) {
     override fun construct(parser: ParameterParser): Any = THeading(
         level = parser.parseOptional<TInt>("level"),
-        numbering = parser.parseOptional<TStrOrNone>("numbering"),
+        numbering = parser.parseOptional<TNoneOrStr>("numbering"),
         outlined = parser.parseOptional<TBool>("outlined"),
         bookmarked = parser.parseOptional<TAutoOrBool>("bookmarked"),
         body = parser.parse<TContent>("body"),
@@ -251,7 +299,7 @@ object TextDeserializer : ContentDeserializer(typeOf<TText>(), "text") {
         topEdge = parser.parseOptional<TLengthOrStr>("top-edge"),
         bottomEdge = parser.parseOptional<TLengthOrStr>("bottom-edge"),
         lang = parser.parseOptional<TStr>("lang"),
-        region = parser.parseOptional<TStrOrNone>("region"),
+        region = parser.parseOptional<TNoneOrStr>("region"),
         script = parser.parseOptional<TAutoOrStr>("script"),
         dir = parser.parseOptional<TAutoOrDirection>("dir"),
         hyphenate = parser.parseOptional<TAutoOrBool>("hyphenate"),
