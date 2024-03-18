@@ -2,7 +2,6 @@ package org.ldemetrios.typst4k
 
 import kotlinx.serialization.json.Json
 import org.ldemetrios.js.JSParser
-import org.ldemetrios.typst4k.deserializers.TypstDeserializerPool
 import org.ldemetrios.typst4k.orm.*
 import org.ldemetrios.typst4k.selectors.Selector
 import org.ldemetrios.typst4k.selectors.heading
@@ -13,7 +12,7 @@ import kotlin.reflect.typeOf
 
 val FROM_STDIN: Path? = null
 
-object Typst {
+data class Typst(val executable: String) {
     @PublishedApi
     internal val json = Json {
         ignoreUnknownKeys = true
@@ -21,32 +20,32 @@ object Typst {
     }
 
     fun help() {
-        "typst"("help")
+        executable("help")
     }
 
-    object update {
-        fun revert() {
-            "typst"("update", "--revert")
+    val update = object : Update  {
+        override fun revert() {
+            executable("update", "--revert")
         }
 
-        operator fun invoke(version: String? = null, forceDowngrade: Boolean = false) {
+        override operator fun invoke(version: String?, forceDowngrade: Boolean) {
             if (version == null) {
                 if (forceDowngrade) {
-                    "typst"("update", "--force")
+                    executable("update", "--force")
                 } else {
-                    "typst"("update")
+                    executable("update")
                 }
             } else {
                 if (forceDowngrade) {
-                    "typst"("update", "--force", version)
+                    executable("update", "--force", version)
                 } else {
-                    "typst"("update", version)
+                    executable("update", version)
                 }
             }
         }
 
-        fun help() {
-            "typst"("update", "--help")
+        override fun help() {
+            executable("update", "--help")
         }
     }
 
@@ -64,21 +63,21 @@ object Typst {
 
     }
 
-    object compile {
-        fun help() {
-            "typst"("compile", "--help")
+   val   compile = object : Compile {
+        override fun help() {
+            executable("compile", "--help")
         }
 
-        operator fun invoke(
+        override operator fun invoke(
             input: Path?,
-            output: Path? = null,
-            root: Path? = null,
-            fontPath: Path? = null,
-            diagnosticFormat: Typst.DiagnosticFormat = DiagnosticFormat.HUMAN,
-            format: String? = null,
-            open: Boolean = false,
-            ppi: Int? = null, /*= 144*/
-            timings: Path? = null,
+            output: Path?,
+            root: Path?,
+            fontPath: Path?,
+            diagnosticFormat: DiagnosticFormat ,
+            format: String?,
+            open: Boolean ,
+            ppi: Int?  /*= 144*/,
+            timings: Path?,
         ) {
             val list = mutableListOf("compile")
 
@@ -128,24 +127,24 @@ object Typst {
 //            --input <key=value>
 //                    Add a string key-value pair visible through `sys.inputs`
 
-            "typst"(*list.toTypedArray())
+            executable(*list.toTypedArray())
         }
     }
 
-    data class Queryer internal constructor(
+    inner class Queryer internal constructor(
         @PublishedApi
         internal val params: Array<String>
     ) {
         //TODO
-        operator fun get(selector: String): List<TypstValue> { //by label!
-            return json.decodeFromString<List<TypstValue>>(
-                "typst"(*params, "<$selector>").joinToString("\n")
+        operator fun get(selector: String): List<TValue> { //by label!
+            return json.decodeFromString<List<TValue>>(
+                executable(*params, "<$selector>").joinToString("\n")
             )
         }
 
-        inline fun <reified E : TypstValue> getAs(selector: String): List<E> { //by label!
+        inline fun <reified E : TValue> getAs(selector: String): List<E> { //by label!
             return json.decodeFromString<List<E>>(
-                "typst"(*params, "<$selector>").joinToString("\n")
+                executable(*params, "<$selector>").joinToString("\n")
             )
         }
 
@@ -163,13 +162,12 @@ object Typst {
         }
     }
 
-    object query {
-        @PublishedApi
-        internal fun inferParamList(
+    val query = object : Query{
+        override fun inferParamList(
             input: Path?,
-            root: Path? = null,
-            fontPath: Path? = null,
-            diagnosticFormat: Typst.DiagnosticFormat = DiagnosticFormat.HUMAN,
+            root: Path?,
+            fontPath: Path?,
+            diagnosticFormat: DiagnosticFormat,
         ): Array<String> {
             val list = mutableListOf("query")
 
@@ -191,24 +189,24 @@ object Typst {
             } else {
                 list.add("-")
             }
-            return list.toTypedArray();
+            return list.toTypedArray()
         }
 
-        fun help() {
-            "typst"("query", "--help")
+        override fun help() {
+            executable("query", "--help")
         }
     }
 
-    inline fun <reified T : TypstValue> query(
+    inline fun <reified T : TValue> query(
         input: Path?,
         selector: String,
         root: Path? = null,
         fontPath: Path? = null,
-        diagnosticFormat: Typst.DiagnosticFormat = DiagnosticFormat.HUMAN
+        diagnosticFormat: DiagnosticFormat = DiagnosticFormat.HUMAN
     ): TArray<T> {
         val list = query.inferParamList(input, root, fontPath, diagnosticFormat)
 
-        val result = "typst"(*list, selector).joinToString("\n")
+        val result = executable(*list, selector).joinToString("\n")
         val json = JSParser.parseArray(result)
 
         println(json.toString(4))
@@ -217,16 +215,16 @@ object Typst {
         return data
     }
 
-    inline fun <reified T : TypstValue> query(
+    inline fun <reified T : TValue> query(
         input: Path?,
         selector: Selector<T>,
         root: Path? = null,
         fontPath: Path? = null,
-        diagnosticFormat: Typst.DiagnosticFormat = DiagnosticFormat.HUMAN
+        diagnosticFormat: DiagnosticFormat = DiagnosticFormat.HUMAN
     ): TArray<T> {
         val list = query.inferParamList(input, root, fontPath, diagnosticFormat)
 
-        val result = "typst"(*list, selector.toString()).joinToString("\n")
+        val result = executable(*list, selector.toString()).joinToString("\n")
         val json = JSParser.parseArray(result)
 
         println(json.toString(4))
@@ -236,8 +234,43 @@ object Typst {
     }
 }
 
+interface Query {
+    fun inferParamList(
+        input: Path?,
+        root: Path? = null,
+        fontPath: Path? = null,
+        diagnosticFormat: Typst.DiagnosticFormat = Typst.DiagnosticFormat.HUMAN,
+    ): Array<String>
+
+    fun help()
+}
+
+interface Compile {
+    fun help()
+
+    operator fun invoke(
+        input: Path?,
+        output: Path? = null,
+        root: Path? = null,
+        fontPath: Path? = null,
+        diagnosticFormat: Typst.DiagnosticFormat = Typst.DiagnosticFormat.HUMAN,
+        format: String? = null,
+        open: Boolean = false,
+        ppi: Int? = null, /*= 144*/
+        timings: Path? = null,
+    )
+}
+
+interface Update  {
+    fun revert()
+    operator fun invoke(version: String? = null, forceDowngrade: Boolean = false)
+    fun help()
+}
+
 fun main() {
-    val x = Typst.query(
+    val typst = Typst("typst")
+
+    val x = typst.query(
         Path.of("test.typ"),
         heading.where(level = TInt(2)).or("c")
     )

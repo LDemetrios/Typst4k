@@ -1,4 +1,5 @@
 
+import generator.kindaMain
 import org.gradle.internal.impldep.org.apache.maven.building.StringSource
 import java.lang.StringBuilder
 
@@ -61,6 +62,21 @@ tasks.withType<Javadoc> {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+tasks.register("generateModel") {
+    group = "build"
+    description = "Generates model classes from datamodel"
+    doLast {
+        kindaMain(
+            datamodelFile = "$rootDir/datamodel",
+            prefix = "T",
+            commonInterfaceName = "TValue",
+            location = "$rootDir/src/main/kotlin/org/ldemetrios/typst4k/orm",
+            packageName = "org.ldemetrios.typst4k.orm",
+            imports = "import org.ldemetrios.typst4k.repr.*",
+            )
+    }
 }
 
 kotlin {
