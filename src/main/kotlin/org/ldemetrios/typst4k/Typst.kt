@@ -1,14 +1,14 @@
 package org.ldemetrios.typst4k
 
 import kotlinx.serialization.json.Json
-import org.ldemetrios.js.JSParser
-import org.ldemetrios.typst4k.orm.*
+import org.ldemetrios.typst4k.orm.TArray
+import org.ldemetrios.typst4k.orm.TInt
+import org.ldemetrios.typst4k.orm.TMetadata
+import org.ldemetrios.typst4k.orm.TValue
+import org.ldemetrios.typst4k.rt.deserializeTypstValue
 import org.ldemetrios.typst4k.selectors.Selector
-import org.ldemetrios.typst4k.selectors.heading
-import org.ldemetrios.typst4k.selectors.or
 import org.ldemetrios.utilities.invoke
 import java.nio.file.Path
-import kotlin.reflect.typeOf
 
 val FROM_STDIN: Path? = null
 
@@ -23,7 +23,7 @@ data class Typst(val executable: String) {
         executable("help")
     }
 
-    val update = object : Update  {
+    val update = object : Update {
         override fun revert() {
             executable("update", "--revert")
         }
@@ -60,10 +60,9 @@ data class Typst(val executable: String) {
         const val PDF = "pdf"
         const val PNG = "png"
         const val SVG = "svg"
-
     }
 
-   val   compile = object : Compile {
+    val compile = object : Compile {
         override fun help() {
             executable("compile", "--help")
         }
@@ -73,10 +72,10 @@ data class Typst(val executable: String) {
             output: Path?,
             root: Path?,
             fontPath: Path?,
-            diagnosticFormat: DiagnosticFormat ,
+            diagnosticFormat: DiagnosticFormat,
             format: String?,
-            open: Boolean ,
-            ppi: Int?  /*= 144*/,
+            open: Boolean,
+            ppi: Int?,  /*= 144*/
             timings: Path?,
         ) {
             val list = mutableListOf("compile")
@@ -162,7 +161,7 @@ data class Typst(val executable: String) {
         }
     }
 
-    val query = object : Query{
+    val query = object : Query {
         override fun inferParamList(
             input: Path?,
             root: Path?,
@@ -207,12 +206,8 @@ data class Typst(val executable: String) {
         val list = query.inferParamList(input, root, fontPath, diagnosticFormat)
 
         val result = executable(*list, selector).joinToString("\n")
-        val json = JSParser.parseArray(result)
 
-        println(json.toString(4))
-
-        val data = TypstDeserializerPool.deserialize<TArray<T>>(json)
-        return data
+        return deserializeTypstValue<TArray<T>>(result)
     }
 
     inline fun <reified T : TValue> query(
@@ -225,12 +220,8 @@ data class Typst(val executable: String) {
         val list = query.inferParamList(input, root, fontPath, diagnosticFormat)
 
         val result = executable(*list, selector.toString()).joinToString("\n")
-        val json = JSParser.parseArray(result)
 
-        println(json.toString(4))
-
-        val data = TypstDeserializerPool.deserialize<TArray<T>>(json)
-        return data
+        return deserializeTypstValue<TArray<T>>(result)
     }
 }
 
@@ -261,20 +252,18 @@ interface Compile {
     )
 }
 
-interface Update  {
+interface Update {
     fun revert()
     operator fun invoke(version: String? = null, forceDowngrade: Boolean = false)
     fun help()
 }
 
 fun main() {
-    val typst = Typst("typst")
+    val typst = Typst("/home/ldemetrios/Workspace/typst-no-dynamic-values/target/release/typst")
 
-    val x = typst.query(
+    val x = typst.query<TMetadata<TArray<TInt>>>(
         Path.of("test.typ"),
-        heading.where(level = TInt(2)).or("c")
+        "<sss>",
     )
-    println(
-        x
-    )
+    val y = x[0].value[1]
 }

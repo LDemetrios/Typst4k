@@ -1,0 +1,812 @@
+ignore function
+
+class none()
+class auto()
+
+primitive bool = Boolean
+primitive int = Long
+primitive float = Double
+primitive str = String
+primitive array<out E> = interface List<E>
+primitive dictionary<out V> = interface Map<String, V>
+
+specformat arguments sequence space alignment
+
+class length(
+    pts: float,
+    em: float,
+)
+
+class angle(
+    req deg: float,
+)
+
+class ratio(
+    req value: float,
+)
+
+class relative(
+    rel: ratio,
+    abs: length,
+)
+
+class fraction(
+    req value: float,
+)
+
+class luma(
+    req pos lightness: int|ratio,
+    pos alpha: ratio,
+) -> color
+
+class oklab(
+    req pos lightness: ratio,
+    req pos a: float|ratio,
+    req pos b: float|ratio,
+    pos alpha: ratio,
+) -> color
+
+class oklch(
+    req pos lightness: ratio,
+	req pos chroma: float|ratio,
+	req pos hue: angle,
+	pos alpha: ratio,
+) -> color
+
+class color.linear-rgb(
+	req pos red: int|ratio,
+	req pos green: int|ratio,
+	req pos blue: int|ratio,
+	pos alpha: int|ratio,
+) -> color
+
+class rgb(
+	req pos hex: str,
+) -> color
+
+class cmyk(
+	req pos cyan: ratio,
+	req pos magenta: ratio,
+	req pos yellow: ratio,
+	req pos key: ratio,
+) -> color
+
+class color.hsl(
+	req pos hue: angle,
+	req pos saturation: int|ratio,
+	req pos lightness: int|ratio,
+	pos alpha: int|ratio,
+) -> color
+
+class color.hsv(
+	req pos hue: angle,
+	req pos saturation: int|ratio,
+	req pos value: int|ratio,
+	pos alpha: int|ratio,
+) -> color
+
+class linear(
+	req pos stops: array<color|array<color|ratio>>,
+	space: str,
+	relative: auto|str,
+	dir: direction,
+	angle: angle,
+) -> gradient
+
+class radial(
+	req pos stops: array<color|array<color|ratio>>,
+	space: str,
+	relative: auto|str,
+	center: array<ratio>,
+	radius: ratio,
+	focal-center: auto|array<ratio>,
+	focal-radius: ratio,
+) -> gradient
+
+class conic(
+	req pos stops: array<color|array<color|ratio>>,
+	angle: angle,
+	space: str,
+	relative: auto|str,
+	center: array<ratio>,
+) -> gradient
+
+class pattern(
+    size: auto|array<*>,
+    spacing: array<length>,
+    relative: auto|str,
+)
+
+class version(
+    req pos value: array<int>
+)
+
+class label(
+	req pos name: str
+)
+
+class datetime(
+	year: int,
+	month: int,
+	day: int,
+	hour: int,
+	minute: int,
+	second: int,
+)
+
+class duration(
+	seconds: int,
+	minutes: int,
+	hours: int,
+	days: int,
+	weeks: int,
+)
+
+class arguments<out A>(
+	req positional: array<A>,
+	req named: dictionary<A>,
+)
+
+class type(
+	req pos name: str
+)
+
+class module(
+	req pos name: str
+)
+
+class plugin()
+
+class bibliography(
+	req pos path: str|array<str>,
+	title: none|auto|content,
+	full: bool,
+	style: str,
+) -> content
+
+class cite(
+	req pos key: label,
+	supplement: none|content,
+	form: none|str,
+	style: auto|str,
+) -> content
+
+class emph(
+	req pos body: content
+) -> content
+
+class figure(
+	req pos body: content,
+	placement: none|auto|alignment,
+	caption: none|content,
+	kind: auto|str|function,
+	supplement: none|auto|content|function,
+	numbering: none|str|function,
+	gap: length,
+	outlined: bool,
+) -> content
+
+class footnote(
+	numbering: str|function,
+	req pos body: label|content,
+) -> content
+
+class h(
+	req pos amount: relative|fraction,
+	weak: bool,
+) -> content
+
+class v(
+	req pos amount: relative|fraction,
+	weak: bool,
+) -> content
+
+class heading(
+	level: auto|int,
+	depth: int,
+	offset: int,
+	numbering: none|str|function,
+	supplement: none|auto|content|function,
+	outlined: bool,
+	bookmarked: auto|bool,
+	req pos body: content,
+) -> content
+
+class highlight(
+	fill: color|gradient|pattern,
+	stroke: none|length|color|gradient|stroke|pattern|dictionary<*>,
+	top-edge: length|str,
+	bottom-edge: length|str,
+	extent: length,
+	radius: relative|dictionary,
+	req pos body: content,
+) -> content
+
+class linebreak(
+	justify: bool
+) -> content
+
+class link(
+	req pos dest: str|label|location|dictionary<int|length>,
+	req pos body: content,
+) -> content
+
+class metadata<out D>(
+	req pos value: D
+) -> content
+
+class outline(
+    title: none|auto|content,
+    target: label|selector|location|function,
+    depth: none|int,
+    indent: none|auto|bool|relative|function,
+    fill: none|content,
+) -> content
+
+class overline(
+	stroke: auto|length|color|gradient|stroke|pattern|dictionary,
+	offset: auto|length,
+	extent: length,
+	evade: bool,
+	background: bool,
+	req pos body: content,
+) -> content
+
+class par(
+	leading: length,
+	justify: bool,
+	linebreaks: auto|str,
+	first-line-indent: length,
+	hanging-indent: length,
+	req pos body: content,
+) -> content
+
+class parbreak() -> content
+
+class quote(
+	block: bool,
+	quotes: auto|bool,
+	attribution: none|label|content,
+	req pos body: content,
+) -> content
+
+class raw(
+	req pos text: str,
+	block: bool,
+	lang: none|str,
+	align: alignment,
+	syntaxes: str|array<*>,
+	theme: none|str,
+	tab-size: int,
+) -> content
+
+class ref(
+	req pos target: label,
+	supplement: none|auto|content|function,
+) -> content
+
+class sequence(
+	req children: array<content>,
+) -> content
+
+class smartquote(
+	double: bool,
+	enabled: bool,
+	alternative: bool,
+	quotes: auto|str|array<*>|dictionary<*>,
+) -> content
+
+class space() -> content
+
+class strike(
+	stroke: auto|length|color|gradient|stroke|pattern|dictionary<*>,
+	offset: auto|length,
+	extent: length,
+	background: bool,
+	req pos body: content,
+) -> content
+
+class strong(
+	delta: int,
+	req pos body: content,
+) -> content
+
+class sub(
+	typographic: bool,
+	baseline: length,
+	size: length,
+	req pos body: content,
+) -> content
+
+class super(
+	typographic: bool,
+	baseline: length,
+	size: length,
+	req pos body: content,
+) -> content
+
+class underline(
+	stroke: auto|length|color|gradient|stroke|pattern|dictionary,
+	offset: auto|length,
+	extent: length,
+	evade: bool,
+	background: bool,
+	req pos body: content,
+) -> content
+
+
+
+class table(
+	columns: auto|int|relative|fraction|array<*>,
+	rows: auto|int|relative|fraction|array<*>,
+	gutter: auto|int|relative|fraction|array<*>,
+	column-gutter: auto|int|relative|fraction|array<*>,
+	row-gutter: auto|int|relative|fraction|array<*>,
+	fill: none|color|gradient|array<*>|pattern|function,
+	align: auto|array<*>|alignment|function,
+	stroke: none|length|color|gradient|array<*>|stroke|pattern|dictionary<*>|function,
+	inset: relative|array<relative|fraction>|dictionary<relative|fraction>|function,
+	req pos children: array<content>,
+) -> content
+
+class text(
+	font: str|array<str>,
+	fallback: bool,
+	style: str,
+	weight: int|str,
+	stretch: ratio,
+	size: length,
+	fill: color|gradient|pattern,
+	stroke: none|length|color|gradient|stroke|pattern|dictionary<*>,
+	tracking: length,
+	spacing: relative,
+	cjk-latin-spacing: none|auto,
+	baseline: length,
+	overhang: bool,
+	top-edge: length|str,
+	bottom-edge: length|str,
+	lang: str,
+	region: none|str,
+	script: auto|str,
+	dir: auto|direction,
+	hyphenate: auto|bool,
+	kerning: bool,
+	alternates: bool,
+	stylistic-set: none|int,
+	ligatures: bool,
+	discretionary-ligatures: bool,
+	historical-ligatures: bool,
+	number-type: auto|str,
+	number-width: auto|str,
+	slashed-zero: bool,
+	fractions: bool,
+	features: array<str>|dictionary<int>,
+	pos body: content,
+	pos text: str,
+) -> content
+
+class list(
+	tight: bool,
+	marker: content|array<content>|function,
+	indent: length,
+	body-indent: length,
+	spacing: auto|relative|fraction,
+	children: array<item>,
+) -> content
+
+class terms(
+	tight: bool,
+	separator: content,
+	indent: length,
+	hanging-indent: length,
+	spacing: auto|relative|fraction,
+	children: array<content|array<*>>, // Reconfigure later
+) -> content
+
+class enum(
+	tight: bool,
+	numbering: str|function,
+	start: int,
+	full: bool,
+	indent: length,
+	body-indent: length,
+	spacing: auto|relative|fraction,
+	number-align: alignment,
+	children: array<content|array<*>>, // Reconfigure later
+) -> content
+
+class item(
+	pos number: none|int,
+	pos body: content,
+	pos term: content,
+	pos description: content,
+) -> content
+
+class alignment(
+	x : str,
+	y : str,
+)
+
+class direction(
+	value: str,
+)
+
+class regex(
+	regex: str,
+)
+
+class type(
+	value: str,
+)
+
+class document(
+	title: none|content,
+	author: str|array<str>,
+	keywords: str|array<str>,
+	date: none|auto|datetime,
+) -> structural
+
+class math.accent(
+	req pos base: content,
+	req pos accent: str|content,
+	size: auto|relative,
+) -> content
+
+class math.attach(
+	req pos base: content,
+	t: none|content,
+	b: none|content,
+	tl: none|content,
+	bl: none|content,
+	tr: none|content,
+	br: none|content,
+) -> content
+
+class math.cancel(
+	req pos body: content,
+	length: relative,
+	inverted: bool,
+	cross: bool,
+	angle: auto|angle|function,
+	stroke: length|color|gradient|stroke|pattern|dictionary<*>,
+) -> content
+
+class math.cases(
+	delim: str,
+	reverse: bool,
+	gap: relative,
+	req pos children: array<content>,
+) -> content
+
+class math.class(
+	req pos class: str,
+	req pos body: content,
+) -> content
+
+class math.equation(
+	block: bool,
+	numbering: none|str|function,
+	number-align: alignment,
+	supplement: none|auto|content|function,
+	req pos body: content,
+) -> content
+
+class math.frac(
+	req pos num: content,
+	req pos denom: content,
+) -> content
+
+class math.lr(
+	size: auto|relative,
+	req pos body: content,
+) -> content
+
+class math.mid(
+	req pos body: content
+) -> content
+
+class math.mat(
+	delim: none|str,
+	augment: none|int|dictionary<*>,
+	gap: relative,
+	row-gap: relative,
+	column-gap: relative,
+	req pos rows: array<array<content>>,
+) -> content
+
+class math.primes(
+	req pos count: int
+) -> content
+
+class math.root(
+	req pos index: none|content,
+	req pos radicand: content,
+) -> content
+
+class math.underline(
+	req pos body: content
+) -> content
+
+class math.overline(
+	req pos body: content
+) -> content
+
+class math.underbrace(
+	req pos body: content,
+	pos annotation: none|nonecontent,
+) -> content
+
+class math.overbrace(
+	req pos body: content,
+	pos annotation: none|nonecontent,
+) -> content
+
+class math.underbracket(
+	req pos body: content,
+	pos annotation: none|content,
+) -> content
+
+class math.overbracket(
+	req pos body: content,
+	pos annotation: none|content,
+) -> content
+
+class math.vec(
+	delim: none|str,
+	gap: relative,
+	req pos children: array<content>,
+) -> content
+
+class align(
+	req pos alignment: alignment,
+	req pos body: content,
+) -> content
+
+class block(
+	width: auto|relative,
+	height: auto|relative,
+	breakable: bool,
+	fill: none|color|gradient|pattern,
+	stroke: none|length|color|gradient|stroke|pattern|dictionary<*>,
+	radius: relative|dictionary<*>,
+	inset: relative|dictionary<*>,
+	outset: relative|dictionary<*>,
+	spacing: relative|fraction,
+	above: relative|fraction,
+	below: relative|fraction,
+	clip: bool,
+	req pos body: none|content,
+) -> content
+
+class box(
+	width: auto|relative|fraction,
+	height: auto|relative,
+	baseline: relative,
+	fill: none|color|gradient|pattern,
+	stroke: none|length|color|gradient|stroke|pattern|dictionary<*>,
+	radius: relative|dictionary<*>,
+	inset: relative|dictionary<*>,
+	outset: relative|dictionary<*>,
+	clip: bool,
+	req pos body: none|content,
+) -> content
+
+class colbreak(
+	weak:bool
+) -> content
+
+class columns(
+	pos count: int,
+	gutter: relative,
+	req pos body: content,
+) -> content
+
+class grid(
+	columns: auto|int|relative|fraction|array<*>,
+	rows: auto|int|relative|fraction|array<*>,
+	gutter: auto|int|relative|fraction|array<*>,
+	column-gutter: auto|int|relative|fraction|array<*>,
+	row-gutter: auto|int|relative|fraction|array<*>,
+	fill: none|color|gradient|array<*>|pattern|function,
+	align: auto|array|alignment|function,
+	stroke: none|length|color|gradient|array<*>|stroke|pattern|dictionary<*>|function,
+	inset: relative|array<*>|dictionary<*>|function,
+	req pos children: array<content>,
+) -> content
+
+class grid.cell(
+	req pos body: content,
+	x: auto|int,
+	y: auto|int,
+	colspan: int,
+	rowspan: int,
+	fill: none|auto|color|gradient|pattern,
+	align: auto|alignment,
+	inset: auto|relative|dictionary<*>,
+	stroke: none|length|color|gradient|stroke|pattern|dictionary<*>,
+	breakable: auto|bool,
+) -> content
+
+class grid.hline(
+	y: auto|int,
+	start: int,
+	end: none|int,
+	stroke: none|length|color|gradient|stroke|pattern|dictionary<*>,
+	position: alignment,
+) -> content
+
+class grid.vline(
+	x: auto|int,
+	start: int,
+	end: none|int,
+	stroke: none|length|color|gradient|stroke|pattern|dictionary<*>,
+	position: alignment,
+) -> content
+
+class grid.header(
+	repeat: bool,
+	req pos children: array<content>,
+) -> content
+
+class grid.footer(
+	repeat: bool,
+	req pos children: array<content>,
+) -> content
+
+class hide(
+	req pos body: content,
+) -> content
+
+class move(
+	dx: relative,
+	dy: relative,
+	req pos body: content,
+) -> content
+
+class pad(
+	left: relative,
+	top: relative,
+	right: relative,
+	bottom: relative,
+	x: relative,
+	y: relative,
+	rest: relative,
+	req pos body: content,
+) -> content
+
+class page(
+	paper: str,
+	width: auto|length,
+	height: auto|length,
+	flipped: bool,
+	margin: auto|relative|dictionary<*>,
+	binding: auto|alignment,
+	columns: int,
+	fill: none|color|gradient|pattern,
+	numbering: none|str|function,
+	number-align: alignment,
+	header: none|content,
+	header-ascent: relative,
+	footer: none|content,
+	footer-descent: relative,
+	background: none|content,
+	foreground: none|content,
+	req pos body: content,
+) -> content
+
+class place(
+	pos alignment: auto|alignment,
+	float: bool,
+	clearance: length,
+	dx: relative,
+	dy: relative,
+	req pos body: content,
+) -> content
+
+class repeat(
+	req pos body: content
+) -> content
+
+class rotate(
+	pos: angle,
+	origin: alignment,
+	reflow: bool,
+	req pos body: content,
+) -> content
+
+class scale(
+	x: ratio,
+	y: ratio,
+	origin: alignment,
+	reflow: bool,
+	req pos body: content,
+) -> content
+
+class stack(
+	dir: direction,
+	spacing: none|relative|fraction,
+	children: array<relative|fraction|content>,
+) -> content
+
+class circle(
+	radius: length,
+	width: auto|relative,
+	height: auto|relative,
+	fill: none|color|gradient|pattern,
+	stroke: none|auto|length|color|gradient|stroke|pattern|dictionary<*>,
+	inset: relative|dictionary<*>,
+	outset: relative|dictionary<*>,
+	pos body: none|content,
+) -> content
+
+class ellipse(
+	width: auto|relative,
+	height: auto|relative,
+	fill: none|color|gradient|pattern,
+	stroke: none|auto|length|color|gradient|stroke|pattern|dictionary<*>,
+	inset: relative|dictionary<*>,
+	outset: relative|dictionary<*>,
+	pos body: none|content,
+) -> content
+
+class image(
+	req pos path: str,
+	format: auto|str,
+	width: auto|relative,
+	height: auto|relative,
+	alt: none|str,
+	fit: str,
+) -> content
+
+class line(
+	start: array,
+	end: none|array,
+	length: relative,
+	angle: angle,
+	stroke: length|color|gradient|stroke|pattern|dictionary<*>,
+) -> content
+
+class path(
+	fill: none|color|gradient|pattern,
+	stroke: none|auto|length|color|gradient|stroke|pattern|dictionary<*>,
+	closed: bool,
+	req pos vertices: array<array<*>>,
+) -> content
+
+class polygon(
+	fill: none|color|gradient|pattern,
+	stroke: none|auto|length|color|gradient|stroke|pattern|dictionary<*>,
+	req pos vertices:   array<array<relative>>,
+) -> content
+
+class rect(
+	width: auto|relative,
+	height: auto|relative,
+	fill: none|color|gradient|pattern,
+	stroke: none|auto|length|color|gradient|stroke|pattern|dictionary<*>,
+	radius: relative|dictionary<*>,
+	inset: relative|dictionary<*>,
+	outset: relative|dictionary<*>,
+	pos body: none|content,
+) -> content
+
+class square(
+	size: auto|length,
+	width: auto|relative,
+	height: auto|relative,
+	fill: none|color|gradient|pattern,
+	stroke: none|auto|length|color|gradient|stroke|pattern|dictionary<*>,
+	radius: relative|dictionary<*>,
+	inset: relative|dictionary<*>,
+	outset: relative|dictionary<*>,
+	pos body: none|content,
+) -> content
+
+class stroke(
+	paint: auto|color|gradient|pattern,
+	thickness: auto|length,
+	cap: auto|str,
+	join: auto|str,
+	dash: none|auto|str|array<*>|dictionary<*>,
+	miter-limit: auto|float,
+)

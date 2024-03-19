@@ -23,10 +23,10 @@ data class HeadingSelector(
         return formatWhere(
             "heading",
             mapOf(
-                "level" to level?.toString(),
-                "numbering" to numbering?.toString(),
-                "outlined" to outlined?.toString(),
-                "bookmarked" to bookmarked?.toString(),
+                "level" to level?.repr(),
+                "numbering" to numbering?.repr(),
+                "outlined" to outlined?.repr(),
+                "bookmarked" to bookmarked?.repr(),
             )
         )
     }

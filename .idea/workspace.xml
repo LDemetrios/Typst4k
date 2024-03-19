@@ -11,22 +11,15 @@
       <change afterPath="$PROJECT_DIR$/buildSrc/src/main/kotlin/parsers/ModelParser.kt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/buildSrc/src/main/kotlin/parsers/StringSource.kt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/datamodel" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/rt/Deser.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/test/Test.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Int&amp;Float" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/Typst.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/Typst.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers/CommonPool.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers/ContentDeserializers.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers/Deserializers.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers/EitherDeserializer.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers/ScriptingValueDeserializers.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers/Utils.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/TColors.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/TContent.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/TGradient.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/TScripting.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/repr/PrimitiveRepresentations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/repr/PrimitiveRepresentations.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/selectors/Combinators.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/selectors/Combinators.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/selectors/Selector.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/selectors/Selector.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/repr/PrimitiveRepresentations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/rt/RT.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/selectors/BasicSelectors.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/selectors/BasicSelectors.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.typ" beforeDir="false" afterPath="$PROJECT_DIR$/test.typ" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,12 +86,15 @@
     "Kotlin.AngleKt.executor": "Run",
     "Kotlin.CombinatorsKt.executor": "Run",
     "Kotlin.CommonPoolKt.executor": "Run",
+    "Kotlin.DeserKt.executor": "Run",
     "Kotlin.DeserializersKt.executor": "Run",
     "Kotlin.GeneratorKt.executor": "Run",
     "Kotlin.MainKt.executor": "Run",
+    "Kotlin.MetadataKt.executor": "Run",
     "Kotlin.ModelParserKt.executor": "Run",
     "Kotlin.PrimitiveRepresentationsKt.executor": "Run",
     "Kotlin.ReflectionDeserializerKt.executor": "Run",
+    "Kotlin.TestKt.executor": "Run",
     "Kotlin.TypstKt.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -131,7 +127,7 @@
       <recent name="exp" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.PrimitiveRepresentationsKt">
+  <component name="RunManager" selected="Kotlin.TypstKt">
     <configuration default="true" type="Babashka" factoryName="BabashkaLocalRepl" activateToolWindowBeforeRun="false">
       <setting name="displayName" value="" />
       <setting name="bbPath" value="" />
@@ -161,15 +157,8 @@
       <setting name="focusEditor" value="false" />
       <method v="2" />
     </configuration>
-    <configuration name="AlignmentKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.ldemetrios.typst4k.dom.AlignmentKt" />
-      <module name="typst4k.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AngleKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.ldemetrios.typst4k.dom.AngleKt" />
+    <configuration name="DeserKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.ldemetrios.typst4k.rt.DeserKt" />
       <module name="typst4k.main" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -182,15 +171,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ModelParserKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="parsers.ModelParserKt" />
-      <module name="typst4k.buildSrc.main" />
+    <configuration name="MetadataKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.ldemetrios.typst4k.orm.MetadataKt" />
+      <module name="typst4k.main" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PrimitiveRepresentationsKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.ldemetrios.typst4k.repr.PrimitiveRepresentationsKt" />
+    <configuration name="TestKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.ldemetrios.typst4k.test.TestKt" />
+      <module name="typst4k.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TypstKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.ldemetrios.typst4k.TypstKt" />
       <module name="typst4k.main" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -237,11 +233,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Kotlin.PrimitiveRepresentationsKt" />
+        <item itemvalue="Kotlin.TypstKt" />
+        <item itemvalue="Kotlin.DeserKt" />
+        <item itemvalue="Kotlin.TestKt" />
         <item itemvalue="Kotlin.GeneratorKt" />
-        <item itemvalue="Kotlin.AlignmentKt" />
-        <item itemvalue="Kotlin.AngleKt" />
-        <item itemvalue="Kotlin.ModelParserKt" />
+        <item itemvalue="Kotlin.MetadataKt" />
       </list>
     </recent_temporary>
   </component>
@@ -322,11 +318,6 @@
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/Typst.kt</url>
-          <line>272</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers/Deserializers.kt</url>
           <line>39</line>
           <option name="timeStamp" value="10" />
@@ -337,14 +328,14 @@
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/buildSrc/src/main/kotlin/generator/Generator.kt</url>
-          <line>129</line>
-          <option name="timeStamp" value="23" />
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-serialization-json-jvm/1.6.3/a1952e1226e5a6d8015a381f4d01006d67cae116/kotlinx-serialization-json-jvm-1.6.3-sources.jar!/commonMain/kotlinx/serialization/json/internal/StreamingJsonDecoder.kt</url>
+          <line>68</line>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/buildSrc/src/main/kotlin/generator/Generator.kt</url>
-          <line>290</line>
-          <option name="timeStamp" value="24" />
+          <url>file://$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/rt/Deser.kt</url>
+          <line>14</line>
+          <option name="timeStamp" value="28" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

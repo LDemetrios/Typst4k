@@ -19,10 +19,9 @@
         fractions : (1fr, 1.5fr),
         ints : (1, 2, 9223372036854775807),
         label : <b>,
-        regex : regex("\r\n|\r|\n"),
+        // regex : regex("\r\n|\r|\n"),
         str : "str",
         version : version((1, 2), 3),
-        type : int,
         relatives : (
             100% + 50pt - 2em,
             2cm + 50pt - 50%,
@@ -94,3 +93,10 @@
 
 
 
+#metadata(
+    (1, "2")
+)<sss>
+
+$a/b^c$ <eq>
+
+#math.frac([I believe I can fly],[To be or not to be])

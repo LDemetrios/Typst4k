@@ -1,7 +1,5 @@
 
 import generator.kindaMain
-import org.gradle.internal.impldep.org.apache.maven.building.StringSource
-import java.lang.StringBuilder
 
 plugins {
     kotlin("jvm") version "1.9.22"
@@ -74,7 +72,7 @@ tasks.register("generateModel") {
             commonInterfaceName = "TValue",
             location = "$rootDir/src/main/kotlin/org/ldemetrios/typst4k/orm",
             packageName = "org.ldemetrios.typst4k.orm",
-            imports = "import org.ldemetrios.typst4k.repr.*",
+
             )
     }
 }
