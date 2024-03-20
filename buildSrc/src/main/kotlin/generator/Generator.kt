@@ -15,8 +15,11 @@ fun kebabToTitleCamel(string: String): String {
     return result.toString()
 }
 
-fun kebabToLowerCamel(string: String) = kebabToTitleCamel(string)
-    .replaceFirstChar { if (it.isUpperCase()) it.lowercase(Locale.getDefault()) else it.toString() }
+fun kebabToLowerCamel(string: String): String {
+    val x = kebabToTitleCamel(string)
+        .replaceFirstChar { if (it.isUpperCase()) it.lowercase(Locale.getDefault()) else it.toString() }
+    return if(x == "class") "clazz" else x
+}
 
 
 fun genericParametersOfUnion(union: Set<String>, allGenerics: List<ConcreteType>): List<TypeParameter> {

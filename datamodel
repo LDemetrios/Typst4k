@@ -218,7 +218,7 @@ class highlight(
 	top-edge: length|str,
 	bottom-edge: length|str,
 	extent: length,
-	radius: relative|dictionary,
+	radius: relative|dictionary<*>,
 	req pos body: content,
 ) -> content
 
@@ -244,7 +244,7 @@ class outline(
 ) -> content
 
 class overline(
-	stroke: auto|length|color|gradient|stroke|pattern|dictionary,
+	stroke: auto|length|color|gradient|stroke|pattern|dictionary<*>,
 	offset: auto|length,
 	extent: length,
 	evade: bool,
@@ -326,7 +326,7 @@ class super(
 ) -> content
 
 class underline(
-	stroke: auto|length|color|gradient|stroke|pattern|dictionary,
+	stroke: auto|length|color|gradient|stroke|pattern|dictionary<*>,
 	offset: auto|length,
 	extent: length,
 	evade: bool,
@@ -608,7 +608,7 @@ class grid(
 	column-gutter: auto|int|relative|fraction|array<*>,
 	row-gutter: auto|int|relative|fraction|array<*>,
 	fill: none|color|gradient|array<*>|pattern|function,
-	align: auto|array|alignment|function,
+	align: auto|array<*>|alignment|function,
 	stroke: none|length|color|gradient|array<*>|stroke|pattern|dictionary<*>|function,
 	inset: relative|array<*>|dictionary<*>|function,
 	req pos children: array<content>,
@@ -759,8 +759,8 @@ class image(
 ) -> content
 
 class line(
-	start: array,
-	end: none|array,
+	start: array<*>,
+	end: none|array<*>,
 	length: relative,
 	angle: angle,
 	stroke: length|color|gradient|stroke|pattern|dictionary<*>,

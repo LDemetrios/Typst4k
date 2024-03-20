@@ -4,22 +4,254 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c967e36e-cb69-4fcb-bf98-4d403610b0b0" name="Changes" comment="capture old orm">
-      <change afterPath="$PROJECT_DIR$/buildSrc/src/main/kotlin/generator/Generator.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/buildSrc/src/main/kotlin/parsers/BaseParser.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/buildSrc/src/main/kotlin/parsers/CharSource.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/buildSrc/src/main/kotlin/parsers/ModelParser.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/buildSrc/src/main/kotlin/parsers/StringSource.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/datamodel" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/rt/Deser.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/test/Test.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Int&amp;Float" afterDir="false" />
+    <list default="true" id="c967e36e-cb69-4fcb-bf98-4d403610b0b0" name="Changes" comment="Add generated orm">
+      <change afterPath="$PROJECT_DIR$/buildSrc/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Alignment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Angle.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Arguments.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Auto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Color.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Content.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Datetime.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Direction.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Duration.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Fraction.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Gradient.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Label.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Length.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Module.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/None.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Pattern.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Plugin.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Ratio.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Regex.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Relative.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Stroke.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Structural.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Type.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Version.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/base/Array.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/base/Bool.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/base/Dictionary.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/base/Float.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/base/Int.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/base/Str.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/base/TValue.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/colors/Cmyk.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/colors/Hsl.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/colors/Hsv.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/colors/LinearRgb.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/colors/Luma.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/colors/Oklab.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/colors/Oklch.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/colors/Rgb.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Accent.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Align.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Attach.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Bibliography.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Block.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Box.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Cancel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Cases.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Cell.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Circle.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Cite.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Class.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Colbreak.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Columns.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Ellipse.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Emph.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Enum.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Equation.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Figure.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Footer.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Footnote.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Frac.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Grid.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/H.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Header.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Heading.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Hide.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Highlight.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Hline.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Image.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Item.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Line.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Linebreak.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Link.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/List.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Lr.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Mat.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Metadata.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Mid.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Move.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Outline.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Overbrace.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Overbracket.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Overline.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Pad.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Page.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Par.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Parbreak.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Path.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Place.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Polygon.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Primes.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Quote.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Raw.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Rect.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Ref.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Repeat.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Root.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Rotate.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Scale.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Sequence.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Smartquote.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Space.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Square.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Stack.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Strike.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Strong.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Sub.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Super.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Table.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Terms.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Text.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Underbrace.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Underbracket.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Underline.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/V.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Vec.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Vline.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/gradients/Conic.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/gradients/Linear.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/gradients/Radial.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/NG_Alignment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/NG_Angle.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/NG_Arguments.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/NG_Auto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/NG_Color.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/NG_Content.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/NG_Datetime.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/NG_Direction.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/NG_Duration.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/NG_Fraction.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/NG_Gradient.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/NG_Label.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/NG_Length.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/NG_Module.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/NG_None.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/NG_Pattern.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/NG_Plugin.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/NG_Ratio.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/NG_Regex.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/NG_Relative.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/NG_Stroke.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/NG_Structural.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/NG_Type.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/NG_Version.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/base/NG_Array.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/base/NG_Bool.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/base/NG_Dictionary.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/base/NG_Float.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/base/NG_Int.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/base/NG_Str.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/base/NG_TValue.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/colors/NG_Cmyk.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/colors/NG_Hsl.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/colors/NG_Hsv.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/colors/NG_LinearRgb.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/colors/NG_Luma.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/colors/NG_Oklab.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/colors/NG_Oklch.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/colors/NG_Rgb.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Accent.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Align.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Attach.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Bibliography.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Block.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Box.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Cancel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Cases.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Cell.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Circle.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Cite.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Class.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Colbreak.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Columns.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Ellipse.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Emph.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Enum.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Equation.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Figure.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Footer.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Footnote.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Frac.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Grid.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_H.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Header.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Heading.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Hide.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Highlight.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Hline.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Image.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Item.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Line.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Linebreak.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Link.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_List.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Lr.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Mat.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Metadata.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Mid.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Move.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Outline.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Overbrace.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Overbracket.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Overline.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Pad.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Page.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Par.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Parbreak.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Path.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Place.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Polygon.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Primes.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Quote.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Raw.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Rect.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Ref.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Repeat.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Root.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Rotate.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Scale.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Sequence.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Smartquote.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Space.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Square.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Stack.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Strike.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Strong.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Sub.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Super.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Table.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Terms.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Text.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Underbrace.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Underbracket.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Underline.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_V.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Vec.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/contents/NG_Vline.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/gradients/NG_Conic.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/gradients/NG_Linear.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/gradients/NG_Radial.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/nongeneric/structurals/NG_Document.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/structurals/Document.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/Typst.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/Typst.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/repr/PrimitiveRepresentations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/rt/RT.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/selectors/BasicSelectors.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/selectors/BasicSelectors.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.typ" beforeDir="false" afterPath="$PROJECT_DIR$/test.typ" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/kotlin/generator/Generator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/kotlin/generator/Generator.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datamodel" beforeDir="false" afterPath="$PROJECT_DIR$/datamodel" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -290,7 +522,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710798967862</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Renew orm">
+      <option name="closed" value="true" />
+      <created>1710872866948</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1710872866948</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -299,7 +539,9 @@
     <MESSAGE value="+ awt.Color to TColor" />
     <MESSAGE value="+ Bibliography, Cite" />
     <MESSAGE value="capture old orm" />
-    <option name="LAST_COMMIT_MESSAGE" value="capture old orm" />
+    <MESSAGE value="Renew orm" />
+    <MESSAGE value="Add generated orm" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add generated orm" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
