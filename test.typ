@@ -1,1 +1,0 @@
-#math.equation(block: false, numbering: none, number-align: end + horizon, supplement: text("Equation", ), math.frac(text("a", ), math.attach(text("b", ), t: text("c", ), ), ), )

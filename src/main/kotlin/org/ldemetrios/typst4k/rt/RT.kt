@@ -5,11 +5,17 @@ import org.ldemetrios.typst4k.orm.*
 typealias CommonInterfaceName = TValue
 
 object RT {
-    fun <E : CommonInterfaceName> reprOf(value: List<E>): String =
-        "( " + value.joinToString("") { it.repr() + ", " } + ")"
+    fun <E : CommonInterfaceName> reprOf(value: List<E>): String = when (value.size) {
+        0 -> "()"
+        1 -> "(" + value[0].repr() + ",)"
+        else -> "( " + value.joinToString(", ") { it.repr() } + ")"
+    }
 
-    fun <V : CommonInterfaceName> reprOf(value: Map<String, V>): String =
-        "( " + value.entries.joinToString("") { reprOf(it.key) + " : " + it.value.repr() + ", " } + ")"
+
+    fun <V : CommonInterfaceName> reprOf(value: Map<String, V>): String = when (value.size) {
+        0 -> "(:)"
+        else -> "( " + value.entries.joinToString(", ") { reprOf(it.key) + " : " + it.value.repr() } + ")"
+    }
 
     fun reprOf(value: String): String = "\"" +
             value.replace("\\", "\\\\")
@@ -45,36 +51,31 @@ object RT {
 
         val sb = StringBuilder(name)
         sb.append("(")
+        val entries = mutableListOf<String>()
         for (element in elements) {
             if (!element.first) {
                 if (element.second != null) {
                     if (element.third == null) {
                         // skip
                     } else {
-                        sb.append(element.second)
-                        sb.append(": ")
-                        sb.append(element.third!!.repr())
-                        sb.append(", ")
+                        entries.add(element.second + ": " + element.third!!.repr())
                     }
                 } else {
                     if (element.third == null) {
                         // skip???
                     } else {
-                        sb.append(element.third!!.repr())
-                        sb.append(", ")
+                        entries.add(element.third!!.repr())
                     }
                 }
             } else {
                 if (element.third == null) {
                     // skip???
                 } else {
-                    sb.append("..")
-                    sb.append(element.third!!.repr())
-                    sb.append(", ")
+                    entries.add(".." + element.third!!.repr())
                 }
             }
         }
-        return sb.append(")").toString()
+        return name + "(" + entries.joinToString(", ") + ")"
     }
 
     fun reprOf(value: TAlignment): String = listOfNotNull(value.horizontal, value.vertical).joinToString(" + ")
