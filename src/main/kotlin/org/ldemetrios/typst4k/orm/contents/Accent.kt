@@ -4,7 +4,7 @@ import kotlinx.serialization.*
 import org.ldemetrios.typst4k.rt.*
 import org.ldemetrios.utilities.cast
 
-@SerialName("math.accent")
+@SerialName("accent")
 @Serializable
 data class TAccent(
     @SerialName("base") val base : TContent, 
@@ -12,5 +12,5 @@ data class TAccent(
     @SerialName("size") val size : TAutoOrRelative? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("math.accent", null to base, null to accent, "size" to size, )
+    override fun repr() : String = RT.structRepr("math.accent", Triple(false, null, base), Triple(false, null, accent), Triple(false, "size", size), )
 }

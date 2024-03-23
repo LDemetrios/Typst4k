@@ -19,5 +19,5 @@ data class TGrid(
     @SerialName("children") val children : TArray<TContent, >, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("grid", "columns" to columns, "rows" to rows, "gutter" to gutter, "column-gutter" to columnGutter, "row-gutter" to rowGutter, "fill" to fill, "align" to align, "stroke" to stroke, "inset" to inset, null to children, )
+    override fun repr() : String = RT.structRepr("grid", Triple(false, "columns", columns), Triple(false, "rows", rows), Triple(false, "gutter", gutter), Triple(false, "column-gutter", columnGutter), Triple(false, "row-gutter", rowGutter), Triple(false, "fill", fill), Triple(false, "align", align), Triple(false, "stroke", stroke), Triple(false, "inset", inset), Triple(false, null, children), )
 }

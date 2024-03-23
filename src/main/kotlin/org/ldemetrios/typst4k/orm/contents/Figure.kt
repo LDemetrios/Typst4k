@@ -17,5 +17,5 @@ data class TFigure(
     @SerialName("outlined") val outlined : TBool? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("figure", null to body, "placement" to placement, "caption" to caption, "kind" to kind, "supplement" to supplement, "numbering" to numbering, "gap" to gap, "outlined" to outlined, )
+    override fun repr() : String = RT.structRepr("figure", Triple(false, null, body), Triple(false, "placement", placement), Triple(false, "caption", caption), Triple(false, "kind", kind), Triple(false, "supplement", supplement), Triple(false, "numbering", numbering), Triple(false, "gap", gap), Triple(false, "outlined", outlined), )
 }

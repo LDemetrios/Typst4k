@@ -14,5 +14,5 @@ data class TOutline(
     @SerialName("fill") val fill : TContentOrNone? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("outline", "title" to title, "target" to target, "depth" to depth, "indent" to indent, "fill" to fill, )
+    override fun repr() : String = RT.structRepr("outline", Triple(false, "title", title), Triple(false, "target", target), Triple(false, "depth", depth), Triple(false, "indent", indent), Triple(false, "fill", fill), )
 }

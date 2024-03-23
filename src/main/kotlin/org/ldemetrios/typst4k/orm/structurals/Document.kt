@@ -13,5 +13,5 @@ data class TDocument(
     @SerialName("date") val date : TAutoOrDatetimeOrNone? = null, 
 ) : TStructural
 {
-    override fun repr() : String = RT.structRepr("document", "title" to title, "author" to author, "keywords" to keywords, "date" to date, )
+    override fun repr() : String = RT.structRepr("document", Triple(false, "title", title), Triple(false, "author", author), Triple(false, "keywords", keywords), Triple(false, "date", date), )
 }

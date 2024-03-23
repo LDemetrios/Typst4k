@@ -13,5 +13,5 @@ data class TQuote(
     @SerialName("body") val body : TContent, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("quote", "block" to block, "quotes" to quotes, "attribution" to attribution, null to body, )
+    override fun repr() : String = RT.structRepr("quote", Triple(false, "block", block), Triple(false, "quotes", quotes), Triple(false, "attribution", attribution), Triple(false, null, body), )
 }

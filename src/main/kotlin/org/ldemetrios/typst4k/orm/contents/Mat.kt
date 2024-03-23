@@ -4,7 +4,7 @@ import kotlinx.serialization.*
 import org.ldemetrios.typst4k.rt.*
 import org.ldemetrios.utilities.cast
 
-@SerialName("math.mat")
+@SerialName("mat")
 @Serializable
 data class TMat(
     @SerialName("delim") val delim : TNoneOrStr? = null, 
@@ -15,5 +15,5 @@ data class TMat(
     @SerialName("rows") val rows : TArray<TArray<TContent, >, >, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("math.mat", "delim" to delim, "augment" to augment, "gap" to gap, "row-gap" to rowGap, "column-gap" to columnGap, null to rows, )
+    override fun repr() : String = RT.structRepr("math.mat", Triple(false, "delim", delim), Triple(false, "augment", augment), Triple(false, "gap", gap), Triple(false, "row-gap", rowGap), Triple(false, "column-gap", columnGap), Triple(false, null, rows), )
 }

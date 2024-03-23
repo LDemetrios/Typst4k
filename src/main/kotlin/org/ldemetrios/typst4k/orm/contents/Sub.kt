@@ -13,5 +13,5 @@ data class TSub(
     @SerialName("body") val body : TContent, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("sub", "typographic" to typographic, "baseline" to baseline, "size" to size, null to body, )
+    override fun repr() : String = RT.structRepr("sub", Triple(false, "typographic", typographic), Triple(false, "baseline", baseline), Triple(false, "size", size), Triple(false, null, body), )
 }

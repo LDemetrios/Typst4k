@@ -16,5 +16,5 @@ data class TEllipse(
     @SerialName("body") val body : TContentOrNone? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("ellipse", "width" to width, "height" to height, "fill" to fill, "stroke" to stroke, "inset" to inset, "outset" to outset, null to body, )
+    override fun repr() : String = RT.structRepr("ellipse", Triple(false, "width", width), Triple(false, "height", height), Triple(false, "fill", fill), Triple(false, "stroke", stroke), Triple(false, "inset", inset), Triple(false, "outset", outset), Triple(false, null, body), )
 }

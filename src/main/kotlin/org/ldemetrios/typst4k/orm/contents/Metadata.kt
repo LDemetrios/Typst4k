@@ -7,8 +7,8 @@ import org.ldemetrios.utilities.cast
 @SerialName("metadata")
 @Serializable
 data class TMetadata<out D : TValue>(
-    @SerialName("value") val value : D, 
+    @SerialName("value")@Contextual  val value : D, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("metadata", null to value, )
+    override fun repr() : String = RT.structRepr("metadata", Triple(false, null, value), )
 }

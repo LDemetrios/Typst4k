@@ -16,5 +16,5 @@ data class TRaw(
     @SerialName("tab-size") val tabSize : TInt? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("raw", null to text, "block" to block, "lang" to lang, "align" to align, "syntaxes" to syntaxes, "theme" to theme, "tab-size" to tabSize, )
+    override fun repr() : String = RT.structRepr("raw", Triple(false, null, text), Triple(false, "block", block), Triple(false, "lang", lang), Triple(false, "align", align), Triple(false, "syntaxes", syntaxes), Triple(false, "theme", theme), Triple(false, "tab-size", tabSize), )
 }

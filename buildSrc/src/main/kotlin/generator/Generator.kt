@@ -18,7 +18,7 @@ fun kebabToTitleCamel(string: String): String {
 fun kebabToLowerCamel(string: String): String {
     val x = kebabToTitleCamel(string)
         .replaceFirstChar { if (it.isUpperCase()) it.lowercase(Locale.getDefault()) else it.toString() }
-    return if(x == "class") "clazz" else x
+    return if (x == "class") "clazz" else x
 }
 
 
@@ -57,17 +57,17 @@ fun generate(
         specformat,
         classDefinitions
     )
-
-    generateNonGeneric(
-        prefix,
-        common,
-        place,
-        pack,
-        "$imports\nimport $pack.*\n",
-        primitives,
-        specformat,
-        classDefinitions
-    )
+//
+//    generateNonGeneric(
+//        prefix,
+//        common,
+//        place,
+//        pack,
+//        "$imports\nimport $pack.*\n",
+//        primitives,
+//        specformat,
+//        classDefinitions
+//    )
 
 }
 
@@ -125,7 +125,7 @@ fun generateGeneric(
         general.append(union.sorted().joinToString("Or", transform = ::kebabToTitleCamel))
 
         val generics = genericParametersOfUnion(union, allGenerics)
-        if (generics.size > 0) {
+        if (generics.isNotEmpty()) {
             general.append(
                 "<" + generics.joinToString(", ") { "$it : $common" } + ">"
             )
@@ -161,7 +161,9 @@ fun generateGeneric(
             code.append(">")
         }
 
-        code.append("(val value : ")
+        code.append("(")
+        code.append(primitive.annotations.joinToString { it + " " })
+        code.append("val value : ")
         code.append(primitive.native)
         code.append(")")
 
@@ -176,7 +178,7 @@ fun generateGeneric(
         val generics = genericParametersOfUnion(union, allGenerics)
         unionTypeInterfaces(allUnions, union, code, prefix, generics, common, allGenerics)
 
-        code.append(" {\n    override fun repr() : String = RT.reprOf(value)\n}\n")
+        code.append(" {\n    override fun repr() : String = RT.reprOf(value)\n    override fun toString() : String = value.toString()\n}\n")
 
         File("$place/base/${kebabToTitleCamel(primName)}.kt").run {
             parentFile.mkdirs()
@@ -210,7 +212,7 @@ fun generateGeneric(
 
 
     for ((className, classDefinition) in classDefinitions) {
-        val backwarsParentList = run {
+        val backwardsParentList = run {
             val result = mutableListOf<String>()
             var current = classDefinition.parent
             while (current != null) {
@@ -223,7 +225,12 @@ fun generateGeneric(
         val code = StringBuilder(
             prelude
         )
-        code.append("@SerialName(\"$className\")\n@Serializable\n")
+        var serialName = when {
+            className.startsWith("gradient.") -> className.drop("gradient.".length)
+            className.startsWith("math.") -> className.drop("math.".length)
+            else -> className
+        }
+        code.append("@SerialName(\"$serialName\")\n@Serializable\n")
 
         if (classDefinition.classElements.isEmpty()) {
             code.append("data object $prefix${kebabToTitleCamel(className)}")
@@ -237,7 +244,9 @@ fun generateGeneric(
 
             code.append("(\n")
             classDefinition.classElements.forEach {
-                code.append("    @SerialName(\"${it.name}\") val ")
+                code.append("    @SerialName(\"${it.name}\")")
+                code.append(it.annotations.joinToString { it + " " })
+                code.append(" val ")
                 code.append(kebabToLowerCamel(it.name))
                 code.append(" : ")
                 code.formatType(it.type, prefix, allNames)
@@ -264,6 +273,9 @@ fun generateGeneric(
         } else {
             code.append("RT.structRepr(\"$className\", ")
             classDefinition.classElements.forEach {
+                code.append("Triple(")
+                code.append(it.varargs)
+                code.append(", ")
                 if (it.positional) {
                     code.append("null")
                 } else {
@@ -271,15 +283,15 @@ fun generateGeneric(
                     code.append(it.name)
                     code.append("\"")
                 }
-                code.append(" to ")
-                code.append(kebabToLowerCamel(it.name))
                 code.append(", ")
+                code.append(kebabToLowerCamel(it.name))
+                code.append("), ")
             }
             code.append(")")
         }
         code.append("\n}\n")
 
-        val folders = backwarsParentList.joinToString { it.replace("-", "_") + "s/" }
+        val folders = backwardsParentList.joinToString { it.replace("-", "_") + "s/" }
         File(
             "$place/$folders/${kebabToTitleCamel(className)}.kt"
         ).run {
@@ -287,250 +299,6 @@ fun generateGeneric(
             writeText(code.toString())
         }
     }
-}
-
-
-fun generateNonGeneric(
-    prefix: String,
-    common: String,
-    place: String,
-    pack: String,
-    imports: String,
-    primitives: Map<String, Primitive>,
-    specformat: List<String>,
-    classDefinitions: Map<String, ClassDefinition>,
-) {
-
-    val prelude = "@file:Suppress(\"UNNECESSARY_SAFE_CALL\", \"KotlinRedundantDiagnosticSuppress\")\n\npackage $pack.nongeneric\n\n$imports\n\n"
-
-    val allGenerics =
-        primitives.values.filter { it.type.isGeneric() }.map { it.type } +
-                classDefinitions.values.filter { it.type.isGeneric() }.map { it.type }
-
-
-    val allUnions = mutableSetOf<Set<String>>() // List of names of concrete types for each Union
-
-    fun addUnions(type: Type) {
-        when (type) {
-            is ConcreteType -> for (param in type.params) addUnions(param.param)
-            is UnionType -> {
-                allUnions.add(type.variants.map { it.cast<ConcreteType>().name }.toSet())
-                for (variant in type.variants) {
-                    addUnions(variant)
-                }
-            }
-
-            is AnyType -> Unit
-        }
-    }
-
-    for (it in classDefinitions) {
-        for (elem in it.value.classElements) {
-            addUnions(elem.type)
-        }
-    }
-
-    val general = StringBuilder(
-        prelude + """
-            |@Serializable
-            |sealed interface NG$common {
-            |   fun convert() : $common
-            |}
-            |
-        """.trimMargin() + "\n\n"
-    )
-
-    for (union in allUnions) {
-        general.append("@Serializable\nsealed interface NG$prefix")
-        general.append(union.sorted().joinToString("Or", transform = ::kebabToTitleCamel))
-
-        val generics = genericParametersOfUnion(union, allGenerics)
-        if (generics.size > 0) {
-            general.append(
-                "<" + generics.joinToString(", ") { "$it : $common" } + ">"
-            )
-        }
-
-        general.append(" : NG$common")
-
-        unionTypeInterfaces(allUnions, union, general, "NG" + prefix, generics, "NG" + common, allGenerics)
-
-        general.append("\n")
-    }
-
-    File("$place/nongeneric/base/NG_$common.kt").run {
-        parentFile.mkdirs()
-        writeText(general.toString())
-    }
-
-    val parents = classDefinitions.values.mapNotNull { it.parent }
-    val allNames = primitives.keys + classDefinitions.keys + parents.map { it.name }
-
-    val AnyParam = TypeParameter(ConcreteType("NG$common"), "");
-
-    fun removeGenerics(type: Type, generics: List<Type>): Type {
-        return when (type) {
-            is ConcreteType -> {
-                val params = type.params.map {
-                    if (it.param in generics) AnyParam
-                    else TypeParameter(removeGenerics(it.param, generics), it.variance)
-                }
-                ConcreteType(type.name, params)
-            }
-            is UnionType -> UnionType(type.variants.map { removeGenerics(it, generics) })
-            is AnyType -> AnyParam.param
-        }
-    }
-
-    for ((primName, primitive) in primitives) {
-        val thisGenerics = primitive.type.params.map{it.param}
-
-        val code = StringBuilder(
-            prelude
-        )
-
-        code.append("@SerialName(\"$primName\")\n@Serializable\n")
-
-        code.append("data class NG$prefix${kebabToTitleCamel(primName)}")
-        if (primitive.type.isGeneric()) {
-            code.append("<")
-            code.append(primitive.type.params.joinToString(", ") { "$it : $common" })
-            code.append(">")
-        }
-
-        code.append("(val value : ")
-        code.append(removeGenerics(primitive.native, thisGenerics))
-        code.append(")")
-
-        code.append(" : NG$common")
-        if (primitive.delegatable) {
-            code.append(", ")
-            code.append(removeGenerics(primitive.native, thisGenerics))
-            code.append(" by value")
-        }
-
-        val union = setOf(primName)
-        val generics = genericParametersOfUnion(union, allGenerics)
-        unionTypeInterfaces(allUnions, union, code, "NG" + prefix, generics, "NG" + common, allGenerics)
-
-        code.append(" {\n    override fun convert() = ")
-        if (primitive.type.isGeneric()) {
-            code.append("RT.convert${kebabToTitleCamel(primName)}<")
-            code.append(primitive.type.params.joinToString(", ") { it.param.toString() })
-            code.append(">(value)")
-        } else {
-            code.append("$pack.$prefix${kebabToTitleCamel(primName)}(value)")
-        }
-        code.append("\n}\n")
-
-        File("$place/nongeneric/base/NG_${kebabToTitleCamel(primName)}.kt").run {
-            parentFile.mkdirs()
-            writeText(code.toString())
-        }
-    }
-
-
-
-    for (parent in parents) {
-        val code = StringBuilder(
-            prelude
-        )
-
-        code.append("@Serializable\nsealed interface NG$prefix${kebabToTitleCamel(parent.name)}")
-        // No generic parents omg
-
-        code.append(" : NG$common")
-
-        val union = setOf(parent.name)
-        val generics = genericParametersOfUnion(union, allGenerics)
-        unionTypeInterfaces(allUnions, union, code, "NG" + prefix, generics, "NG" + common, allGenerics)
-
-        code.append("\n")
-
-        File("$place/nongeneric/NG_${kebabToTitleCamel(parent.name)}.kt").run {
-            parentFile.mkdirs()
-            writeText(code.toString())
-        }
-    }
-
-
-    for ((className, classDefinition) in classDefinitions) {
-        val thisGenerics = classDefinition.type.params.map{it.param}
-
-        val backwarsParentList = run {
-            val result = mutableListOf<String>()
-            var current = classDefinition.parent
-            while (current != null) {
-                result.add(current.name)
-                current = classDefinitions[current.name]?.parent
-            }
-            result.reversed()
-        }
-
-        val code = StringBuilder(
-            prelude
-        )
-        code.append("@SerialName(\"$className\")\n@Serializable\n")
-
-        if (classDefinition.classElements.isEmpty()) {
-            code.append("data object NG$prefix${kebabToTitleCamel(className)}")
-        } else {
-            code.append("data class NG$prefix${kebabToTitleCamel(className)}")
-            if (classDefinition.type.isGeneric()) {
-                code.append("<")
-                code.append(classDefinition.type.params.joinToString(", ") { "$it : $common" })
-                code.append(">")
-            }
-
-            code.append("(\n")
-            classDefinition.classElements.forEach {
-                code.append("    @SerialName(\"${it.name}\") val ")
-                code.append(kebabToLowerCamel(it.name))
-                code.append(" : NG")
-                if(it.type in thisGenerics){
-                    code.append(common)
-                } else {
-                    code.formatType(it.type, prefix, allNames)
-                }
-                if (!it.required) {
-                    code.append("? = null")
-                }
-                code.append(", \n")
-            }
-            code.append(")")
-        }
-
-        if (classDefinition.parent != null) {
-            code.append(" : NG$prefix${kebabToTitleCamel(classDefinition.parent.name)}")
-        } else code.append(" : NG$common")
-
-        val union = setOf(className)
-        val generics = genericParametersOfUnion(union, allGenerics)
-        unionTypeInterfaces(allUnions, union, code, "NG" + prefix, generics, "NG" + common, allGenerics)
-
-        code.append("\n{\n    override fun convert() = ")
-
-        if (classDefinition.type.isGeneric()) {
-            code.append("RT.convert${kebabToTitleCamel(className)}<")
-            code.append(classDefinition.type.params.joinToString(", ") { it.param.toString() })
-            code.append(">(this)")
-        } else {
-            code.append("$prefix${kebabToTitleCamel(className)}")
-            if (classDefinition.classElements.isNotEmpty()) code.append("(")
-            code.append(classDefinition.classElements.joinToString(", ") { kebabToLowerCamel( it.name) + "?.convert().cast()" })
-            if (classDefinition.classElements.isNotEmpty()) code.append(")")
-        }
-        code.append("\n}\n")
-
-        val folders = backwarsParentList.joinToString { it.replace("-", "_") + "s/" }
-        File(
-            "$place/nongeneric/$folders/NG_${kebabToTitleCamel(className)}.kt"
-        ).run {
-            parentFile.mkdirs()
-            writeText(code.toString())
-        }
-    }
-
 }
 
 private fun StringBuilder.formatType(type: Type, prefix: String, allNames: Set<String>) {
@@ -620,7 +388,7 @@ fun kindaMain(
 
 fun <T> Set<T>.isSubsetOf(other: Set<T>) = this.all { it in other }
 
-fun main(){
+fun main() {
     val rootDir = "/home/ldemetrios/Workspace/Typst4k"
     kindaMain(
         datamodelFile = "$rootDir/datamodel",
@@ -628,6 +396,5 @@ fun main(){
         commonInterfaceName = "TValue",
         location = "$rootDir/src/main/kotlin/org/ldemetrios/typst4k/orm",
         packageName = "org.ldemetrios.typst4k.orm",
-
-        )
+    )
 }

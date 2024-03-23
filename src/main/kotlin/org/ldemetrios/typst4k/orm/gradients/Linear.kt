@@ -8,11 +8,10 @@ import org.ldemetrios.utilities.cast
 @Serializable
 data class TLinear(
     @SerialName("stops") val stops : TArray<TArrayOrColor<TColorOrRatio, >, >, 
-    @SerialName("space") val space : TStr? = null, 
     @SerialName("relative") val relative : TAutoOrStr? = null, 
     @SerialName("dir") val dir : TDirection? = null, 
     @SerialName("angle") val angle : TAngle? = null, 
 ) : TGradient
 {
-    override fun repr() : String = RT.structRepr("linear", null to stops, "space" to space, "relative" to relative, "dir" to dir, "angle" to angle, )
+    override fun repr() : String = RT.structRepr("gradient.linear", Triple(true, null, stops), Triple(false, "relative", relative), Triple(false, "dir", dir), Triple(false, "angle", angle), )
 }

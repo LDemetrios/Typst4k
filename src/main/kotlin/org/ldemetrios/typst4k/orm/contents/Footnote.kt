@@ -11,5 +11,5 @@ data class TFootnote(
     @SerialName("body") val body : TContentOrLabel, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("footnote", "numbering" to numbering, null to body, )
+    override fun repr() : String = RT.structRepr("footnote", Triple(false, "numbering", numbering), Triple(false, null, body), )
 }

@@ -11,5 +11,5 @@ data class TAngle(
 ) : TValue, 
     TAngleOrAuto
 {
-    override fun repr() : String = RT.structRepr("angle", "deg" to deg, )
+    override fun repr() : String = RT.reprOf(this)
 }

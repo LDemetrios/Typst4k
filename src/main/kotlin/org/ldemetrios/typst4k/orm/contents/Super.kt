@@ -13,5 +13,5 @@ data class TSuper(
     @SerialName("body") val body : TContent, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("super", "typographic" to typographic, "baseline" to baseline, "size" to size, null to body, )
+    override fun repr() : String = RT.structRepr("super", Triple(false, "typographic", typographic), Triple(false, "baseline", baseline), Triple(false, "size", size), Triple(false, null, body), )
 }

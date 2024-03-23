@@ -14,5 +14,5 @@ data class TLine(
     @SerialName("stroke") val stroke : TColorOrDictionaryOrGradientOrLengthOrPatternOrStroke<*, >? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("line", "start" to start, "end" to end, "length" to length, "angle" to angle, "stroke" to stroke, )
+    override fun repr() : String = RT.structRepr("line", Triple(false, "start", start), Triple(false, "end", end), Triple(false, "length", length), Triple(false, "angle", angle), Triple(false, "stroke", stroke), )
 }

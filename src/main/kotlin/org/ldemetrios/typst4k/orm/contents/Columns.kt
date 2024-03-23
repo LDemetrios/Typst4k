@@ -12,5 +12,5 @@ data class TColumns(
     @SerialName("body") val body : TContent, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("columns", null to count, "gutter" to gutter, null to body, )
+    override fun repr() : String = RT.structRepr("columns", Triple(false, null, count), Triple(false, "gutter", gutter), Triple(false, null, body), )
 }

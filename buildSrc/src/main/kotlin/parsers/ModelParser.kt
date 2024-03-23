@@ -10,7 +10,7 @@ sealed interface Type {
     fun isGeneric(): Boolean
 }
 
-data class ConcreteType( val name: String, val params: List<TypeParameter> = listOf()) : Type {
+data class ConcreteType(val name: String, val params: List<TypeParameter> = listOf()) : Type {
     override fun toString(): String = if (params.isEmpty()) name else "$name<${params.joinToString(", ")}>"
     override fun isGeneric(): Boolean = params.isNotEmpty()
 }
@@ -27,15 +27,22 @@ data class UnionType(val variants: List<Type>) : Type {
         }
         return UnionType(variants)
     }
-    fun flattenSingle(): Type = when  {
+
+    fun flattenSingle(): Type = when {
         variants.size == 1 -> variants[0]
         variants.any { it is AnyType } -> AnyType
         else -> this
     }
+
     override fun isGeneric(): Boolean = variants.any { it.isGeneric() }
 }
 
-data class Primitive(val type: ConcreteType, val native: ConcreteType, val delegatable: Boolean) {
+data class Primitive(
+    val type: ConcreteType,
+    val native: ConcreteType,
+    val delegatable: Boolean,
+    val annotations: List<String>
+) {
     override fun toString(): String = "$type -> $native" + if (delegatable) " (delegatable)" else ""
 }
 
@@ -44,7 +51,14 @@ data object AnyType : Type {
     override fun isGeneric(): Boolean = false
 }
 
-data class ClassElement(val name: String, val type: Type, val required: Boolean, val positional: Boolean) {
+data class ClassElement(
+    val name: String,
+    val type: Type,
+    val varargs : Boolean,
+    val required: Boolean,
+    val positional: Boolean,
+    val annotations: List<String>
+) {
     override fun toString(): String =
         "$name: $type" + (if (required) " (req)" else "") + (if (positional) " (pos)" else "")
 }
@@ -100,15 +114,19 @@ class ModelParser(data: String) : BaseParser(data) {
         expect("(")
         val classElements = mutableListOf<ClassElement>()
         while (!lookup(")")) {
-            var required = lookup("req ")
-            val positional = lookup("pos ")
-            required = required || lookup("req ") // Regardless the order
+            var (required, positional, varargs) = BooleanArray(3)
+            repeat(3) { // I don't really care
+                required = required || lookup("req ")
+                positional = positional || lookup("pos ")
+                varargs = varargs || lookup("... ")
+            }
             val name = parseIdentifier()
             skipWhitespace()
             expect(":")
             val rawUnion = parseUnionType().flatten().flattenSingle()
+            val annotations = parseAnnotations()
             lookup(",")
-            classElements.add(ClassElement(name, rawUnion, required, positional))
+            classElements.add(ClassElement(name, rawUnion, varargs, required, positional, annotations))
         }
         val parent = if (lookup("->")) {
             parseConcreteType()
@@ -130,7 +148,49 @@ class ModelParser(data: String) : BaseParser(data) {
         if (!lookup("=")) throw AssertionError()
         val delegatable = lookup("interface")
         val native = parseConcreteType()
-        return Primitive(type, native, delegatable)
+        val annotations = parseAnnotations()
+        return Primitive(type, native, delegatable, annotations)
+    }
+
+    private fun parseAnnotations(): List<String> {
+        val annotations = mutableListOf<String>()
+        while (lookup("@")) {
+            val sb = StringBuilder("@")
+            sb.append(parseIdentifier())
+            if (lookup("(")) {
+                sb.append("(")
+                parseParenthesisTo(sb, ')')
+            }
+            annotations.add(sb.toString())
+        }
+        return annotations
+    }
+
+    private fun parseParenthesisTo(sb: StringBuilder, s: Char) {
+        while (!test(s)) {
+            val next = take()
+            sb.append(next)
+            when (next) {
+                '(' -> parseParenthesisTo(sb, ')')
+                '[' -> parseParenthesisTo(sb, ']')
+                '{' -> parseParenthesisTo(sb, '}')
+                '<' -> parseParenthesisTo(sb, '>')
+                '"' -> parseStringTo(sb)
+            }
+        }
+        sb.append(take())
+    }
+
+    private fun parseStringTo(sb: StringBuilder) {
+        while (!test('"')) {
+            if (peek() == '\\') {
+                sb.append(take())
+                sb.append(take())
+            } else {
+                sb.append(take())
+            }
+        }
+        sb.append(take())
     }
 
     private fun lineRemainder(): List<String> {

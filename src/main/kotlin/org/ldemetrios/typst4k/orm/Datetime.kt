@@ -16,5 +16,5 @@ data class TDatetime(
 ) : TValue, 
     TAutoOrDatetimeOrNone
 {
-    override fun repr() : String = RT.structRepr("datetime", "year" to year, "month" to month, "day" to day, "hour" to hour, "minute" to minute, "second" to second, )
+    override fun repr() : String = RT.structRepr("datetime", Triple(false, "year", year), Triple(false, "month", month), Triple(false, "day", day), Triple(false, "hour", hour), Triple(false, "minute", minute), Triple(false, "second", second), )
 }

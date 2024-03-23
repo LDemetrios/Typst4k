@@ -16,5 +16,5 @@ data class THighlight(
     @SerialName("body") val body : TContent, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("highlight", "fill" to fill, "stroke" to stroke, "top-edge" to topEdge, "bottom-edge" to bottomEdge, "extent" to extent, "radius" to radius, null to body, )
+    override fun repr() : String = RT.structRepr("highlight", Triple(false, "fill", fill), Triple(false, "stroke", stroke), Triple(false, "top-edge", topEdge), Triple(false, "bottom-edge", bottomEdge), Triple(false, "extent", extent), Triple(false, "radius", radius), Triple(false, null, body), )
 }

@@ -11,5 +11,5 @@ data class TDirection(
 ) : TValue, 
     TAutoOrDirection
 {
-    override fun repr() : String = RT.structRepr("direction", "value" to value, )
+    override fun repr() : String = RT.structRepr("direction", Triple(false, "value", value), )
 }

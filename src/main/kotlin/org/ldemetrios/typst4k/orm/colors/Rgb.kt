@@ -10,5 +10,5 @@ data class TRgb(
     @SerialName("hex") val hex : TStr, 
 ) : TColor
 {
-    override fun repr() : String = RT.structRepr("rgb", null to hex, )
+    override fun repr() : String = RT.structRepr("rgb", Triple(false, null, hex), )
 }

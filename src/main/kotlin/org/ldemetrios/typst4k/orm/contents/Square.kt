@@ -18,5 +18,5 @@ data class TSquare(
     @SerialName("body") val body : TContentOrNone? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("square", "size" to size, "width" to width, "height" to height, "fill" to fill, "stroke" to stroke, "radius" to radius, "inset" to inset, "outset" to outset, null to body, )
+    override fun repr() : String = RT.structRepr("square", Triple(false, "size", size), Triple(false, "width", width), Triple(false, "height", height), Triple(false, "fill", fill), Triple(false, "stroke", stroke), Triple(false, "radius", radius), Triple(false, "inset", inset), Triple(false, "outset", outset), Triple(false, null, body), )
 }

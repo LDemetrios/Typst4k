@@ -21,5 +21,5 @@ data class TRelative(
     TFractionOrNoneOrRelative, 
     TContentOrFractionOrRelative
 {
-    override fun repr() : String = RT.structRepr("relative", "rel" to rel, "abs" to abs, )
+    override fun repr() : String = RT.reprOf(this)
 }

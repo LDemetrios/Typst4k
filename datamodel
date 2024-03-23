@@ -7,10 +7,10 @@ primitive bool = Boolean
 primitive int = Long
 primitive float = Double
 primitive str = String
-primitive array<out E> = interface List<E>
-primitive dictionary<out V> = interface Map<String, V>
+primitive array<out E> = interface List<E> @Serializable(with = CustomListSerializer::class)
+primitive dictionary<out V> = interface Map<String, V> @Serializable(with = CustomMapSerializer::class)
 
-specformat arguments sequence space alignment
+specformat arguments sequence space alignment angle ratio fraction length relative pattern
 
 class length(
     pts: float,
@@ -85,17 +85,17 @@ class color.hsv(
 	pos alpha: int|ratio,
 ) -> color
 
-class linear(
-	req pos stops: array<color|array<color|ratio>>,
-	space: str,
+class gradient.linear(
+	req pos ... stops: array<color|array<color|ratio>>,
+//	space: str,
 	relative: auto|str,
 	dir: direction,
 	angle: angle,
 ) -> gradient
 
-class radial(
-	req pos stops: array<color|array<color|ratio>>,
-	space: str,
+class gradient.radial(
+	req pos ... stops: array<color|array<color|ratio>>,
+//	space: str,
 	relative: auto|str,
 	center: array<ratio>,
 	radius: ratio,
@@ -103,10 +103,10 @@ class radial(
 	focal-radius: ratio,
 ) -> gradient
 
-class conic(
-	req pos stops: array<color|array<color|ratio>>,
+class gradient.conic(
+	req pos ... stops: array<color|array<color|ratio>>,
 	angle: angle,
-	space: str,
+//	space: str,
 	relative: auto|str,
 	center: array<ratio>,
 ) -> gradient
@@ -115,6 +115,7 @@ class pattern(
     size: auto|array<*>,
     spacing: array<length>,
     relative: auto|str,
+    pos body: content,
 )
 
 class version(
@@ -232,7 +233,7 @@ class link(
 ) -> content
 
 class metadata<out D>(
-	req pos value: D
+	req pos value: D @Contextual,
 ) -> content
 
 class outline(
@@ -423,8 +424,8 @@ class item(
 ) -> content
 
 class alignment(
-	x : str,
-	y : str,
+	horizontal : str,
+	vertical : str,
 )
 
 class direction(
@@ -533,12 +534,12 @@ class math.overline(
 
 class math.underbrace(
 	req pos body: content,
-	pos annotation: none|nonecontent,
+	pos annotation: none|content,
 ) -> content
 
 class math.overbrace(
 	req pos body: content,
-	pos annotation: none|nonecontent,
+	pos annotation: none|content,
 ) -> content
 
 class math.underbracket(

@@ -14,5 +14,5 @@ data class TDuration(
     @SerialName("weeks") val weeks : TInt? = null, 
 ) : TValue
 {
-    override fun repr() : String = RT.structRepr("duration", "seconds" to seconds, "minutes" to minutes, "hours" to hours, "days" to days, "weeks" to weeks, )
+    override fun repr() : String = RT.structRepr("duration", Triple(false, "seconds", seconds), Triple(false, "minutes", minutes), Triple(false, "hours", hours), Triple(false, "days", days), Triple(false, "weeks", weeks), )
 }

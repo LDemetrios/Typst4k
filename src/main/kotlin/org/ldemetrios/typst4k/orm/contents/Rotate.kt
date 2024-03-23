@@ -13,5 +13,5 @@ data class TRotate(
     @SerialName("body") val body : TContent, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("rotate", "pos" to pos, "origin" to origin, "reflow" to reflow, null to body, )
+    override fun repr() : String = RT.structRepr("rotate", Triple(false, "pos", pos), Triple(false, "origin", origin), Triple(false, "reflow", reflow), Triple(false, null, body), )
 }

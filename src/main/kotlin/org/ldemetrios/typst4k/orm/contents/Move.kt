@@ -12,5 +12,5 @@ data class TMove(
     @SerialName("body") val body : TContent, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("move", "dx" to dx, "dy" to dy, null to body, )
+    override fun repr() : String = RT.structRepr("move", Triple(false, "dx", dx), Triple(false, "dy", dy), Triple(false, null, body), )
 }

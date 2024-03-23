@@ -13,5 +13,5 @@ data class TRatio(
     TFloatOrRatio, 
     TColorOrRatio
 {
-    override fun repr() : String = RT.structRepr("ratio", "value" to value, )
+    override fun repr() : String = RT.reprOf(this)
 }

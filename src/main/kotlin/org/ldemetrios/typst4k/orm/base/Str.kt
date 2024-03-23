@@ -17,4 +17,5 @@ data class TStr(val value : String) : TValue,
     TContentOrStr, 
     TArrayOrAutoOrDictionaryOrNoneOrStr<Nothing, Nothing> {
     override fun repr() : String = RT.reprOf(value)
+    override fun toString() : String = value.toString()
 }

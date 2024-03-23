@@ -10,5 +10,5 @@ data class TLinebreak(
     @SerialName("justify") val justify : TBool? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("linebreak", "justify" to justify, )
+    override fun repr() : String = RT.structRepr("linebreak", Triple(false, "justify", justify), )
 }

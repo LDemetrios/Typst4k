@@ -15,5 +15,5 @@ data class TTerms(
     @SerialName("children") val children : TArray<TArrayOrContent<*, >, >? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("terms", "tight" to tight, "separator" to separator, "indent" to indent, "hanging-indent" to hangingIndent, "spacing" to spacing, "children" to children, )
+    override fun repr() : String = RT.structRepr("terms", Triple(false, "tight", tight), Triple(false, "separator", separator), Triple(false, "indent", indent), Triple(false, "hanging-indent", hangingIndent), Triple(false, "spacing", spacing), Triple(false, "children", children), )
 }

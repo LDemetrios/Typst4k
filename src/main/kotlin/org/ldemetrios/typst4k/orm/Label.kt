@@ -14,5 +14,5 @@ data class TLabel(
     TLabelOrLocationOrSelector, 
     TContentOrLabelOrNone
 {
-    override fun repr() : String = RT.structRepr("label", null to name, )
+    override fun repr() : String = RT.structRepr("label", Triple(false, null, name), )
 }

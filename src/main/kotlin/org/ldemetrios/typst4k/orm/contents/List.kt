@@ -15,5 +15,5 @@ data class TList(
     @SerialName("children") val children : TArray<TItem, >? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("list", "tight" to tight, "marker" to marker, "indent" to indent, "body-indent" to bodyIndent, "spacing" to spacing, "children" to children, )
+    override fun repr() : String = RT.structRepr("list", Triple(false, "tight", tight), Triple(false, "marker", marker), Triple(false, "indent", indent), Triple(false, "body-indent", bodyIndent), Triple(false, "spacing", spacing), Triple(false, "children", children), )
 }

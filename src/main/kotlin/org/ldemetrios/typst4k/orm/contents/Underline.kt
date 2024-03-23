@@ -4,11 +4,11 @@ import kotlinx.serialization.*
 import org.ldemetrios.typst4k.rt.*
 import org.ldemetrios.utilities.cast
 
-@SerialName("math.underline")
+@SerialName("underline")
 @Serializable
 data class TUnderline(
     @SerialName("body") val body : TContent, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("math.underline", null to body, )
+    override fun repr() : String = RT.structRepr("math.underline", Triple(false, null, body), )
 }

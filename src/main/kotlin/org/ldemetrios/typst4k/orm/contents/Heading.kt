@@ -17,5 +17,5 @@ data class THeading(
     @SerialName("body") val body : TContent, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("heading", "level" to level, "depth" to depth, "offset" to offset, "numbering" to numbering, "supplement" to supplement, "outlined" to outlined, "bookmarked" to bookmarked, null to body, )
+    override fun repr() : String = RT.structRepr("heading", Triple(false, "level", level), Triple(false, "depth", depth), Triple(false, "offset", offset), Triple(false, "numbering", numbering), Triple(false, "supplement", supplement), Triple(false, "outlined", outlined), Triple(false, "bookmarked", bookmarked), Triple(false, null, body), )
 }

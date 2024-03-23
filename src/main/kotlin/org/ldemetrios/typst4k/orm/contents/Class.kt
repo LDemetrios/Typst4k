@@ -4,12 +4,12 @@ import kotlinx.serialization.*
 import org.ldemetrios.typst4k.rt.*
 import org.ldemetrios.utilities.cast
 
-@SerialName("math.class")
+@SerialName("class")
 @Serializable
 data class TClass(
     @SerialName("class") val clazz : TStr, 
     @SerialName("body") val body : TContent, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("math.class", null to clazz, null to body, )
+    override fun repr() : String = RT.structRepr("math.class", Triple(false, null, clazz), Triple(false, null, body), )
 }

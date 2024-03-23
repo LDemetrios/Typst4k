@@ -12,5 +12,5 @@ data class TStack(
     @SerialName("children") val children : TArray<TContentOrFractionOrRelative, >? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("stack", "dir" to dir, "spacing" to spacing, "children" to children, )
+    override fun repr() : String = RT.structRepr("stack", Triple(false, "dir", dir), Triple(false, "spacing", spacing), Triple(false, "children", children), )
 }

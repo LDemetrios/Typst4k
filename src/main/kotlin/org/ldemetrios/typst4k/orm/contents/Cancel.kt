@@ -4,7 +4,7 @@ import kotlinx.serialization.*
 import org.ldemetrios.typst4k.rt.*
 import org.ldemetrios.utilities.cast
 
-@SerialName("math.cancel")
+@SerialName("cancel")
 @Serializable
 data class TCancel(
     @SerialName("body") val body : TContent, 
@@ -15,5 +15,5 @@ data class TCancel(
     @SerialName("stroke") val stroke : TColorOrDictionaryOrGradientOrLengthOrPatternOrStroke<*, >? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("math.cancel", null to body, "length" to length, "inverted" to inverted, "cross" to cross, "angle" to angle, "stroke" to stroke, )
+    override fun repr() : String = RT.structRepr("math.cancel", Triple(false, null, body), Triple(false, "length", length), Triple(false, "inverted", inverted), Triple(false, "cross", cross), Triple(false, "angle", angle), Triple(false, "stroke", stroke), )
 }

@@ -13,5 +13,5 @@ data class TOklab(
     @SerialName("alpha") val alpha : TRatio? = null, 
 ) : TColor
 {
-    override fun repr() : String = RT.structRepr("oklab", null to lightness, null to a, null to b, null to alpha, )
+    override fun repr() : String = RT.structRepr("oklab", Triple(false, null, lightness), Triple(false, null, a), Triple(false, null, b), Triple(false, null, alpha), )
 }

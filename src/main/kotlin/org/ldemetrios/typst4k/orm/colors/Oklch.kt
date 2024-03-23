@@ -13,5 +13,5 @@ data class TOklch(
     @SerialName("alpha") val alpha : TRatio? = null, 
 ) : TColor
 {
-    override fun repr() : String = RT.structRepr("oklch", null to lightness, null to chroma, null to hue, null to alpha, )
+    override fun repr() : String = RT.structRepr("oklch", Triple(false, null, lightness), Triple(false, null, chroma), Triple(false, null, hue), Triple(false, null, alpha), )
 }

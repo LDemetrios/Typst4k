@@ -10,5 +10,5 @@ data class TColbreak(
     @SerialName("weak") val weak : TBool? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("colbreak", "weak" to weak, )
+    override fun repr() : String = RT.structRepr("colbreak", Triple(false, "weak", weak), )
 }

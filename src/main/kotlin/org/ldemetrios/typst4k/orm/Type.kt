@@ -10,5 +10,5 @@ data class TType(
     @SerialName("value") val value : TStr? = null, 
 ) : TValue
 {
-    override fun repr() : String = RT.structRepr("type", "value" to value, )
+    override fun repr() : String = RT.structRepr("type", Triple(false, "value", value), )
 }

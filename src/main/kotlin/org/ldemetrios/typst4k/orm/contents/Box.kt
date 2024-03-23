@@ -19,5 +19,5 @@ data class TBox(
     @SerialName("body") val body : TContentOrNone, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("box", "width" to width, "height" to height, "baseline" to baseline, "fill" to fill, "stroke" to stroke, "radius" to radius, "inset" to inset, "outset" to outset, "clip" to clip, null to body, )
+    override fun repr() : String = RT.structRepr("box", Triple(false, "width", width), Triple(false, "height", height), Triple(false, "baseline", baseline), Triple(false, "fill", fill), Triple(false, "stroke", stroke), Triple(false, "radius", radius), Triple(false, "inset", inset), Triple(false, "outset", outset), Triple(false, "clip", clip), Triple(false, null, body), )
 }

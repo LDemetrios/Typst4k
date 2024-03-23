@@ -13,5 +13,5 @@ data class TBibliography(
     @SerialName("style") val style : TStr? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("bibliography", null to path, "title" to title, "full" to full, "style" to style, )
+    override fun repr() : String = RT.structRepr("bibliography", Triple(false, null, path), Triple(false, "title", title), Triple(false, "full", full), Triple(false, "style", style), )
 }

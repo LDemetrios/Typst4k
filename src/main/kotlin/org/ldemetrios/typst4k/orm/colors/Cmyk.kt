@@ -13,5 +13,5 @@ data class TCmyk(
     @SerialName("key") val key : TRatio, 
 ) : TColor
 {
-    override fun repr() : String = RT.structRepr("cmyk", null to cyan, null to magenta, null to yellow, null to key, )
+    override fun repr() : String = RT.structRepr("cmyk", Triple(false, null, cyan), Triple(false, null, magenta), Triple(false, null, yellow), Triple(false, null, key), )
 }

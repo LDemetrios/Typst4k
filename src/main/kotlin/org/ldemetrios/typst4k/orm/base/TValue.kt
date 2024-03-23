@@ -160,8 +160,6 @@ sealed interface TColorOrDictionaryOrGradientOrLengthOrPatternOrStroke<out V : T
 @Serializable
 sealed interface TDictionaryOrIntOrNone<out V : TValue> : TValue
 @Serializable
-sealed interface TNoneOrNonecontent : TValue
-@Serializable
 sealed interface TColorOrGradientOrNoneOrPattern : TValue, 
     TColorOrDictionaryOrGradientOrLengthOrNoneOrPatternOrStroke<Nothing>, 
     TArrayOrColorOrGradientOrNoneOrPattern<Nothing>, 

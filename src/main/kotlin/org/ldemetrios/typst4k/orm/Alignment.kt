@@ -7,8 +7,8 @@ import org.ldemetrios.utilities.cast
 @SerialName("alignment")
 @Serializable
 data class TAlignment(
-    @SerialName("x") val x : TStr? = null, 
-    @SerialName("y") val y : TStr? = null, 
+    @SerialName("horizontal") val horizontal : TStr? = null, 
+    @SerialName("vertical") val vertical : TStr? = null, 
 ) : TValue, 
     TAlignmentOrAutoOrNone, 
     TAlignmentOrArrayOrAuto<Nothing>, 

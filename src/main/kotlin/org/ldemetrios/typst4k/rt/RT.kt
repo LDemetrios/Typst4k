@@ -1,16 +1,8 @@
 package org.ldemetrios.typst4k.rt
 
 import org.ldemetrios.typst4k.orm.*
-import org.ldemetrios.typst4k.orm.nongeneric.NGTArguments
-import org.ldemetrios.typst4k.orm.nongeneric.NGTMetadata
-import org.ldemetrios.typst4k.orm.nongeneric.NGTValue
-import org.ldemetrios.utilities.cast
 
 typealias CommonInterfaceName = TValue
-
-fun main() {
-    println("Compiles")
-}
 
 object RT {
     fun <E : CommonInterfaceName> reprOf(value: List<E>): String =
@@ -41,26 +33,43 @@ object RT {
 
     fun structRepr(
         name: String,
-        vararg elements: Pair<String?, CommonInterfaceName?>,
+        vararg elements: Triple<Boolean, String?, TValue?>,
     ): String {
         if (elements.isEmpty()) return name
+        if (name == "text") {
+            val present = elements.filter { it.third != null }
+            if (present.size == 1 && !present[0].first && present[0].second == null && present[0].third is TStr) {
+                return present[0].third!!.repr()
+            }
+        }
+
         val sb = StringBuilder(name)
         sb.append("(")
         for (element in elements) {
-            if (element.first != null) {
-                if (element.second == null) {
-                    // skip
+            if (!element.first) {
+                if (element.second != null) {
+                    if (element.third == null) {
+                        // skip
+                    } else {
+                        sb.append(element.second)
+                        sb.append(": ")
+                        sb.append(element.third!!.repr())
+                        sb.append(", ")
+                    }
                 } else {
-                    sb.append(element.first)
-                    sb.append(": ")
-                    sb.append(element.second!!.repr())
-                    sb.append(", ")
+                    if (element.third == null) {
+                        // skip???
+                    } else {
+                        sb.append(element.third!!.repr())
+                        sb.append(", ")
+                    }
                 }
             } else {
-                if (element.second == null) {
+                if (element.third == null) {
                     // skip???
                 } else {
-                    sb.append(element.second!!.repr())
+                    sb.append("..")
+                    sb.append(element.third!!.repr())
                     sb.append(", ")
                 }
             }
@@ -68,14 +77,26 @@ object RT {
         return sb.append(")").toString()
     }
 
-    fun reprOf(value: TAlignment): String = listOf(value.x, value.y).filterNotNull().joinToString(" + ")
-    fun <T : TValue> convertArray(value: List<NGTValue>) = TArray(value.map { it.convert() as T })
-    fun <T : TValue> convertArguments(value: NGTArguments<T>) =
-        TArguments<T>(value.positional.convert().cast(), value.named.convert().cast())
+    fun reprOf(value: TAlignment): String = listOfNotNull(value.horizontal, value.vertical).joinToString(" + ")
 
-    fun <T : TValue> convertDictionary(value: Map<String, NGTValue>): TDictionary<T> =
-        TDictionary<T>(value.mapValues { it.value.convert() as T })
+    fun reprOf(value: TAngle): String = "${value.deg}deg"
+    fun reprOf(value: TFraction): String = "${value.value}fr"
+    fun reprOf(value: TRatio): String = "${value.value.value * 100}%"
+    fun reprOf(value: TLength): String =
+        listOfNotNull(value.em?.let { "${it}em" }, value.pts?.let { "${it}pt" }).joinToString(" + ")
 
-    fun <T : TValue> convertMetadata(value: NGTMetadata<T>) =
-        TMetadata<T>(value.value.convert() as T)
+    fun reprOf(value: TRelative): String =
+        listOfNotNull(
+            value.abs?.em?.let { "${it}em" },
+            value.abs?.pts?.let { "${it}pt" },
+            value.rel?.repr()
+        ).joinToString(" + ")
+
+    fun reprOf(value: TPattern): String = structRepr(
+        "pattern",
+        Triple(false, "size", value.size),
+        Triple(false, "spacing", value.spacing),
+        Triple(false, "relative", value.relative),
+        Triple(false, null, value.body ?: TSpace),
+    )
 }

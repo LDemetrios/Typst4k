@@ -13,5 +13,5 @@ data class TPath(
     @SerialName("vertices") val vertices : TArray<TArray<*, >, >, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("path", "fill" to fill, "stroke" to stroke, "closed" to closed, null to vertices, )
+    override fun repr() : String = RT.structRepr("path", Triple(false, "fill", fill), Triple(false, "stroke", stroke), Triple(false, "closed", closed), Triple(false, null, vertices), )
 }

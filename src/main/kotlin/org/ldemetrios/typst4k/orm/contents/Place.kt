@@ -15,5 +15,5 @@ data class TPlace(
     @SerialName("body") val body : TContent, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("place", null to alignment, "float" to float, "clearance" to clearance, "dx" to dx, "dy" to dy, null to body, )
+    override fun repr() : String = RT.structRepr("place", Triple(false, null, alignment), Triple(false, "float", float), Triple(false, "clearance", clearance), Triple(false, "dx", dx), Triple(false, "dy", dy), Triple(false, null, body), )
 }

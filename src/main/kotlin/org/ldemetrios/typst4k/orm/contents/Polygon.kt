@@ -12,5 +12,5 @@ data class TPolygon(
     @SerialName("vertices") val vertices : TArray<TArray<TRelative, >, >, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("polygon", "fill" to fill, "stroke" to stroke, null to vertices, )
+    override fun repr() : String = RT.structRepr("polygon", Triple(false, "fill", fill), Triple(false, "stroke", stroke), Triple(false, null, vertices), )
 }

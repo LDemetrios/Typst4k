@@ -15,5 +15,5 @@ data class TFraction(
     TFractionOrNoneOrRelative, 
     TContentOrFractionOrRelative
 {
-    override fun repr() : String = RT.structRepr("fraction", "value" to value, )
+    override fun repr() : String = RT.reprOf(this)
 }

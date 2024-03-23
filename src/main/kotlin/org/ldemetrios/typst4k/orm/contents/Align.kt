@@ -11,5 +11,5 @@ data class TAlign(
     @SerialName("body") val body : TContent, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("align", null to alignment, null to body, )
+    override fun repr() : String = RT.structRepr("align", Triple(false, null, alignment), Triple(false, null, body), )
 }

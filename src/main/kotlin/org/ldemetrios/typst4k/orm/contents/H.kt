@@ -11,5 +11,5 @@ data class TH(
     @SerialName("weak") val weak : TBool? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("h", null to amount, "weak" to weak, )
+    override fun repr() : String = RT.structRepr("h", Triple(false, null, amount), Triple(false, "weak", weak), )
 }

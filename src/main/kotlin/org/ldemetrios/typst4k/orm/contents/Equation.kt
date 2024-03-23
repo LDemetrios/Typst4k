@@ -4,7 +4,7 @@ import kotlinx.serialization.*
 import org.ldemetrios.typst4k.rt.*
 import org.ldemetrios.utilities.cast
 
-@SerialName("math.equation")
+@SerialName("equation")
 @Serializable
 data class TEquation(
     @SerialName("block") val block : TBool? = null, 
@@ -14,5 +14,5 @@ data class TEquation(
     @SerialName("body") val body : TContent, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("math.equation", "block" to block, "numbering" to numbering, "number-align" to numberAlign, "supplement" to supplement, null to body, )
+    override fun repr() : String = RT.structRepr("math.equation", Triple(false, "block", block), Triple(false, "numbering", numbering), Triple(false, "number-align", numberAlign), Triple(false, "supplement", supplement), Triple(false, null, body), )
 }

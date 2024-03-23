@@ -13,5 +13,5 @@ data class TSmartquote(
     @SerialName("quotes") val quotes : TArrayOrAutoOrDictionaryOrStr<*, *, >? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("smartquote", "double" to double, "enabled" to enabled, "alternative" to alternative, "quotes" to quotes, )
+    override fun repr() : String = RT.structRepr("smartquote", Triple(false, "double", double), Triple(false, "enabled", enabled), Triple(false, "alternative", alternative), Triple(false, "quotes", quotes), )
 }

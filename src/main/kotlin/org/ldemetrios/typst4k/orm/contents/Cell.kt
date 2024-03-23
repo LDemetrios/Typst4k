@@ -19,5 +19,5 @@ data class TCell(
     @SerialName("breakable") val breakable : TAutoOrBool? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("grid.cell", null to body, "x" to x, "y" to y, "colspan" to colspan, "rowspan" to rowspan, "fill" to fill, "align" to align, "inset" to inset, "stroke" to stroke, "breakable" to breakable, )
+    override fun repr() : String = RT.structRepr("grid.cell", Triple(false, null, body), Triple(false, "x", x), Triple(false, "y", y), Triple(false, "colspan", colspan), Triple(false, "rowspan", rowspan), Triple(false, "fill", fill), Triple(false, "align", align), Triple(false, "inset", inset), Triple(false, "stroke", stroke), Triple(false, "breakable", breakable), )
 }

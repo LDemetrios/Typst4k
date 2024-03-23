@@ -11,5 +11,5 @@ data class TLuma(
     @SerialName("alpha") val alpha : TRatio? = null, 
 ) : TColor
 {
-    override fun repr() : String = RT.structRepr("luma", null to lightness, null to alpha, )
+    override fun repr() : String = RT.structRepr("luma", Triple(false, null, lightness), Triple(false, null, alpha), )
 }

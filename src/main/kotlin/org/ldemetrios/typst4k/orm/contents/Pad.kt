@@ -17,5 +17,5 @@ data class TPad(
     @SerialName("body") val body : TContent, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("pad", "left" to left, "top" to top, "right" to right, "bottom" to bottom, "x" to x, "y" to y, "rest" to rest, null to body, )
+    override fun repr() : String = RT.structRepr("pad", Triple(false, "left", left), Triple(false, "top", top), Triple(false, "right", right), Triple(false, "bottom", bottom), Triple(false, "x", x), Triple(false, "y", y), Triple(false, "rest", rest), Triple(false, null, body), )
 }

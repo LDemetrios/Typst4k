@@ -4,7 +4,7 @@ import kotlinx.serialization.*
 import org.ldemetrios.typst4k.rt.*
 import org.ldemetrios.utilities.cast
 
-@SerialName("math.attach")
+@SerialName("attach")
 @Serializable
 data class TAttach(
     @SerialName("base") val base : TContent, 
@@ -16,5 +16,5 @@ data class TAttach(
     @SerialName("br") val br : TContentOrNone? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("math.attach", null to base, "t" to t, "b" to b, "tl" to tl, "bl" to bl, "tr" to tr, "br" to br, )
+    override fun repr() : String = RT.structRepr("math.attach", Triple(false, null, base), Triple(false, "t", t), Triple(false, "b", b), Triple(false, "tl", tl), Triple(false, "bl", bl), Triple(false, "tr", tr), Triple(false, "br", br), )
 }

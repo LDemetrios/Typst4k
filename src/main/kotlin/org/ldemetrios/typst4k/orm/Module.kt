@@ -10,5 +10,5 @@ data class TModule(
     @SerialName("name") val name : TStr, 
 ) : TValue
 {
-    override fun repr() : String = RT.structRepr("module", null to name, )
+    override fun repr() : String = RT.structRepr("module", Triple(false, null, name), )
 }

@@ -13,5 +13,5 @@ data class TItem(
     @SerialName("description") val description : TContent? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("item", null to number, null to body, null to term, null to description, )
+    override fun repr() : String = RT.structRepr("item", Triple(false, null, number), Triple(false, null, body), Triple(false, null, term), Triple(false, null, description), )
 }

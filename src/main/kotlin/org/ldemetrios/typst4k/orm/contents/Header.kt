@@ -11,5 +11,5 @@ data class THeader(
     @SerialName("children") val children : TArray<TContent, >, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("grid.header", "repeat" to repeat, null to children, )
+    override fun repr() : String = RT.structRepr("grid.header", Triple(false, "repeat", repeat), Triple(false, null, children), )
 }

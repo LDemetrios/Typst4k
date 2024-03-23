@@ -14,5 +14,5 @@ data class TScale(
     @SerialName("body") val body : TContent, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("scale", "x" to x, "y" to y, "origin" to origin, "reflow" to reflow, null to body, )
+    override fun repr() : String = RT.structRepr("scale", Triple(false, "x", x), Triple(false, "y", y), Triple(false, "origin", origin), Triple(false, "reflow", reflow), Triple(false, null, body), )
 }

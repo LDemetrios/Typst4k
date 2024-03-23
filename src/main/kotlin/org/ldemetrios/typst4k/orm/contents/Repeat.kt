@@ -10,5 +10,5 @@ data class TRepeat(
     @SerialName("body") val body : TContent, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("repeat", null to body, )
+    override fun repr() : String = RT.structRepr("repeat", Triple(false, null, body), )
 }

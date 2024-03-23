@@ -26,5 +26,5 @@ data class TPage(
     @SerialName("body") val body : TContent, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("page", "paper" to paper, "width" to width, "height" to height, "flipped" to flipped, "margin" to margin, "binding" to binding, "columns" to columns, "fill" to fill, "numbering" to numbering, "number-align" to numberAlign, "header" to header, "header-ascent" to headerAscent, "footer" to footer, "footer-descent" to footerDescent, "background" to background, "foreground" to foreground, null to body, )
+    override fun repr() : String = RT.structRepr("page", Triple(false, "paper", paper), Triple(false, "width", width), Triple(false, "height", height), Triple(false, "flipped", flipped), Triple(false, "margin", margin), Triple(false, "binding", binding), Triple(false, "columns", columns), Triple(false, "fill", fill), Triple(false, "numbering", numbering), Triple(false, "number-align", numberAlign), Triple(false, "header", header), Triple(false, "header-ascent", headerAscent), Triple(false, "footer", footer), Triple(false, "footer-descent", footerDescent), Triple(false, "background", background), Triple(false, "foreground", foreground), Triple(false, null, body), )
 }

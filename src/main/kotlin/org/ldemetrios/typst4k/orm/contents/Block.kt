@@ -22,5 +22,5 @@ data class TBlock(
     @SerialName("body") val body : TContentOrNone, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("block", "width" to width, "height" to height, "breakable" to breakable, "fill" to fill, "stroke" to stroke, "radius" to radius, "inset" to inset, "outset" to outset, "spacing" to spacing, "above" to above, "below" to below, "clip" to clip, null to body, )
+    override fun repr() : String = RT.structRepr("block", Triple(false, "width", width), Triple(false, "height", height), Triple(false, "breakable", breakable), Triple(false, "fill", fill), Triple(false, "stroke", stroke), Triple(false, "radius", radius), Triple(false, "inset", inset), Triple(false, "outset", outset), Triple(false, "spacing", spacing), Triple(false, "above", above), Triple(false, "below", below), Triple(false, "clip", clip), Triple(false, null, body), )
 }

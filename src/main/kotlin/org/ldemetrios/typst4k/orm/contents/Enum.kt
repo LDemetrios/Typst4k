@@ -18,5 +18,5 @@ data class TEnum(
     @SerialName("children") val children : TArray<TArrayOrContent<*, >, >? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("enum", "tight" to tight, "numbering" to numbering, "start" to start, "full" to full, "indent" to indent, "body-indent" to bodyIndent, "spacing" to spacing, "number-align" to numberAlign, "children" to children, )
+    override fun repr() : String = RT.structRepr("enum", Triple(false, "tight", tight), Triple(false, "numbering", numbering), Triple(false, "start", start), Triple(false, "full", full), Triple(false, "indent", indent), Triple(false, "body-indent", bodyIndent), Triple(false, "spacing", spacing), Triple(false, "number-align", numberAlign), Triple(false, "children", children), )
 }

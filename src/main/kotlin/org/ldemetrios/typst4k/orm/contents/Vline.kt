@@ -14,5 +14,5 @@ data class TVline(
     @SerialName("position") val position : TAlignment? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("grid.vline", "x" to x, "start" to start, "end" to end, "stroke" to stroke, "position" to position, )
+    override fun repr() : String = RT.structRepr("grid.vline", Triple(false, "x", x), Triple(false, "start", start), Triple(false, "end", end), Triple(false, "stroke", stroke), Triple(false, "position", position), )
 }

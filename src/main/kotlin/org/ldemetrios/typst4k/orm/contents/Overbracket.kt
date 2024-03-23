@@ -4,12 +4,12 @@ import kotlinx.serialization.*
 import org.ldemetrios.typst4k.rt.*
 import org.ldemetrios.utilities.cast
 
-@SerialName("math.overbracket")
+@SerialName("overbracket")
 @Serializable
 data class TOverbracket(
     @SerialName("body") val body : TContent, 
     @SerialName("annotation") val annotation : TContentOrNone? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("math.overbracket", null to body, null to annotation, )
+    override fun repr() : String = RT.structRepr("math.overbracket", Triple(false, null, body), Triple(false, null, annotation), )
 }

@@ -11,5 +11,5 @@ data class TStrong(
     @SerialName("body") val body : TContent, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("strong", "delta" to delta, null to body, )
+    override fun repr() : String = RT.structRepr("strong", Triple(false, "delta", delta), Triple(false, null, body), )
 }

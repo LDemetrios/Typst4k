@@ -14,5 +14,5 @@ data class TStrike(
     @SerialName("body") val body : TContent, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("strike", "stroke" to stroke, "offset" to offset, "extent" to extent, "background" to background, null to body, )
+    override fun repr() : String = RT.structRepr("strike", Triple(false, "stroke", stroke), Triple(false, "offset", offset), Triple(false, "extent", extent), Triple(false, "background", background), Triple(false, null, body), )
 }

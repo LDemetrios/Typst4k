@@ -15,5 +15,5 @@ data class TPar(
     @SerialName("body") val body : TContent, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("par", "leading" to leading, "justify" to justify, "linebreaks" to linebreaks, "first-line-indent" to firstLineIndent, "hanging-indent" to hangingIndent, null to body, )
+    override fun repr() : String = RT.structRepr("par", Triple(false, "leading", leading), Triple(false, "justify", justify), Triple(false, "linebreaks", linebreaks), Triple(false, "first-line-indent", firstLineIndent), Triple(false, "hanging-indent", hangingIndent), Triple(false, null, body), )
 }

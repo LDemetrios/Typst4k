@@ -11,5 +11,5 @@ data class TLink(
     @SerialName("body") val body : TContent, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("link", null to dest, null to body, )
+    override fun repr() : String = RT.structRepr("link", Triple(false, null, dest), Triple(false, null, body), )
 }

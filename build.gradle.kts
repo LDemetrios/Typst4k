@@ -1,4 +1,3 @@
-
 import generator.kindaMain
 
 plugins {
@@ -22,7 +21,6 @@ repositories {
 dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     implementation(kotlin("reflect"))
-    implementation("org.json:json:20230618")
     implementation("org.ldemetrios:common-utils:1.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
 }
@@ -72,13 +70,10 @@ tasks.register("generateModel") {
             commonInterfaceName = "TValue",
             location = "$rootDir/src/main/kotlin/org/ldemetrios/typst4k/orm",
             packageName = "org.ldemetrios.typst4k.orm",
-
-            )
+        )
     }
 }
 
 kotlin {
     jvmToolchain(17)
 }
-
-//

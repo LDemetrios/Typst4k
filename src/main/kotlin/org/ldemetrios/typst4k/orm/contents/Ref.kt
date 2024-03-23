@@ -11,5 +11,5 @@ data class TRef(
     @SerialName("supplement") val supplement : TAutoOrContentOrNone? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("ref", null to target, "supplement" to supplement, )
+    override fun repr() : String = RT.structRepr("ref", Triple(false, null, target), Triple(false, "supplement", supplement), )
 }

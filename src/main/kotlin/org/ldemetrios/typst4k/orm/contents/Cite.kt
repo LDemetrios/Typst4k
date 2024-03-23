@@ -13,5 +13,5 @@ data class TCite(
     @SerialName("style") val style : TAutoOrStr? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("cite", null to key, "supplement" to supplement, "form" to form, "style" to style, )
+    override fun repr() : String = RT.structRepr("cite", Triple(false, null, key), Triple(false, "supplement", supplement), Triple(false, "form", form), Triple(false, "style", style), )
 }

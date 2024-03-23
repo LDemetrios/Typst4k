@@ -20,5 +20,5 @@ data class TStroke(
     TColorOrDictionaryOrGradientOrLengthOrPatternOrStroke<Nothing>, 
     TAutoOrColorOrDictionaryOrGradientOrLengthOrNoneOrPatternOrStroke<Nothing>
 {
-    override fun repr() : String = RT.structRepr("stroke", "paint" to paint, "thickness" to thickness, "cap" to cap, "join" to join, "dash" to dash, "miter-limit" to miterLimit, )
+    override fun repr() : String = RT.structRepr("stroke", Triple(false, "paint", paint), Triple(false, "thickness", thickness), Triple(false, "cap", cap), Triple(false, "join", join), Triple(false, "dash", dash), Triple(false, "miter-limit", miterLimit), )
 }

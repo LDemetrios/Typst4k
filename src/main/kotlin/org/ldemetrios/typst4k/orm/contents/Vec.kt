@@ -4,7 +4,7 @@ import kotlinx.serialization.*
 import org.ldemetrios.typst4k.rt.*
 import org.ldemetrios.utilities.cast
 
-@SerialName("math.vec")
+@SerialName("vec")
 @Serializable
 data class TVec(
     @SerialName("delim") val delim : TNoneOrStr? = null, 
@@ -12,5 +12,5 @@ data class TVec(
     @SerialName("children") val children : TArray<TContent, >, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("math.vec", "delim" to delim, "gap" to gap, null to children, )
+    override fun repr() : String = RT.structRepr("math.vec", Triple(false, "delim", delim), Triple(false, "gap", gap), Triple(false, null, children), )
 }

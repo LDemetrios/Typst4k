@@ -15,5 +15,5 @@ data class TImage(
     @SerialName("fit") val fit : TStr? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("image", null to path, "format" to format, "width" to width, "height" to height, "alt" to alt, "fit" to fit, )
+    override fun repr() : String = RT.structRepr("image", Triple(false, null, path), Triple(false, "format", format), Triple(false, "width", width), Triple(false, "height", height), Triple(false, "alt", alt), Triple(false, "fit", fit), )
 }

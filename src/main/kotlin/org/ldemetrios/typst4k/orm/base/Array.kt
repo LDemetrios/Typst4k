@@ -6,7 +6,7 @@ import org.ldemetrios.utilities.cast
 
 @SerialName("array")
 @Serializable
-data class TArray<out E : TValue>(val value : List<E>) : TValue, List<E> by value, 
+data class TArray<out E : TValue>(@Serializable(with = CustomListSerializer::class) val value : List<E>) : TValue, List<E> by value, 
     TArrayOrColor<E>, 
     TArrayOrAuto<E>, 
     TArrayOrStr<E>, 
@@ -21,4 +21,5 @@ data class TArray<out E : TValue>(val value : List<E>) : TValue, List<E> by valu
     TArrayOrNone<E>, 
     TArrayOrAutoOrDictionaryOrNoneOrStr<E, Nothing> {
     override fun repr() : String = RT.reprOf(value)
+    override fun toString() : String = value.toString()
 }

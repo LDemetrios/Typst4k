@@ -8,7 +8,6 @@ import org.ldemetrios.utilities.cast
 @Serializable
 data class TRadial(
     @SerialName("stops") val stops : TArray<TArrayOrColor<TColorOrRatio, >, >, 
-    @SerialName("space") val space : TStr? = null, 
     @SerialName("relative") val relative : TAutoOrStr? = null, 
     @SerialName("center") val center : TArray<TRatio, >? = null, 
     @SerialName("radius") val radius : TRatio? = null, 
@@ -16,5 +15,5 @@ data class TRadial(
     @SerialName("focal-radius") val focalRadius : TRatio? = null, 
 ) : TGradient
 {
-    override fun repr() : String = RT.structRepr("radial", null to stops, "space" to space, "relative" to relative, "center" to center, "radius" to radius, "focal-center" to focalCenter, "focal-radius" to focalRadius, )
+    override fun repr() : String = RT.structRepr("gradient.radial", Triple(true, null, stops), Triple(false, "relative", relative), Triple(false, "center", center), Triple(false, "radius", radius), Triple(false, "focal-center", focalCenter), Triple(false, "focal-radius", focalRadius), )
 }

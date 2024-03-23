@@ -10,6 +10,7 @@ data class TPattern(
     @SerialName("size") val size : TArrayOrAuto<*, >? = null, 
     @SerialName("spacing") val spacing : TArray<TLength, >? = null, 
     @SerialName("relative") val relative : TAutoOrStr? = null, 
+    @SerialName("body") val body : TContent? = null, 
 ) : TValue, 
     TColorOrGradientOrPattern, 
     TColorOrDictionaryOrGradientOrLengthOrNoneOrPatternOrStroke<Nothing>, 
@@ -22,5 +23,5 @@ data class TPattern(
     TAutoOrColorOrDictionaryOrGradientOrLengthOrNoneOrPatternOrStroke<Nothing>, 
     TAutoOrColorOrGradientOrPattern
 {
-    override fun repr() : String = RT.structRepr("pattern", "size" to size, "spacing" to spacing, "relative" to relative, )
+    override fun repr() : String = RT.reprOf(this)
 }

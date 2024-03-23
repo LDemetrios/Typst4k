@@ -4,11 +4,11 @@ import kotlinx.serialization.*
 import org.ldemetrios.typst4k.rt.*
 import org.ldemetrios.utilities.cast
 
-@SerialName("math.primes")
+@SerialName("primes")
 @Serializable
 data class TPrimes(
     @SerialName("count") val count : TInt, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("math.primes", null to count, )
+    override fun repr() : String = RT.structRepr("math.primes", Triple(false, null, count), )
 }

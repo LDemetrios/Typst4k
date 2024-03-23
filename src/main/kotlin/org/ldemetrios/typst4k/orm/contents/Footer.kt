@@ -11,5 +11,5 @@ data class TFooter(
     @SerialName("children") val children : TArray<TContent, >, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("grid.footer", "repeat" to repeat, null to children, )
+    override fun repr() : String = RT.structRepr("grid.footer", Triple(false, "repeat", repeat), Triple(false, null, children), )
 }

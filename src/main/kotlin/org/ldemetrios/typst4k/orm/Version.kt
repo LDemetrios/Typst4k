@@ -10,5 +10,5 @@ data class TVersion(
     @SerialName("value") val value : TArray<TInt, >, 
 ) : TValue
 {
-    override fun repr() : String = RT.structRepr("version", null to value, )
+    override fun repr() : String = RT.structRepr("version", Triple(false, null, value), )
 }

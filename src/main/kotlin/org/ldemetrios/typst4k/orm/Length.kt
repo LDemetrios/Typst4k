@@ -19,5 +19,5 @@ data class TLength(
     TColorOrDictionaryOrGradientOrLengthOrPatternOrStroke<Nothing>, 
     TAutoOrColorOrDictionaryOrGradientOrLengthOrNoneOrPatternOrStroke<Nothing>
 {
-    override fun repr() : String = RT.structRepr("length", "pts" to pts, "em" to em, )
+    override fun repr() : String = RT.reprOf(this)
 }

@@ -10,5 +10,5 @@ data class THide(
     @SerialName("body") val body : TContent, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("hide", null to body, )
+    override fun repr() : String = RT.structRepr("hide", Triple(false, null, body), )
 }

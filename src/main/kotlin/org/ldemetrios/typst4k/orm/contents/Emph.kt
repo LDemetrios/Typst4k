@@ -10,5 +10,5 @@ data class TEmph(
     @SerialName("body") val body : TContent, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("emph", null to body, )
+    override fun repr() : String = RT.structRepr("emph", Triple(false, null, body), )
 }

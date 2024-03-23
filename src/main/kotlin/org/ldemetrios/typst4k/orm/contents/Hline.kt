@@ -14,5 +14,5 @@ data class THline(
     @SerialName("position") val position : TAlignment? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("grid.hline", "y" to y, "start" to start, "end" to end, "stroke" to stroke, "position" to position, )
+    override fun repr() : String = RT.structRepr("grid.hline", Triple(false, "y", y), Triple(false, "start", start), Triple(false, "end", end), Triple(false, "stroke", stroke), Triple(false, "position", position), )
 }
