@@ -46,8 +46,7 @@ val typst = Typst()
 typst.query<TMetadata<TArray<TInt>>>(Path.of("test.typ"), "label")
 ```
 
-Queries have to be typed (`TValue` is the most general type). When you call a function with a selector rather than a label, the type can be inferred on its own.
-
+Queries have to be typed (`TValue` is the most general type). 
 When you query with a selector instead of label, the type can be inferred on its own:
 
 ```kt
