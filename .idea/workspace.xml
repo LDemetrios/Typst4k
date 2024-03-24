@@ -4,129 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c967e36e-cb69-4fcb-bf98-4d403610b0b0" name="Changes" comment="Make generic support work">
+    <list default="true" id="c967e36e-cb69-4fcb-bf98-4d403610b0b0" name="Changes" comment="Cosmetic improvements to repr">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Alignment.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Angle.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Arguments.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Auto.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Color.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Content.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Datetime.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Direction.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Duration.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Fraction.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Gradient.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Label.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Length.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Module.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/None.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Pattern.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Plugin.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Ratio.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Regex.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Relative.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Stroke.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Structural.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Type.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Version.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/base/Array.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/base/Bool.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/base/Dictionary.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/base/Float.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/base/Int.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/base/Str.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/base/TValue.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/colors/Cmyk.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/colors/Hsl.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/colors/Hsv.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/colors/LinearRgb.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/colors/Luma.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/colors/Oklab.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/colors/Oklch.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/colors/Rgb.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Accent.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Align.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Attach.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Bibliography.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Block.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Box.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Cancel.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Cases.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Cell.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Circle.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Cite.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Class.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Colbreak.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Columns.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Ellipse.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Emph.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Enum.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Equation.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Figure.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Footer.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Footnote.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Frac.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Grid.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/H.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Header.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Heading.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Hide.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Highlight.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Hline.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Image.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Item.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Line.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Linebreak.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Link.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/List.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Lr.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Mat.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Metadata.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Mid.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Move.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Outline.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Overbrace.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Overbracket.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Overline.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Pad.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Page.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Par.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Parbreak.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Path.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Place.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Polygon.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Primes.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Quote.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Raw.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Rect.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Ref.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Repeat.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Root.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Rotate.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Scale.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Sequence.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Smartquote.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Space.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Square.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Stack.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Strike.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Strong.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Sub.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Super.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Table.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Terms.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Text.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Underbrace.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Underbracket.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Underline.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/V.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Vec.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Vline.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/gradients/Conic.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/gradients/Linear.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/gradients/Radial.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/structurals/Document.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/Typst.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/Typst.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/rt/Conversions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/rt/Conversions.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/rt/RT.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/rt/RT.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -172,6 +55,9 @@
   </component>
   <component name="GitLabMergeRequestsSettings">{}</component>
   <component name="GithubPullRequestsUISettings">{}</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -181,45 +67,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.tmp.Test.executor": "Run",
-    "Gradle.Build Typst4k.executor": "Run",
-    "Gradle.Download Sources.executor": "Run",
-    "Gradle.Typst4k [:Test.main()].executor": "Run",
-    "Gradle.Typst4k [generateModel].executor": "Run",
-    "Kotlin.AlignmentKt.executor": "Run",
-    "Kotlin.AngleKt.executor": "Run",
-    "Kotlin.CombinatorsKt.executor": "Run",
-    "Kotlin.CommonPoolKt.executor": "Run",
-    "Kotlin.DeserKt.executor": "Run",
-    "Kotlin.DeserializersKt.executor": "Run",
-    "Kotlin.GeneratorKt.executor": "Run",
-    "Kotlin.MainKt.executor": "Run",
-    "Kotlin.MetadataKt.executor": "Run",
-    "Kotlin.ModelParserKt.executor": "Run",
-    "Kotlin.PrimitiveRepresentationsKt.executor": "Run",
-    "Kotlin.ReflectionDeserializerKt.executor": "Run",
-    "Kotlin.TestKt.executor": "Run",
-    "Kotlin.TypstKt.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "/home/ldemetrios/Workspace/Typst4k/src/main/java",
-    "last_opened_file_path": "/home/ldemetrios/Workspace/LDemetriosCommons/src/main/kotlin",
-    "onboarding.tips.debug.path": "/home/ldemetrios/Workspace/Typst4k/src/main/kotlin/Main.kt",
-    "project.structure.last.edited": "Problems",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "editor.preferences.import"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.tmp.Test.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build Typst4k.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Typst4k [:Test.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Typst4k [generateModel].executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.AlignmentKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.AngleKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.CombinatorsKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.CommonPoolKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.DeserKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.DeserializersKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.GeneratorKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.MainKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.MetadataKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.ModelParserKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.PrimitiveRepresentationsKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.ReflectionDeserializerKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.TestKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.TypstKt.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;/home/ldemetrios/Workspace/Typst4k/src/main/java&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/ldemetrios/Workspace/LDemetriosCommons/src/main/kotlin&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;/home/ldemetrios/Workspace/Typst4k/src/main/kotlin/Main.kt&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.import&quot;
   },
-  "keyToStringList": {
-    "kotlin-gradle-user-dirs": [
-      "/home/ldemetrios/.gradle"
+  &quot;keyToStringList&quot;: {
+    &quot;kotlin-gradle-user-dirs&quot;: [
+      &quot;/home/ldemetrios/.gradle&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/test/resources" />
@@ -442,7 +328,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711231985905</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Cosmetic improvements to repr">
+      <option name="closed" value="true" />
+      <created>1711235088397</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1711235088397</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -455,7 +349,8 @@
     <MESSAGE value="Add generated orm" />
     <MESSAGE value="Crutch generic support" />
     <MESSAGE value="Make generic support work" />
-    <option name="LAST_COMMIT_MESSAGE" value="Make generic support work" />
+    <MESSAGE value="Cosmetic improvements to repr" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cosmetic improvements to repr" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

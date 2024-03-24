@@ -1,9 +1,8 @@
 package org.ldemetrios.typst4k
 
 import kotlinx.serialization.json.Json
-import org.ldemetrios.typst4k.orm.TArray
-import org.ldemetrios.typst4k.orm.TValue
-import org.ldemetrios.typst4k.rt.deserializeTypstValue
+import org.ldemetrios.typst4k.orm.*
+import org.ldemetrios.typst4k.rt.*
 import org.ldemetrios.typst4k.selectors.Selector
 import org.ldemetrios.utilities.exec
 import java.io.InputStream
@@ -70,7 +69,7 @@ sealed interface TypstCompilerResult<out T> {
     }
 }
 
-data class Typst(val executable: String) {
+data class Typst(val executable: String = "typst") {
     @PublishedApi
     internal fun execute(arguments: Command, input: String? = null): TypstCompilerResult<String> {
         val (out, err, exit) = exec(listOf(executable) + arguments.entries, input)
@@ -296,6 +295,15 @@ interface Update {
 }
 
 fun main() {
+    println(
+        TPattern(
+            size = TArray(30.pt, 30.pt),
+            body = TSequence(
+                TPlace(body = TLine(start = TArray(0.pc, 0.pc), end = TArray(100.pc, 100.pc))),
+                TPlace(body = TLine(start = TArray(0.pc, 100.pc), end = TArray(100.pc, 0.pc))),
+            )
+        ).repr()
+    )
     val typst = Typst("/home/ldemetrios/Workspace/typst-no-dynamic-values/target/release/typst")
 
     val x = typst.query<TValue>(

@@ -28,7 +28,7 @@ object RT {
     fun reprOf(value: Long): String = value.toString()
     fun reprOf(value: Double): String = value.toString()
 
-    fun <A : CommonInterfaceName> reprOf(value: TArguments<A>): String = "( " +
+    fun <A : CommonInterfaceName> reprOf(value: TArguments<A>): String = "(" +
             (value.named.map { reprOf(it.key) + " : " + it.value.repr() } +
                     value.positional.map { it.repr() }).joinToString(", ") + ")"
 

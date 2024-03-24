@@ -27,3 +27,49 @@ val TInt.deg get() = TAngle(value.toDouble().t)
 val TFloat.rad get() = TAngle((this.value * (180 / Math.PI)).t)
 val TInt.rad get() = TAngle(((this.value * (180 / Math.PI))).t)
 
+fun <E : TValue> TArray(vararg elements: E) = TArray(elements.toList())
+fun <E : TValue> TDictionary(vararg pairs: Pair<String, E>) = TDictionary(pairs.toMap())
+fun TSequence(vararg elements: TContent) = TSequence(TArray(elements.toList()))
+
+// Temporary, later replace with code generation
+val Byte.pt get() = this.t.pt
+val Byte.em get() = this.t.em
+val Byte.fr get() = this.t.fr
+val Byte.pc get() = this.t.pc
+val Byte.deg get() = this.t.deg
+val Byte.rad get() = this.t.rad
+
+val Short.pt get() = this.t.pt
+val Short.em get() = this.t.em
+val Short.fr get() = this.t.fr
+val Short.pc get() = this.t.pc
+val Short.deg get() = this.t.deg
+val Short.rad get() = this.t.rad
+
+val Int.pt get() = this.t.pt
+val Int.em get() = this.t.em
+val Int.fr get() = this.t.fr
+val Int.pc get() = this.t.pc
+val Int.deg get() = this.t.deg
+val Int.rad get() = this.t.rad
+
+val Long.pt get() = this.t.pt
+val Long.em get() = this.t.em
+val Long.fr get() = this.t.fr
+val Long.pc get() = this.t.pc
+val Long.deg get() = this.t.deg
+val Long.rad get() = this.t.rad
+
+val Float.pt get() = this.t.pt
+val Float.em get() = this.t.em
+val Float.fr get() = this.t.fr
+val Float.pc get() = this.t.pc
+val Float.deg get() = this.t.deg
+val Float.rad get() = this.t.rad
+
+val Double.pt get() = this.t.pt
+val Double.em get() = this.t.em
+val Double.fr get() = this.t.fr
+val Double.pc get() = this.t.pc
+val Double.deg get() = this.t.deg
+val Double.rad get() = this.t.rad

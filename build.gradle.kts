@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "org.ldemetrios"
-version = "1.0"
+version = "0.1.0"
 
 repositories {
     mavenCentral()
@@ -31,11 +31,6 @@ tasks.test {
 kotlin {
     jvmToolchain(21)
 }
-
-fun polymorphic(vararg args: Any) = args[0]
-fun obj(vararg args: Any) = args[0]
-fun clazz(vararg args: Any) = args[0]
-fun primitive(vararg args: Any) = args[0]
 
 val datamodel = File("${project.rootDir}/datamodel").readText()
 
