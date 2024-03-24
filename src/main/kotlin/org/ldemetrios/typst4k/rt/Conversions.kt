@@ -1,6 +1,7 @@
 package org.ldemetrios.typst4k.rt
 
 import org.ldemetrios.typst4k.orm.*
+import java.awt.Color
 
 val Float.t get() = TFloat(this.toDouble())
 val Double.t get() = TFloat(this)
@@ -73,3 +74,5 @@ val Double.fr get() = this.t.fr
 val Double.pc get() = this.t.pc
 val Double.deg get() = this.t.deg
 val Double.rad get() = this.t.rad
+
+val Color.t get() = TRgb("#%02x%02x%02x%02x".format(red, green, blue, alpha).t)
