@@ -105,6 +105,10 @@ implementation 'org.ldemetrios:typst4k:0.1.0'
 
 I plan on creating more detailed manual later.
 
+## Changelog
+
+See [file](Changelog.md)
+
 ## Plans
 
 - [ ] Improve type checking during deserialization

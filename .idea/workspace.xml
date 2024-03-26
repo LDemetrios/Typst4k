@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c967e36e-cb69-4fcb-bf98-4d403610b0b0" name="Changes" comment="+ Color.t">
+    <list default="true" id="c967e36e-cb69-4fcb-bf98-4d403610b0b0" name="Changes" comment="Remove delegation from Array and Dictionary due to technical issues">
+      <change afterPath="$PROJECT_DIR$/Changelog.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/kotlin/parsers/ModelParser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/kotlin/parsers/ModelParser.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datamodel" beforeDir="false" afterPath="$PROJECT_DIR$/datamodel" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/Typst.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/Typst.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/base/Array.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/base/Array.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/base/Dictionary.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/base/Dictionary.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/rt/RT.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/rt/RT.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -372,7 +366,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711241615891</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Remove delegation from Array and Dictionary due to technical issues">
+      <option name="closed" value="true" />
+      <created>1711453625552</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1711453625552</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -390,7 +392,8 @@
     <MESSAGE value="* Typos" />
     <MESSAGE value="* Even more typos" />
     <MESSAGE value="+ Color.t" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ Color.t" />
+    <MESSAGE value="Remove delegation from Array and Dictionary due to technical issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove delegation from Array and Dictionary due to technical issues" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
