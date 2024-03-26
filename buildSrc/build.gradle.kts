@@ -24,7 +24,7 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     implementation(kotlin("reflect"))
     implementation("org.json:json:20230618")
-    implementation("org.ldemetrios:common-utils:1.0")
+    implementation("org.ldemetrios:common-utils:+")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
 }
 

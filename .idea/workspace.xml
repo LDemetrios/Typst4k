@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c967e36e-cb69-4fcb-bf98-4d403610b0b0" name="Changes" comment="Remove delegation from Array and Dictionary due to technical issues">
-      <change afterPath="$PROJECT_DIR$/Changelog.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/selectors/Combinators.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/selectors/Combinators.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,46 +65,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.tmp.Test.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build Typst4k.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Typst4k [:Test.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Typst4k [generateModel].executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.AlignmentKt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.AngleKt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.CombinatorsKt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.CommonPoolKt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.ConversionsKt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.DeserKt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.DeserializersKt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.GeneratorKt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.MainKt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.MetadataKt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.ModelParserKt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.PrimitiveRepresentationsKt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.ReflectionDeserializerKt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.TestKt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.TypstKt.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;/home/ldemetrios/Workspace/Typst4k/src/main/java&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/ldemetrios/Workspace/LDemetriosCommons/src/main/kotlin&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;/home/ldemetrios/Workspace/Typst4k/src/main/kotlin/Main.kt&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.import&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.tmp.Test.executor": "Run",
+    "Gradle.Build Typst4k.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.Typst4k [:Test.main()].executor": "Run",
+    "Gradle.Typst4k [generateModel].executor": "Run",
+    "Kotlin.AlignmentKt.executor": "Run",
+    "Kotlin.AngleKt.executor": "Run",
+    "Kotlin.CombinatorsKt.executor": "Run",
+    "Kotlin.CommonPoolKt.executor": "Run",
+    "Kotlin.ConversionsKt.executor": "Run",
+    "Kotlin.DeserKt.executor": "Run",
+    "Kotlin.DeserializersKt.executor": "Run",
+    "Kotlin.GeneratorKt.executor": "Run",
+    "Kotlin.MainKt.executor": "Run",
+    "Kotlin.MetadataKt.executor": "Run",
+    "Kotlin.ModelParserKt.executor": "Run",
+    "Kotlin.PrimitiveRepresentationsKt.executor": "Run",
+    "Kotlin.ReflectionDeserializerKt.executor": "Run",
+    "Kotlin.TestKt.executor": "Run",
+    "Kotlin.TypstKt.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "/home/ldemetrios/Workspace/Typst4k/src/main/java",
+    "last_opened_file_path": "/home/ldemetrios/Workspace/Typst4k",
+    "onboarding.tips.debug.path": "/home/ldemetrios/Workspace/Typst4k/src/main/kotlin/Main.kt",
+    "project.structure.last.edited": "Problems",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "editor.preferences.import"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;kotlin-gradle-user-dirs&quot;: [
-      &quot;/home/ldemetrios/.gradle&quot;
+  "keyToStringList": {
+    "kotlin-gradle-user-dirs": [
+      "/home/ldemetrios/.gradle"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/test/resources" />
@@ -244,6 +245,13 @@
         <item itemvalue="Kotlin.TestKt" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-78a6f59c" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

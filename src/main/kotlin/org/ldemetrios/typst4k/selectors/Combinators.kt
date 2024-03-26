@@ -18,6 +18,6 @@ data class LabelSelector(val label: String) : Selector<TValue> {
     override fun toString() = "<$label>"
 }
 
-fun <T : TValue> Selector<T>.or(label: String) = OrSelector(this, LabelSelector(label)) as Selector<T>
+fun <T : TValue> Selector<T>.or(label: String) = OrSelector(this, LabelSelector(label))
 fun <T : TValue> Selector<T>.and(label: String) = AndSelector(this, LabelSelector(label)) as Selector<T>
 
