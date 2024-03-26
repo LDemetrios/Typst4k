@@ -261,7 +261,7 @@ class CommentsRemover(data: String) : BaseParser(data) {
                 if (!eof() && take('*')) {
                     blockCommentUntilEnd()
                 }
-            }
+            }else take()
         }
     }
 }

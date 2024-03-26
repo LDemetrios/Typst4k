@@ -6,7 +6,7 @@ import org.ldemetrios.utilities.cast
 
 @SerialName("dictionary")
 @Serializable
-data class TDictionary<out V : TValue>(@Serializable(with = CustomMapSerializer::class) val value : Map<String, V>) : TValue, Map<String, V> by value, 
+data class TDictionary<out V : TValue>(@Serializable(with = CustomMapSerializer::class) val value : Map<String, V>) : TValue, 
     TColorOrDictionaryOrGradientOrLengthOrNoneOrPatternOrStroke<V>, 
     TDictionaryOrRelative<V>, 
     TDictionaryOrLabelOrLocationOrStr<V>, 

@@ -7,8 +7,8 @@ primitive bool = Boolean
 primitive int = Long
 primitive float = Double
 primitive str = String
-primitive array<out E> = interface List<E> @Serializable(with = CustomListSerializer::class)
-primitive dictionary<out V> = interface Map<String, V> @Serializable(with = CustomMapSerializer::class)
+primitive array<out E> = /*interface*/ List<E> @Serializable(with = CustomListSerializer::class)
+primitive dictionary<out V> = /*interface*/ Map<String, V> @Serializable(with = CustomMapSerializer::class)
 
 specformat arguments sequence space alignment angle ratio fraction length relative pattern
 

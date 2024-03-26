@@ -29,12 +29,12 @@ object RT {
     fun reprOf(value: Double): String = value.toString()
 
     fun <A : CommonInterfaceName> reprOf(value: TArguments<A>): String = "(" +
-            (value.named.map { reprOf(it.key) + " : " + it.value.repr() } +
-                    value.positional.map { it.repr() }).joinToString(", ") + ")"
+            (value.named.value.map { reprOf(it.key) + " : " + it.value.repr() } +
+                    value.positional.value.map { it.repr() }).joinToString(", ") + ")"
 
     fun reprOf(value: TSpace): String = "[ ]"
     fun reprOf(value: TSequence): String {
-        return "{ " + value.children.joinToString("; ") { it.repr() } + "; }"
+        return "{ " + value.children.value.joinToString("; ") { it.repr() } + "; }"
     }
 
     fun structRepr(

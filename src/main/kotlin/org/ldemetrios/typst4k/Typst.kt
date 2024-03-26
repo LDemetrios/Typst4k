@@ -90,19 +90,17 @@ data class Typst(val executable: String = "typst") {
         classDiscriminator = "func"
     }
 
-    fun help() {
-        execute("help")
-    }
+    fun help() = execute("help")
+
+    fun update(version: String? = null, forceDowngrade: Boolean = false) =
+        execute(
+            Command("update")
+                .optionalKey("--force", forceDowngrade)
+                .optionalArg(version)
+        )
 
     val update = object : Update {
         override fun revert() = execute("update", "--revert")
-
-        override operator fun invoke(version: String?, forceDowngrade: Boolean) =
-            execute(
-                Command("update")
-                    .optionalKey("--force", forceDowngrade)
-                    .optionalArg(version)
-            )
 
         override fun help() = execute("update", "--help")
     }
@@ -120,72 +118,72 @@ data class Typst(val executable: String = "typst") {
         const val SVG = "svg"
     }
 
-    val compile = object : Compile {
+    fun compile(
+        input: String,
+        output: String? = null,
+        root: String? = null,
+        inputs: Map<String, String> = mapOf(),
+        fontPath: String? = null,
+        diagnosticFormat: DiagnosticFormat = DiagnosticFormat.HUMAN,
+        format: String? = null,
+        open: Boolean = false,
+        ppi: Int? = null, /*= 144*/
+        timings: String? = null,
+    ) = execute(
+        Command("compile")
+            .optionalEntry("--root", root)
+            .multiple("--input", inputs.map { it.key + "=" + it.value })
+            .optionalEntry("--font-path", fontPath)
+            .optionalEntry("--diagnostic-format", diagnosticFormat)
+            .optionalEntry("--format", format)
+            .optionalEntry("--open", open)
+            .optionalEntry("--ppi", ppi)
+            .optionalEntry("--timings", timings)
+            .optionalArg(input.toString())
+            .optionalArg(output)
+    )
+
+    fun compile(
+        input: InputStream,
+        output: String,
+        root: String? = null,
+        inputs: Map<String, String> = mapOf(),
+        fontPath: String? = null,
+        diagnosticFormat: DiagnosticFormat = DiagnosticFormat.HUMAN,
+        format: String? = null,
+        open: Boolean = false,
+        ppi: Int? = null, /*= 144*/
+        timings: String? = null,
+    ) = execute(
+        Command("compile")
+            .optionalEntry("--root", root)
+            .multiple("--input", inputs.map { it.key + "=" + it.value })
+            .optionalEntry("--font-path", fontPath)
+            .optionalEntry("--diagnostic-format", diagnosticFormat)
+            .optionalEntry("--format", format)
+            .optionalEntry("--open", open)
+            .optionalEntry("--ppi", ppi)
+            .optionalEntry("--timings", timings)
+            .optionalArg("-")
+            .optionalArg(output),
+        input.readBytes().toString(Charsets.UTF_8)
+    )
+
+    val compile = object : Helping {
         override fun help() = execute("compile", "--help")
-
-        override operator fun invoke(
-            input: Path,
-            output: Path?,
-            root: Path?,
-            inputs: Map<String, String>,
-            fontPath: Path?,
-            diagnosticFormat: DiagnosticFormat,
-            format: String?,
-            open: Boolean,
-            ppi: Int?,
-            timings: Path?,
-        ) = execute(
-            Command("compile")
-                .optionalEntry("--root", root)
-                .multiple("--input", inputs.map { it.key + "=" + it.value })
-                .optionalEntry("--font-path", fontPath)
-                .optionalEntry("--diagnostic-format", diagnosticFormat)
-                .optionalEntry("--format", format)
-                .optionalEntry("--open", open)
-                .optionalEntry("--ppi", ppi)
-                .optionalEntry("--timings", timings)
-                .optionalArg(input.toString())
-                .optionalArg(output)
-        )
-
-        override operator fun invoke(
-            input: InputStream,
-            output: Path,
-            root: Path?,
-            inputs: Map<String, String>,
-            fontPath: Path?,
-            diagnosticFormat: DiagnosticFormat,
-            format: String?,
-            open: Boolean,
-            ppi: Int?,
-            timings: Path?,
-        ) = execute(
-            Command("compile")
-                .optionalEntry("--root", root)
-                .multiple("--input", inputs.map { it.key + "=" + it.value })
-                .optionalEntry("--font-path", fontPath)
-                .optionalEntry("--diagnostic-format", diagnosticFormat)
-                .optionalEntry("--format", format)
-                .optionalEntry("--open", open)
-                .optionalEntry("--ppi", ppi)
-                .optionalEntry("--timings", timings)
-                .optionalArg("-")
-                .optionalArg(output),
-            input.readBytes().toString(Charsets.UTF_8)
-        )
     }
 
-    val query = object : Query {
+    val query = object : Helping {
         override fun help() = execute("query", "--help")
     }
 
     @PublishedApi
     internal inline fun <reified T : TValue> queryRaw(
-        input: Path,
+        input: String,
         selectorString: String,
-        root: Path? = null,
+        root: String? = null,
         inputs: Map<String, String>,
-        fontPath: Path? = null,
+        fontPath: String? = null,
         diagnosticFormat: DiagnosticFormat = DiagnosticFormat.HUMAN
     ): TypstCompilerResult<TArray<T>> = execute(
         Command("query")
@@ -198,20 +196,20 @@ data class Typst(val executable: String = "typst") {
     ).map { deserializeTypstValue<TArray<T>>(it) }
 
     inline fun <reified T : TValue> query(
-        input: Path,
+        input: String,
         selector: Selector<T>,
-        root: Path? = null,
+        root: String? = null,
         inputs: Map<String, String> = mapOf(),
-        fontPath: Path? = null,
+        fontPath: String? = null,
         diagnosticFormat: DiagnosticFormat = DiagnosticFormat.HUMAN
     ) = queryRaw<T>(input, selector.toString(), root, inputs, fontPath, diagnosticFormat)
 
     inline fun <reified T : TValue> query(
-        input: Path,
+        input: String,
         label: String,
-        root: Path? = null,
+        root: String? = null,
         inputs: Map<String, String> = mapOf(),
-        fontPath: Path? = null,
+        fontPath: String? = null,
         diagnosticFormat: DiagnosticFormat = DiagnosticFormat.HUMAN
     ) = queryRaw<T>(input, "<$label>", root, inputs, fontPath, diagnosticFormat)
 
@@ -220,9 +218,9 @@ data class Typst(val executable: String = "typst") {
     internal inline fun <reified T : TValue> queryRaw(
         input: InputStream,
         selectorString: String,
-        root: Path? = null,
+        root: String? = null,
         inputs: Map<String, String>,
-        fontPath: Path? = null,
+        fontPath: String? = null,
         diagnosticFormat: DiagnosticFormat = DiagnosticFormat.HUMAN
     ): TypstCompilerResult<TArray<T>> = execute(
         Command("query")
@@ -238,60 +236,28 @@ data class Typst(val executable: String = "typst") {
     inline fun <reified T : TValue> query(
         input: InputStream,
         selector: Selector<T>,
-        root: Path? = null,
+        root: String? = null,
         inputs: Map<String, String> = mapOf(),
-        fontPath: Path? = null,
+        fontPath: String? = null,
         diagnosticFormat: DiagnosticFormat = DiagnosticFormat.HUMAN
     ) = queryRaw<T>(input, selector.toString(), root, inputs, fontPath, diagnosticFormat)
 
     inline fun <reified T : TValue> query(
         input: InputStream,
         label: String,
-        root: Path? = null,
+        root: String? = null,
         inputs: Map<String, String> = mapOf(),
-        fontPath: Path? = null,
+        fontPath: String? = null,
         diagnosticFormat: DiagnosticFormat = DiagnosticFormat.HUMAN
     ) = queryRaw<T>(input, "<$label>", root, inputs, fontPath, diagnosticFormat)
 }
 
-interface Query {
+interface Helping {
     fun help(): TypstCompilerResult<String>
 }
 
-interface Compile {
-    fun help(): TypstCompilerResult<String>
-
-    operator fun invoke(
-        input: Path,
-        output: Path? = null,
-        root: Path? = null,
-        inputs: Map<String, String> = mapOf(),
-        fontPath: Path? = null,
-        diagnosticFormat: Typst.DiagnosticFormat = Typst.DiagnosticFormat.HUMAN,
-        format: String? = null,
-        open: Boolean = false,
-        ppi: Int? = null, /*= 144*/
-        timings: Path? = null,
-    ): TypstCompilerResult<String>
-
-    operator fun invoke(
-        input: InputStream,
-        output: Path,
-        root: Path? = null,
-        inputs: Map<String, String> = mapOf(),
-        fontPath: Path? = null,
-        diagnosticFormat: Typst.DiagnosticFormat = Typst.DiagnosticFormat.HUMAN,
-        format: String? = null,
-        open: Boolean = false,
-        ppi: Int? = null, /*= 144*/
-        timings: Path? = null,
-    ): TypstCompilerResult<String>
-}
-
-interface Update {
+interface Update : Helping {
     fun revert(): TypstCompilerResult<String>
-    operator fun invoke(version: String? = null, forceDowngrade: Boolean = false): TypstCompilerResult<String>
-    fun help(): TypstCompilerResult<String>
 }
 
 fun main() {
@@ -307,8 +273,8 @@ fun main() {
     val typst = Typst("/home/ldemetrios/Workspace/typst-no-dynamic-values/target/release/typst")
 
     val x = typst.query<TValue>(
-        Path.of("src/test/resources/org/ldemetrios/typst4k/test.typ"),
+        "src/test/resources/org/ldemetrios/typst4k/test.typ",
         "eq",
-    ).orElseThrow().single()
+    ).orElseThrow().value.single()
     println(x.repr())
 }
