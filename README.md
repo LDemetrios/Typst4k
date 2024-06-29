@@ -32,7 +32,7 @@ This library allows
 - Accessing the Typst compiler (with a custom executable):
 
     ```kt
-    val typst = Typst("/home/user/.cargo/bin/typst-customized")
+    val typst = Typst("/home/user/.cargo/bin/typst")
     typst.compile(Path.of("test.typ"), format = OutputFormat.SVG, ppi = 1440)
     ```
     
@@ -202,12 +202,12 @@ If they reject it, I’ll have to write a parser for the current serialization f
 How to compile the customized version:
 
 ```shell
-git clone git@github.com:LDemetrios/typst-customized-erased-serialize.git 
-cd typst-customized-erased-serialize || exit
+git clone git@github.com:LDemetrios/typst-erased-serialize.git 
+cd typst-erased-serialize || exit
 cargo build --release 
-cp target/release/typst-customized ../typst-customized-customized
+cp target/release/typst ../typst-customized
 # cd ../
-# rm -rf typst-customized-erased-serialize
+# rm -rf typst-erased-serialize
 ```
 
 ## More details
