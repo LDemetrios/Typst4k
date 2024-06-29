@@ -111,8 +111,8 @@ Note that `query<T>` returns `TypstCompilerResult<TArray<T>>`.
 You may handle the errors yourself or use `.orElseThrow()` to get the result.
 
 Besides that, you'll need [the customized version of Typst compiler](https://github.com/LDemetrios/typst-less-dynamic-values) to make queries.
-`compile` requests work fine with standard one. 
-It is already PRed to Typst.
+(`compile` etc. requests work fine with standard one) 
+It is already PRed to Typst (https://github.com/typst/typst/pull/4466).
 If the authors approve this PR, it will be possible to run queries with the official version of the compiler.
 If they reject it, I’ll have to write a parser for the current serialization form, which I wouldn’t want to do.
 
@@ -153,4 +153,5 @@ If you experience bugs or have proposal for improvements, feel free to open issu
 PRs are also welcome, feel free to ask questions about internal structure of the project.
 
 tg: @LDemetrios
+
 mail: ldemetrios@yandex.ru
