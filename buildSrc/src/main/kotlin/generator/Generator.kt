@@ -249,7 +249,7 @@ fun generateGeneric(
                 code.append(" val ")
                 code.append(kebabToLowerCamel(it.name))
                 code.append(" : ")
-                code.formatType(it.type, prefix, allNames)
+                code.formatType(it.type, prefix, allNames, common)
                 if (!it.required) {
                     code.append("? = null")
                 }
@@ -301,7 +301,7 @@ fun generateGeneric(
     }
 }
 
-private fun StringBuilder.formatType(type: Type, prefix: String, allNames: Set<String>) {
+private fun StringBuilder.formatType(type: Type, prefix: String, allNames: Set<String>, common: String, first:Boolean = true) {
     val simplified = if (type is UnionType) type.flatten().flattenSingle() else type
     when (simplified) {
         is UnionType -> {
@@ -312,7 +312,7 @@ private fun StringBuilder.formatType(type: Type, prefix: String, allNames: Set<S
                 append("<")
                 val generics = variants.mapNotNull { it.castOrNull<ConcreteType>()?.params }.flatten()
                 for (param in generics) {
-                    formatType(param.param, prefix, allNames)
+                    formatType(param.param, prefix, allNames, common, false)
                     append(", ")
                 }
                 append(">")
@@ -325,14 +325,14 @@ private fun StringBuilder.formatType(type: Type, prefix: String, allNames: Set<S
             if (simplified.params.isNotEmpty()) {
                 append("<")
                 for (param in simplified.params) {
-                    formatType(param.param, prefix, allNames)
+                    formatType(param.param, prefix, allNames, common, false)
                     append(", ")
                 }
                 append(">")
             }
         }
 
-        is AnyType -> append("*")
+        is AnyType -> append(if(first) common else "*")
     }
 }
 
@@ -389,7 +389,7 @@ fun kindaMain(
 fun <T> Set<T>.isSubsetOf(other: Set<T>) = this.all { it in other }
 
 fun main() {
-    val rootDir = "/home/ldemetrios/Workspace/Typst4k"
+    val rootDir = "/home/ldemetrios/Workspace/libraries/Typst4k"
     kindaMain(
         datamodelFile = "$rootDir/datamodel",
         prefix = "T",

@@ -54,7 +54,7 @@ data object AnyType : Type {
 data class ClassElement(
     val name: String,
     val type: Type,
-    val varargs : Boolean,
+    val varargs: Boolean,
     val required: Boolean,
     val positional: Boolean,
     val annotations: List<String>
@@ -123,7 +123,10 @@ class ModelParser(data: String) : BaseParser(data) {
             val name = parseIdentifier()
             skipWhitespace()
             expect(":")
-            val rawUnion = parseUnionType().flatten().flattenSingle()
+            val rawUnion = parseUnionType().run {
+                if (this is UnionType) flatten().flattenSingle()
+                else this
+            }
             val annotations = parseAnnotations()
             lookup(",")
             classElements.add(ClassElement(name, rawUnion, varargs, required, positional, annotations))
@@ -134,7 +137,8 @@ class ModelParser(data: String) : BaseParser(data) {
         return ClassDefinition(type, classElements, parent)
     }
 
-    private fun parseUnionType(): UnionType {
+    private fun parseUnionType(): Type {
+        if (lookup("*")) return AnyType
         val variants = mutableListOf<Type>(parseConcreteType())
         while (lookup("|")) {
             variants.add(parseConcreteType())
@@ -219,7 +223,10 @@ class ModelParser(data: String) : BaseParser(data) {
         if (lookup("*")) return TypeParameter(AnyType, "")
         val variance = if (lookup("out ")) "out" else if (lookup("in ")) "in" else ""
         val param = parseUnionType()
-        return TypeParameter(param.flatten().flattenSingle(), variance)
+        return TypeParameter(param.run {
+            if (this is UnionType) flatten().flattenSingle()
+            else this
+        }, variance)
     }
 
     private fun parseIdentifier(): String {
@@ -261,7 +268,7 @@ class CommentsRemover(data: String) : BaseParser(data) {
                 if (!eof() && take('*')) {
                     blockCommentUntilEnd()
                 }
-            }else take()
+            } else take()
         }
     }
 }

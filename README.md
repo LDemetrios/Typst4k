@@ -35,7 +35,7 @@ Cosmetic improvements are planned, but not the first priority)
 (with custom executable)
 
 ```kt
-val typst = Typst("/home/user/.cargo/bin/typst")
+val typst = Typst("/home/user/.cargo/bin/typst-customized")
 typst.compile(Path.of("test.typ"), format = OutputFormat.SVG, ppi = 1440)
 ```
 
@@ -43,22 +43,10 @@ When no path for the typst compiler is provided, default is used.
 
 ```kt
 val typst = Typst()
-typst.query<TMetadata<TArray<TInt>>>(Path.of("test.typ"), "label")
+typst.query<TMetadata<TArray<TInt>>>(Path.of("test.typ"), selector(TLabel("lbl".t)))
 ```
 
-Queries have to be typed (`TValue` is the most general type). 
-When you query with a selector instead of label, the type can be inferred on its own:
-
-```kt
-typst.query(Path.of("test.typ"), heading.where(level = 2.t))
-// Inferred type is THeading
-```
-
-Note that `query<T>` returns `TypstCompilerResult<TArray<T>>`.  
-You may handle the errors yourself or use `.orElseThrow()` to get the result.
-
-Besides that, you'll need [the customized version of Typst compiler](https://github.com/LDemetrios/typst-less-dynamic-values) to make queries.
-`compile` requests work fine with standard one.
+More on queries later.
 
 ## Installation 
 
@@ -101,6 +89,44 @@ Groovy DSL:
 implementation 'org.ldemetrios:typst4k:0.1.0'
 ```
 
+## Specifics about queries
+
+Queries have to be explicitly typed (`TValue` is the most general type).
+Also, the syntax of `Selector`s is a bit wordy:
+
+- `"str".t` -- creates TStr
+- `TLabel("str".t)` -- creates TLabel
+- `selector(TLabel("str".t))` -- creates a selector for label.
+
+Here is more complicated example:
+
+```kt
+TElementSelector("heading").where("level" to 1.t)
+    .or(TElementSelector("heading").where("level" to 2.t))
+```
+    
+It will be simplified later.
+
+Note that `query<T>` returns `TypstCompilerResult<TArray<T>>`.  
+You may handle the errors yourself or use `.orElseThrow()` to get the result.
+
+Besides that, you'll need [the customized version of Typst compiler](https://github.com/LDemetrios/typst-less-dynamic-values) to make queries.
+`compile` requests work fine with standard one. 
+It is already PRed to Typst.
+If the authors approve this PR, it will be possible to run queries with the official version of the compiler.
+If they reject it, I’ll have to write a parser for the current serialization form, which I wouldn’t want to do.
+
+How to compile customized version:
+
+```shell
+git clone git@github.com:LDemetrios/typst-customized-erased-serialize.git 
+cd typst-customized-erased-serialize || exit
+cargo build --release 
+cp target/release/typst-customized ../typst-customized-customized
+# cd ../
+# rm -rf typst-customized-erased-serialize
+```
+
 ## More details
 
 I plan on creating more detailed manual later.
@@ -111,9 +137,15 @@ See [file](Changelog.md)
 
 ## Plans
 
+- [ ] Split arguments for call into separate chunks (avoiding multiple overloads)
+- [ ] Add tests
 - [ ] Improve type checking during deserialization
 - [ ] Allow functions, which take primitive arguments (`int`, `str` etc) also accept corresponding Kotlin values (`Int`, `String`). 
+- [ ] Support for Function as a superinterface for `companion`s
 - [ ] Beautify `repr` (make more human-readable)
+- [ ] Move to jj, and make manual updates to generated code possible
+- [ ] Add support for typed queries (query(heading) can only return THeading)
+- [ ] Add support for labeled content
 
 ## Contacts
 
@@ -121,3 +153,4 @@ If you experience bugs or have proposal for improvements, feel free to open issu
 PRs are also welcome, feel free to ask questions about internal structure of the project.
 
 tg: @LDemetrios
+mail: ldemetrios@yandex.ru

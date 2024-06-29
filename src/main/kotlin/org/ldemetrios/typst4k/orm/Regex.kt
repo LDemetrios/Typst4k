@@ -10,5 +10,5 @@ data class TRegex(
     @SerialName("regex") val regex : TStr? = null, 
 ) : TValue
 {
-    override fun repr() : String = RT.structRepr("regex", Triple(false, "regex", regex), )
+    override fun repr() : String = RT.structRepr("regex", Triple(false, null, regex), )
 }

@@ -7,9 +7,9 @@ import org.ldemetrios.utilities.cast
 @SerialName("direction")
 @Serializable
 data class TDirection(
-    @SerialName("value") val value : TStr? = null, 
+    @SerialName("value") val value : TStr, 
 ) : TValue, 
     TAutoOrDirection
 {
-    override fun repr() : String = RT.structRepr("direction", Triple(false, "value", value), )
+    override fun repr() : String = RT.reprOf(this)
 }

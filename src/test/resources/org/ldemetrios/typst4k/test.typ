@@ -1,61 +1,63 @@
+#let reify(..args) = args
+
 #metadata(
     (
-        "none" : none,
-        "auto" : auto,
-        angles : (
-            degrees : 2deg,
-            radians : 2rad,
+        nones: none,
+        autos: auto,
+        bools: true,
+        ints: 10,
+        floats: 2.71828,
+        lengths: 1pt + 2em,
+        angles: 1rad,
+        ratios: 50%,
+        relatives: 1pt + 2em + 50%,
+        fractions: 1fr,
+        colors: (
+            luma(50),
+            oklab(50%, 50%, 50%),
+            oklch(50%, 50%, 5deg),
+            rgb(50, 50, 50, 50),
+            color.linear-rgb(50, 50, 50, 50),
+            cmyk(50%, 50%, 50%, 50%),
+            color.hsl(50deg, 50, 50, 50),
+            color.hsv(50deg, 50, 50, 50),
         ),
-        array : (1, 2, 3),
-        bool : true,
-        bytes : bytes("abc"),
-        datetime : datetime.today(),
-        dictionary : (
-            b : 1,
-            a : 2,
-        ),
-        duration : datetime.today() - datetime(year:1970, month:1, day:1),
-        floats : (1.0, -0.0, 1e4, calc.nan, calc.inf),
-        fractions : (1fr, 1.5fr),
-        ints : (1, 2, 9223372036854775807),
-        label : <b>,
-        // regex : regex("\r\n|\r|\n"),
-        str : "str",
-        version : version((1, 2), 3),
-        relatives : (
-            100% + 50pt - 2em,
-            2cm + 50pt - 50%,
-            2cm + 3cm + 50%,
-            2cm + 3mm + 50%,
-            7mm + 3mm - 25%,
-        ),
-        lengths : (
-            2cm + 2em,
-            2cm - 2mm,
-            1pt + 1em + 1mm + 1in,
-        ),
-        ratio : 100%,
-        alignments : (left, left + top),
-        colors : (
-            rgb(11,22,33),
-            oklab(50%, .5, 50%, 50%),
-            oklab(50%, .5, 50%),
-            oklch(50%, 1.0, 1deg, 2%),
-            oklch(50%, 1.0, 1deg),
-            color.linear-rgb(100%, 127, 127, 50%),
-            color.linear-rgb(100%, 127, 127),
-            luma(127),
-            cmyk(33%, 50%, 1%, 3%),
-            color.hsl(2rad, 2%, 1, 5%),
-            color.hsl(2rad, 2%, 1),
-            color.hsv(2deg, 2%, 2, 2%),
-            color.hsv(2deg, 2%, 2),
-        ),
-        stroke: (blue + 1pt),
-        pat:pattern(size:auto, spacing:(20pt, 20pt), relative:"self", [aaa]),
-        grad:gradient.linear(red, blue),
-    )
-) <lbl>
+           gradients: (
+               gradient.linear(yellow, blue),
+               gradient.radial(yellow, blue, focal-center: (10%, 40%), focal-radius: 5%),
+               gradient.conic(yellow, blue, center: (20%, 30%)),
+           ),
+        patterns: pattern(size: (30pt, 30pt))[
+            #place(line(start: (0%, 0%), end: (100%, 100%)))
+            #place(line(start: (0%, 100%), end: (100%, 0%)))
+        ],
+        symbols: math.arrow.l,
+        versions: version(1, (2, 3)),
+        strs: "abc",
+        byte-arrs: (bytes((123, 160, 22, 0)), bytes("Hello 😃"),),
+        labels: <lbl>,
+        datetimes: datetime(year: 2020, month: 10, day: 4),
+        durations: datetime.today() - datetime(year: 2020, month: 10, day: 4),
+        contents: ([*Hi* there], [
+            #place(line(start: (0%, 0%), end: (100%, 100%)))
+            #place(line(start: (0%, 100%), end: (100%, 0%)))
+        ]),
+        arrays: (1, "hi", 12cm),
+        dicts: (a: 1, b: "hi"),
+        funcs: (it) => it,
+        arguments: reify(1, b: 2),
+        types: (int, str, dictionary),
+        modules: sys,
+        aligns: (top, left, center + horizon,),
+        dirs: ltr,
+        counters: counter(heading),
+        selectors: heading.where(level: 1).or(heading.where(level: 2)),
+        regexes: regex("[a-z]+"),
+        states: state("a" , 0),
+        strokes: 2pt + red
+    ),
+) <full>
+
 
 = aaa <a>
 == bbb

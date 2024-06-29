@@ -28,8 +28,8 @@ object RT {
     fun reprOf(value: Long): String = value.toString()
     fun reprOf(value: Double): String = value.toString()
 
-    fun <A : CommonInterfaceName> reprOf(value: TArguments<A>): String = "(" +
-            (value.named.value.map { reprOf(it.key) + " : " + it.value.repr() } +
+    fun <A : CommonInterfaceName> reprOf(value: TArguments<A>): String = "((..args) => args)(" +
+            (value.named.value.map { it.key + " : " + it.value.repr() } +
                     value.positional.value.map { it.repr() }).joinToString(", ") + ")"
 
     fun reprOf(value: TSpace): String = "[ ]"
@@ -39,7 +39,7 @@ object RT {
 
     fun structRepr(
         name: String,
-        vararg elements: Triple<Boolean, String?, TValue?>,
+        vararg elements: Triple<Boolean, String?, TValue?>, // vararg, name (null if positional), value
     ): String {
         if (elements.isEmpty()) return name
         if (name == "text") {
@@ -78,18 +78,21 @@ object RT {
         return name + "(" + entries.joinToString(", ") + ")"
     }
 
-    fun reprOf(value: TAlignment): String = listOfNotNull(value.horizontal, value.vertical).joinToString(" + ")
+    private fun sumOfNotNull(vararg values: String?) = listOfNotNull(*values).run {
+        if (isEmpty()) "0" else joinToString(" + ")
+    }
+
+    fun reprOf(value: TAlignment): String = sumOfNotNull(value.horizontal?.value, value.vertical?.value)
 
     fun reprOf(value: TAngle): String = "${value.deg}deg"
     fun reprOf(value: TFraction): String = "${value.value}fr"
     fun reprOf(value: TRatio): String = "${value.value.value * 100}%"
-    fun reprOf(value: TLength): String =
-        listOfNotNull(value.em?.let { "${it}em" }, value.pts?.let { "${it}pt" }).joinToString(" + ")
+    fun reprOf(value: TLength): String = sumOfNotNull(value.em?.let { "${it}em" }, value.pt?.let { "${it}pt" })
 
     fun reprOf(value: TRelative): String =
         listOfNotNull(
             value.abs?.em?.let { "${it}em" },
-            value.abs?.pts?.let { "${it}pt" },
+            value.abs?.pt?.let { "${it}pt" },
             value.rel?.repr()
         ).joinToString(" + ")
 
@@ -100,4 +103,57 @@ object RT {
         Triple(false, "relative", value.relative),
         Triple(false, null, value.body ?: TSpace),
     )
+
+    fun reprOf(value: TCounter): String = when (value.value) {
+        is TPageCounterKey -> "counter(page)"
+        is TStrCounterKey -> "counter(${value.value.str.repr()})"
+        is TSelectorCounterKey -> "counter(${value.value.selector.repr()})"
+        else -> throw AssertionError()
+    }
+
+    fun reprOf(value: TRegexSelector): String = "selector(${value.regex.repr()})"
+
+    fun reprOf(value: TLabelSelector): String = "selector(${value.label.repr()})"
+
+
+    fun reprOf(value: TElementSelector): String =
+        if (value.where == null) value.element.value
+        else value.element.value +
+                ".where(" +
+                value.where.value.map { it.key + " : " + it.value.repr() }.joinToString(", ") +
+                ")"
+
+    fun reprOf(value: TAfterSelector): String {
+        return value.repr() +
+                ".after(" +
+                value.start.repr() +
+                (if (value.inclusive != null) ", inclusive: ${value.inclusive.repr()}" else "") +
+                ")"
+    }
+
+    fun reprOf(value: TBeforeSelector): String {
+        return value.repr() +
+                ".before(" +
+                value.end.repr() +
+                (if (value.inclusive != null) ", inclusive: ${value.inclusive.repr()}" else "") +
+                ")"
+    }
+
+    fun reprOf(value: TAndSelector): String = when (value.variants.size) {
+        0 -> throw IllegalArgumentException()
+        1 -> value.variants[0].repr()
+        else -> value.variants[0].repr() + ".and(" +
+                value.variants.drop(1).joinToString(", ") { it.repr() } + ")"
+    }
+
+    fun reprOf(value: TOrSelector): String = when (value.variants.size) {
+        0 -> throw IllegalArgumentException()
+        1 -> value.variants[0].repr()
+        else -> value.variants[0].repr() + ".or(" +
+                value.variants.drop(1).joinToString(", ") { it.repr() } + ")"
+    }
+
+    fun reprOf(value: TType): String = value.name.value
+    fun reprOf(value: TModule): String = value.name.value
+    fun reprOf(value: TDirection): String = value.value.value
 }

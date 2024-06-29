@@ -7,7 +7,7 @@ import org.ldemetrios.utilities.cast
 @SerialName("length")
 @Serializable
 data class TLength(
-    @SerialName("pts") val pts : TFloat? = null, 
+    @SerialName("pt") val pt : TFloat? = null, 
     @SerialName("em") val em : TFloat? = null, 
 ) : TValue, 
     TColorOrDictionaryOrGradientOrLengthOrNoneOrPatternOrStroke<Nothing>, 

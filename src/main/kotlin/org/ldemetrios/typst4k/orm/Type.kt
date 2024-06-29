@@ -7,8 +7,8 @@ import org.ldemetrios.utilities.cast
 @SerialName("type")
 @Serializable
 data class TType(
-    @SerialName("value") val value : TStr? = null, 
+    @SerialName("name") val name : TStr, 
 ) : TValue
 {
-    override fun repr() : String = RT.structRepr("type", Triple(false, "value", value), )
+    override fun repr() : String = RT.reprOf(this)
 }

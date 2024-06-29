@@ -7,13 +7,18 @@ primitive bool = Boolean
 primitive int = Long
 primitive float = Double
 primitive str = String
-primitive array<out E> = /*interface*/ List<E> @Serializable(with = CustomListSerializer::class)
-primitive dictionary<out V> = /*interface*/ Map<String, V> @Serializable(with = CustomMapSerializer::class)
+primitive array<out E> = interface List<E> @Serializable(with = CustomListSerializer::class)
+primitive dictionary<out V> = interface Map<String, V> @Serializable(with = CustomMapSerializer::class)
 
-specformat arguments sequence space alignment angle ratio fraction length relative pattern
+specformat arguments sequence space alignment angle ratio fraction length relative pattern element-selector label-selector regex-selector before-selector after-selector and-selector or-selector counter type module direction
+
+class arguments<out A>(
+	req positional: array<A>,
+	req named: dictionary<A>,
+)
 
 class length(
-    pts: float,
+    pt: float,
     em: float,
 )
 
@@ -143,10 +148,6 @@ class duration(
 	weeks: int,
 )
 
-class arguments<out A>(
-	req positional: array<A>,
-	req named: dictionary<A>,
-)
 
 class type(
 	req pos name: str
@@ -429,15 +430,11 @@ class alignment(
 )
 
 class direction(
-	value: str,
+	req value: str,
 )
 
 class regex(
-	regex: str,
-)
-
-class type(
-	value: str,
+	pos regex: str,
 )
 
 class document(
@@ -810,4 +807,56 @@ class stroke(
 	join: auto|str,
 	dash: none|auto|str|array<*>|dictionary<*>,
 	miter-limit: auto|float,
+)
+
+class element-selector( // Not with dot -- it will be handled differently
+    req element: str,
+    where: dictionary<*>,
+) -> selector
+
+class label-selector(
+    req label: label,
+) -> selector
+
+class regex-selector(
+    req regex: regex,
+) -> selector
+
+class before-selector(
+    req selector: selector,
+    req end: selector,
+    inclusive: bool,
+) -> selector
+
+class after-selector(
+    req selector: selector,
+    req start: selector,
+    inclusive: bool,
+) -> selector
+
+class and-selector(
+    req variants: array<selector>
+) -> selector
+
+class or-selector(
+    req variants: array<selector>
+) -> selector
+
+class counter(
+    req pos value: counter-key,
+)
+
+class page-counter-key() -> counter-key
+
+class selector-counter-key(
+    req selector: selector
+) -> counter-key
+
+class str-counter-key(
+    req str: str,
+) -> counter-key
+
+class state(
+    req pos key: str,
+    pos init: *,
 )

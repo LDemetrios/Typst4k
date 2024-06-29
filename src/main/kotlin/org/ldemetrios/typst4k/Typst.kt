@@ -3,7 +3,6 @@ package org.ldemetrios.typst4k
 import kotlinx.serialization.json.Json
 import org.ldemetrios.typst4k.orm.*
 import org.ldemetrios.typst4k.rt.*
-import org.ldemetrios.typst4k.selectors.Selector
 import org.ldemetrios.utilities.exec
 import java.io.InputStream
 import java.nio.file.Path
@@ -197,7 +196,7 @@ data class Typst(val executable: String = "typst") {
 
     inline fun <reified T : TValue> query(
         input: String,
-        selector: Selector<T>,
+        selector: TSelector,
         root: String? = null,
         inputs: Map<String, String> = mapOf(),
         fontPath: String? = null,
@@ -212,7 +211,6 @@ data class Typst(val executable: String = "typst") {
         fontPath: String? = null,
         diagnosticFormat: DiagnosticFormat = DiagnosticFormat.HUMAN
     ) = queryRaw<T>(input, "<$label>", root, inputs, fontPath, diagnosticFormat)
-
 
     @PublishedApi
     internal inline fun <reified T : TValue> queryRaw(
@@ -235,7 +233,7 @@ data class Typst(val executable: String = "typst") {
 
     inline fun <reified T : TValue> query(
         input: InputStream,
-        selector: Selector<T>,
+        selector: TSelector,
         root: String? = null,
         inputs: Map<String, String> = mapOf(),
         fontPath: String? = null,
@@ -260,21 +258,22 @@ interface Update : Helping {
     fun revert(): TypstCompilerResult<String>
 }
 
-fun main() {
-    println(
-        TPattern(
-            size = TArray(30.pt, 30.pt),
-            body = TSequence(
-                TPlace(body = TLine(start = TArray(0.pc, 0.pc), end = TArray(100.pc, 100.pc))),
-                TPlace(body = TLine(start = TArray(0.pc, 100.pc), end = TArray(100.pc, 0.pc))),
-            )
-        ).repr()
-    )
-    val typst = Typst("/home/ldemetrios/Workspace/typst-no-dynamic-values/target/release/typst")
-
-    val x = typst.query<TValue>(
-        "src/test/resources/org/ldemetrios/typst4k/test.typ",
-        "eq",
-    ).orElseThrow().value.single()
-    println(x.repr())
-}
+//fun main() {
+//    println(
+//        TPattern(
+//            size = TArray(30.pt, 30.pt),
+//            body = TSequence(
+//                TPlace(body = TLine(start = TArray(0.pc, 0.pc), end = TArray(100.pc, 100.pc))),
+//                TPlace(body = TLine(start = TArray(0.pc, 100.pc), end = TArray(100.pc, 0.pc))),
+//            )
+//        ).repr()
+//    )
+//
+//    val typst = Typst("./typst")
+//
+//    val x = typst.query<TValue>(
+//        "src/test/resources/org/ldemetrios/typst4k/test.typ",
+//        "full",
+//    ).orElseThrow().value.single()
+//    println(x.repr())
+//}
