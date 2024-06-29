@@ -8,9 +8,9 @@ import org.ldemetrios.utilities.cast
 @Serializable
 data class TColumns(
     @SerialName("count") val count : TInt? = null, 
-    @SerialName("gutter") val gutter : TRelative? = null, 
     @SerialName("body") val body : TContent, 
+    @SerialName("gutter") val gutter : TRelative? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("columns", Triple(false, null, count), Triple(false, "gutter", gutter), Triple(false, null, body), )
+    override fun repr() : String = RT.structRepr("columns", Triple(false, null, count), Triple(false, null, body), Triple(false, "gutter", gutter), )
 }

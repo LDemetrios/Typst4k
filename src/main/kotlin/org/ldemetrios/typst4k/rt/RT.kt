@@ -41,7 +41,7 @@ object RT {
         name: String,
         vararg elements: Triple<Boolean, String?, TValue?>, // vararg, name (null if positional), value
     ): String {
-        if (elements.isEmpty()) return name
+        if (name == "none" || name == "auto") return name
         if (name == "text") {
             val present = elements.filter { it.third != null }
             if (present.size == 1 && !present[0].first && present[0].second == null && present[0].third is TStr) {

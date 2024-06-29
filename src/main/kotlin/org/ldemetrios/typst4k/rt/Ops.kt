@@ -27,4 +27,5 @@ infix fun TSelector.or(it: TLabel) = TOrSelector(TArray(this, selector(it)))
 infix fun TSelector.and(it: TRegex) = TAndSelector(TArray(this, selector(it)))
 infix fun TSelector.or(it: TRegex) = TOrSelector(TArray(this, selector(it)))
 
+val String.text get() = TText(text = this.t)
 

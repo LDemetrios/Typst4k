@@ -7,6 +7,7 @@ import org.ldemetrios.utilities.cast
 @SerialName("page")
 @Serializable
 data class TPage(
+    @SerialName("body") val body : TContent, 
     @SerialName("paper") val paper : TStr? = null, 
     @SerialName("width") val width : TAutoOrLength? = null, 
     @SerialName("height") val height : TAutoOrLength? = null, 
@@ -23,8 +24,7 @@ data class TPage(
     @SerialName("footer-descent") val footerDescent : TRelative? = null, 
     @SerialName("background") val background : TContentOrNone? = null, 
     @SerialName("foreground") val foreground : TContentOrNone? = null, 
-    @SerialName("body") val body : TContent, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("page", Triple(false, "paper", paper), Triple(false, "width", width), Triple(false, "height", height), Triple(false, "flipped", flipped), Triple(false, "margin", margin), Triple(false, "binding", binding), Triple(false, "columns", columns), Triple(false, "fill", fill), Triple(false, "numbering", numbering), Triple(false, "number-align", numberAlign), Triple(false, "header", header), Triple(false, "header-ascent", headerAscent), Triple(false, "footer", footer), Triple(false, "footer-descent", footerDescent), Triple(false, "background", background), Triple(false, "foreground", foreground), Triple(false, null, body), )
+    override fun repr() : String = RT.structRepr("page", Triple(false, null, body), Triple(false, "paper", paper), Triple(false, "width", width), Triple(false, "height", height), Triple(false, "flipped", flipped), Triple(false, "margin", margin), Triple(false, "binding", binding), Triple(false, "columns", columns), Triple(false, "fill", fill), Triple(false, "numbering", numbering), Triple(false, "number-align", numberAlign), Triple(false, "header", header), Triple(false, "header-ascent", headerAscent), Triple(false, "footer", footer), Triple(false, "footer-descent", footerDescent), Triple(false, "background", background), Triple(false, "foreground", foreground), )
 }

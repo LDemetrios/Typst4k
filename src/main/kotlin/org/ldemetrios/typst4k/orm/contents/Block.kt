@@ -7,6 +7,7 @@ import org.ldemetrios.utilities.cast
 @SerialName("block")
 @Serializable
 data class TBlock(
+    @SerialName("body") val body : TContentOrNone, 
     @SerialName("width") val width : TAutoOrRelative? = null, 
     @SerialName("height") val height : TAutoOrRelative? = null, 
     @SerialName("breakable") val breakable : TBool? = null, 
@@ -19,8 +20,7 @@ data class TBlock(
     @SerialName("above") val above : TFractionOrRelative? = null, 
     @SerialName("below") val below : TFractionOrRelative? = null, 
     @SerialName("clip") val clip : TBool? = null, 
-    @SerialName("body") val body : TContentOrNone, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("block", Triple(false, "width", width), Triple(false, "height", height), Triple(false, "breakable", breakable), Triple(false, "fill", fill), Triple(false, "stroke", stroke), Triple(false, "radius", radius), Triple(false, "inset", inset), Triple(false, "outset", outset), Triple(false, "spacing", spacing), Triple(false, "above", above), Triple(false, "below", below), Triple(false, "clip", clip), Triple(false, null, body), )
+    override fun repr() : String = RT.structRepr("block", Triple(false, null, body), Triple(false, "width", width), Triple(false, "height", height), Triple(false, "breakable", breakable), Triple(false, "fill", fill), Triple(false, "stroke", stroke), Triple(false, "radius", radius), Triple(false, "inset", inset), Triple(false, "outset", outset), Triple(false, "spacing", spacing), Triple(false, "above", above), Triple(false, "below", below), Triple(false, "clip", clip), )
 }

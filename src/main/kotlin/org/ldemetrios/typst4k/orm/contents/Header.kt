@@ -7,9 +7,9 @@ import org.ldemetrios.utilities.cast
 @SerialName("grid.header")
 @Serializable
 data class THeader(
-    @SerialName("repeat") val repeat : TBool? = null, 
     @SerialName("children") val children : TArray<TContent, >, 
+    @SerialName("repeat") val repeat : TBool? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("grid.header", Triple(false, "repeat", repeat), Triple(false, null, children), )
+    override fun repr() : String = RT.structRepr("grid.header", Triple(false, null, children), Triple(false, "repeat", repeat), )
 }

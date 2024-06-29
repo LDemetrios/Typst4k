@@ -7,9 +7,9 @@ import org.ldemetrios.utilities.cast
 @SerialName("strong")
 @Serializable
 data class TStrong(
-    @SerialName("delta") val delta : TInt? = null, 
     @SerialName("body") val body : TContent, 
+    @SerialName("delta") val delta : TInt? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("strong", Triple(false, "delta", delta), Triple(false, null, body), )
+    override fun repr() : String = RT.structRepr("strong", Triple(false, null, body), Triple(false, "delta", delta), )
 }

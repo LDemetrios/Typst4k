@@ -7,6 +7,7 @@ import org.ldemetrios.utilities.cast
 @SerialName("heading")
 @Serializable
 data class THeading(
+    @SerialName("body") val body : TContent, 
     @SerialName("level") val level : TAutoOrInt? = null, 
     @SerialName("depth") val depth : TInt? = null, 
     @SerialName("offset") val offset : TInt? = null, 
@@ -14,8 +15,7 @@ data class THeading(
     @SerialName("supplement") val supplement : TAutoOrContentOrNone? = null, 
     @SerialName("outlined") val outlined : TBool? = null, 
     @SerialName("bookmarked") val bookmarked : TAutoOrBool? = null, 
-    @SerialName("body") val body : TContent, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("heading", Triple(false, "level", level), Triple(false, "depth", depth), Triple(false, "offset", offset), Triple(false, "numbering", numbering), Triple(false, "supplement", supplement), Triple(false, "outlined", outlined), Triple(false, "bookmarked", bookmarked), Triple(false, null, body), )
+    override fun repr() : String = RT.structRepr("heading", Triple(false, null, body), Triple(false, "level", level), Triple(false, "depth", depth), Triple(false, "offset", offset), Triple(false, "numbering", numbering), Triple(false, "supplement", supplement), Triple(false, "outlined", outlined), Triple(false, "bookmarked", bookmarked), )
 }

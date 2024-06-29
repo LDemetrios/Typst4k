@@ -7,9 +7,9 @@ import org.ldemetrios.utilities.cast
 @SerialName("lr")
 @Serializable
 data class TLr(
-    @SerialName("size") val size : TAutoOrRelative? = null, 
     @SerialName("body") val body : TContent, 
+    @SerialName("size") val size : TAutoOrRelative? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("math.lr", Triple(false, "size", size), Triple(false, null, body), )
+    override fun repr() : String = RT.structRepr("math.lr", Triple(false, null, body), Triple(false, "size", size), )
 }

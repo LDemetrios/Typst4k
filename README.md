@@ -48,6 +48,91 @@ typst.query<TMetadata<TArray<TInt>>>(Path.of("test.typ"), selector(TLabel("lbl".
 
 More on queries later.
 
+## Complex example
+
+Here's the Typst code:
+
+```typ
+#set page(height:auto)
+
+= Methods
+We follow the glacier melting models
+established earlier.
+
+#lorem(15)
+
+Total displaced soil by glacial flow:
+
+$7.32 beta + sum_(i=0)^nabla (Q_i (a_i - epsilon)) / 2 $
+```
+
+And here's the reflection of it in Kotlin code (Yeah, it's longer)
+```kotlin
+import org.ldemetrios.typst4k.orm.*
+import org.ldemetrios.typst4k.rt.*
+import java.io.File
+
+fun main() {
+    val content = TSequence(
+        THeading(body = "Methods".text, depth = 1.t),
+        TSpace,
+        "We follow the glacier melting models established earlier.".text,
+        TParbreak,
+        TCustomContent("lorem", listOf(15.t), mapOf()),
+        TParbreak,
+        "Total displaced soil by glacial flow:".text,
+        TParbreak,
+        TEquation(
+            TSequence(
+                "7.32".text, TSpace, "β".text, TSpace, "+".text, TSpace,
+                TAttach(
+                    "∑".text,
+                    t = "∇".text,
+                    b = TSequence("i".text, "=".text, "0".text)
+                ),
+                TSpace,
+                TFrac(
+                    TSequence(
+                        TAttach("Q".text, b = "i".text),
+                        TSpace,
+                        TLr(
+                            TSequence(
+                                "(".text,
+                                TAttach("a".text, b = "i".text),
+                                TSpace,
+                                "−".text, TSpace, "ε".text, ")".text,
+                            )
+                        ),
+                    ),
+                    "2".text
+                )
+            ),
+            block = true.t
+        )
+    )
+    
+    File("example.typ").writeText("#set page(height:auto)\n #" + content.repr())
+    Typst("./typst").compile("example.typ", "example.png")
+    File("example.typ").delete()
+}
+```
+
+They both produce the same picture:
+
+![example.png](example.png)
+
+Unfortunately set rules are not supported by Typst4k, but they will be.
+
+Some part of tree could be the actual text in typst: 
+
+```kotlin
+TCustomContent(
+    "eval",
+    listOf("\$7.32 beta + sum_(i=0)^nabla (Q_i (a_i - epsilon)) / 2 \$".t),
+    mapOf("mode" to "markup".t)
+)
+```
+
 ## Installation 
 
 This library is yet in beta testing stage.
@@ -139,6 +224,7 @@ See [file](Changelog.md)
 
 - [ ] Split arguments for call into separate chunks (avoiding multiple overloads)
 - [ ] Add tests
+- [ ] Support set rules (Show rules are impossible to support)
 - [ ] Improve type checking during deserialization
 - [ ] Allow functions, which take primitive arguments (`int`, `str` etc) also accept corresponding Kotlin values (`Int`, `String`). 
 - [ ] Support for Function as a superinterface for `companion`s

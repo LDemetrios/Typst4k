@@ -7,11 +7,11 @@ import org.ldemetrios.utilities.cast
 @SerialName("path")
 @Serializable
 data class TPath(
+    @SerialName("vertices") val vertices : TArray<TArray<*, >, >, 
     @SerialName("fill") val fill : TColorOrGradientOrNoneOrPattern? = null, 
     @SerialName("stroke") val stroke : TAutoOrColorOrDictionaryOrGradientOrLengthOrNoneOrPatternOrStroke<*, >? = null, 
     @SerialName("closed") val closed : TBool? = null, 
-    @SerialName("vertices") val vertices : TArray<TArray<*, >, >, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("path", Triple(false, "fill", fill), Triple(false, "stroke", stroke), Triple(false, "closed", closed), Triple(false, null, vertices), )
+    override fun repr() : String = RT.structRepr("path", Triple(false, null, vertices), Triple(false, "fill", fill), Triple(false, "stroke", stroke), Triple(false, "closed", closed), )
 }

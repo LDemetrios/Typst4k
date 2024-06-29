@@ -189,8 +189,8 @@ class figure(
 ) -> content
 
 class footnote(
-	numbering: str|function,
 	req pos body: label|content,
+	numbering: str|function,
 ) -> content
 
 class h(
@@ -204,6 +204,7 @@ class v(
 ) -> content
 
 class heading(
+	req pos body: content,
 	level: auto|int,
 	depth: int,
 	offset: int,
@@ -211,17 +212,16 @@ class heading(
 	supplement: none|auto|content|function,
 	outlined: bool,
 	bookmarked: auto|bool,
-	req pos body: content,
 ) -> content
 
 class highlight(
+	req pos body: content,
 	fill: color|gradient|pattern,
 	stroke: none|length|color|gradient|stroke|pattern|dictionary<*>,
 	top-edge: length|str,
 	bottom-edge: length|str,
 	extent: length,
 	radius: relative|dictionary<*>,
-	req pos body: content,
 ) -> content
 
 class linebreak(
@@ -301,44 +301,45 @@ class smartquote(
 class space() -> content
 
 class strike(
+	req pos body: content,
 	stroke: auto|length|color|gradient|stroke|pattern|dictionary<*>,
 	offset: auto|length,
 	extent: length,
 	background: bool,
-	req pos body: content,
 ) -> content
 
 class strong(
-	delta: int,
 	req pos body: content,
+	delta: int,
 ) -> content
 
 class sub(
+	req pos body: content,
 	typographic: bool,
 	baseline: length,
 	size: length,
-	req pos body: content,
 ) -> content
 
 class super(
+	req pos body: content,
 	typographic: bool,
 	baseline: length,
 	size: length,
-	req pos body: content,
 ) -> content
 
 class underline(
+	req pos body: content,
 	stroke: auto|length|color|gradient|stroke|pattern|dictionary<*>,
 	offset: auto|length,
 	extent: length,
 	evade: bool,
 	background: bool,
-	req pos body: content,
 ) -> content
 
 
 
 class table(
+	req pos children: array<content>,
 	columns: auto|int|relative|fraction|array<*>,
 	rows: auto|int|relative|fraction|array<*>,
 	gutter: auto|int|relative|fraction|array<*>,
@@ -348,10 +349,11 @@ class table(
 	align: auto|array<*>|alignment|function,
 	stroke: none|length|color|gradient|array<*>|stroke|pattern|dictionary<*>|function,
 	inset: relative|array<relative|fraction>|dictionary<relative|fraction>|function,
-	req pos children: array<content>,
 ) -> content
 
 class text(
+	pos body: content,
+	pos text: str,
 	font: str|array<str>,
 	fallback: bool,
 	style: str,
@@ -383,8 +385,6 @@ class text(
 	slashed-zero: bool,
 	fractions: bool,
 	features: array<str>|dictionary<int>,
-	pos body: content,
-	pos text: str,
 ) -> content
 
 class list(
@@ -470,10 +470,10 @@ class math.cancel(
 ) -> content
 
 class math.cases(
+	req pos children: array<content>,
 	delim: str,
 	reverse: bool,
 	gap: relative,
-	req pos children: array<content>,
 ) -> content
 
 class math.class(
@@ -482,11 +482,11 @@ class math.class(
 ) -> content
 
 class math.equation(
+	req pos body: content,
 	block: bool,
 	numbering: none|str|function,
 	number-align: alignment,
 	supplement: none|auto|content|function,
-	req pos body: content,
 ) -> content
 
 class math.frac(
@@ -495,8 +495,8 @@ class math.frac(
 ) -> content
 
 class math.lr(
-	size: auto|relative,
 	req pos body: content,
+	size: auto|relative,
 ) -> content
 
 class math.mid(
@@ -504,12 +504,12 @@ class math.mid(
 ) -> content
 
 class math.mat(
+	req pos rows: array<array<content>>,
 	delim: none|str,
 	augment: none|int|dictionary<*>,
 	gap: relative,
 	row-gap: relative,
 	column-gap: relative,
-	req pos rows: array<array<content>>,
 ) -> content
 
 class math.primes(
@@ -550,9 +550,9 @@ class math.overbracket(
 ) -> content
 
 class math.vec(
+	req pos children: array<content>,
 	delim: none|str,
 	gap: relative,
-	req pos children: array<content>,
 ) -> content
 
 class align(
@@ -561,6 +561,7 @@ class align(
 ) -> content
 
 class block(
+	req pos body: none|content,
 	width: auto|relative,
 	height: auto|relative,
 	breakable: bool,
@@ -573,10 +574,10 @@ class block(
 	above: relative|fraction,
 	below: relative|fraction,
 	clip: bool,
-	req pos body: none|content,
 ) -> content
 
 class box(
+	req pos body: none|content,
 	width: auto|relative|fraction,
 	height: auto|relative,
 	baseline: relative,
@@ -586,7 +587,6 @@ class box(
 	inset: relative|dictionary<*>,
 	outset: relative|dictionary<*>,
 	clip: bool,
-	req pos body: none|content,
 ) -> content
 
 class colbreak(
@@ -595,11 +595,12 @@ class colbreak(
 
 class columns(
 	pos count: int,
-	gutter: relative,
 	req pos body: content,
+	gutter: relative,
 ) -> content
 
 class grid(
+	req pos children: array<content>,
 	columns: auto|int|relative|fraction|array<*>,
 	rows: auto|int|relative|fraction|array<*>,
 	gutter: auto|int|relative|fraction|array<*>,
@@ -609,7 +610,6 @@ class grid(
 	align: auto|array<*>|alignment|function,
 	stroke: none|length|color|gradient|array<*>|stroke|pattern|dictionary<*>|function,
 	inset: relative|array<*>|dictionary<*>|function,
-	req pos children: array<content>,
 ) -> content
 
 class grid.cell(
@@ -642,13 +642,13 @@ class grid.vline(
 ) -> content
 
 class grid.header(
-	repeat: bool,
 	req pos children: array<content>,
+	repeat: bool,
 ) -> content
 
 class grid.footer(
-	repeat: bool,
 	req pos children: array<content>,
+	repeat: bool,
 ) -> content
 
 class hide(
@@ -656,12 +656,13 @@ class hide(
 ) -> content
 
 class move(
+	req pos body: content,
 	dx: relative,
 	dy: relative,
-	req pos body: content,
 ) -> content
 
 class pad(
+	req pos body: content,
 	left: relative,
 	top: relative,
 	right: relative,
@@ -669,10 +670,10 @@ class pad(
 	x: relative,
 	y: relative,
 	rest: relative,
-	req pos body: content,
 ) -> content
 
 class page(
+	req pos body: content,
 	paper: str,
 	width: auto|length,
 	height: auto|length,
@@ -689,16 +690,15 @@ class page(
 	footer-descent: relative,
 	background: none|content,
 	foreground: none|content,
-	req pos body: content,
 ) -> content
 
 class place(
 	pos alignment: auto|alignment,
+	req pos body: content,
 	float: bool,
 	clearance: length,
 	dx: relative,
 	dy: relative,
-	req pos body: content,
 ) -> content
 
 class repeat(
@@ -713,11 +713,11 @@ class rotate(
 ) -> content
 
 class scale(
+	req pos body: content,
 	x: ratio,
 	y: ratio,
 	origin: alignment,
 	reflow: bool,
-	req pos body: content,
 ) -> content
 
 class stack(
@@ -727,6 +727,7 @@ class stack(
 ) -> content
 
 class circle(
+	pos body: none|content,
 	radius: length,
 	width: auto|relative,
 	height: auto|relative,
@@ -734,17 +735,16 @@ class circle(
 	stroke: none|auto|length|color|gradient|stroke|pattern|dictionary<*>,
 	inset: relative|dictionary<*>,
 	outset: relative|dictionary<*>,
-	pos body: none|content,
 ) -> content
 
 class ellipse(
+	pos body: none|content,
 	width: auto|relative,
 	height: auto|relative,
 	fill: none|color|gradient|pattern,
 	stroke: none|auto|length|color|gradient|stroke|pattern|dictionary<*>,
 	inset: relative|dictionary<*>,
 	outset: relative|dictionary<*>,
-	pos body: none|content,
 ) -> content
 
 class image(
@@ -765,19 +765,20 @@ class line(
 ) -> content
 
 class path(
+	req pos vertices: array<array<*>>,
 	fill: none|color|gradient|pattern,
 	stroke: none|auto|length|color|gradient|stroke|pattern|dictionary<*>,
 	closed: bool,
-	req pos vertices: array<array<*>>,
 ) -> content
 
 class polygon(
+	req pos vertices:   array<array<relative>>,
 	fill: none|color|gradient|pattern,
 	stroke: none|auto|length|color|gradient|stroke|pattern|dictionary<*>,
-	req pos vertices:   array<array<relative>>,
 ) -> content
 
 class rect(
+	pos body: none|content,
 	width: auto|relative,
 	height: auto|relative,
 	fill: none|color|gradient|pattern,
@@ -785,10 +786,10 @@ class rect(
 	radius: relative|dictionary<*>,
 	inset: relative|dictionary<*>,
 	outset: relative|dictionary<*>,
-	pos body: none|content,
 ) -> content
 
 class square(
+	pos body: none|content,
 	size: auto|length,
 	width: auto|relative,
 	height: auto|relative,
@@ -797,7 +798,6 @@ class square(
 	radius: relative|dictionary<*>,
 	inset: relative|dictionary<*>,
 	outset: relative|dictionary<*>,
-	pos body: none|content,
 ) -> content
 
 class stroke(

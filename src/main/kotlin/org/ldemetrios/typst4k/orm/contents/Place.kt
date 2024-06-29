@@ -8,12 +8,12 @@ import org.ldemetrios.utilities.cast
 @Serializable
 data class TPlace(
     @SerialName("alignment") val alignment : TAlignmentOrAuto? = null, 
+    @SerialName("body") val body : TContent, 
     @SerialName("float") val float : TBool? = null, 
     @SerialName("clearance") val clearance : TLength? = null, 
     @SerialName("dx") val dx : TRelative? = null, 
     @SerialName("dy") val dy : TRelative? = null, 
-    @SerialName("body") val body : TContent, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("place", Triple(false, null, alignment), Triple(false, "float", float), Triple(false, "clearance", clearance), Triple(false, "dx", dx), Triple(false, "dy", dy), Triple(false, null, body), )
+    override fun repr() : String = RT.structRepr("place", Triple(false, null, alignment), Triple(false, null, body), Triple(false, "float", float), Triple(false, "clearance", clearance), Triple(false, "dx", dx), Triple(false, "dy", dy), )
 }

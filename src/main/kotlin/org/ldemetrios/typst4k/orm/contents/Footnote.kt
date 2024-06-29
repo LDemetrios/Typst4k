@@ -7,9 +7,9 @@ import org.ldemetrios.utilities.cast
 @SerialName("footnote")
 @Serializable
 data class TFootnote(
-    @SerialName("numbering") val numbering : TStr? = null, 
     @SerialName("body") val body : TContentOrLabel, 
+    @SerialName("numbering") val numbering : TStr? = null, 
 ) : TContent
 {
-    override fun repr() : String = RT.structRepr("footnote", Triple(false, "numbering", numbering), Triple(false, null, body), )
+    override fun repr() : String = RT.structRepr("footnote", Triple(false, null, body), Triple(false, "numbering", numbering), )
 }
