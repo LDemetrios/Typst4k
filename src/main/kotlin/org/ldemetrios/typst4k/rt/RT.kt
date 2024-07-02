@@ -34,6 +34,7 @@ object RT {
 
     fun reprOf(value: TSpace): String = "[ ]"
     fun reprOf(value: TSequence): String {
+        if (value.children.value.isEmpty()) return "[]"
         return "{ " + value.children.value.joinToString("; ") { it.repr() } + "; }"
     }
 

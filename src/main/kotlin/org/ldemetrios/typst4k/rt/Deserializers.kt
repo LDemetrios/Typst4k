@@ -70,7 +70,7 @@ internal fun transform(it: JSStuff): JSStuff = when (it) {
             true to false -> res["type"] = type!!.js
 
             false to true -> {
-                throw AssertionError("null . $func")
+//                throw AssertionError("null . $func")
                 res["type"] = func!!.js
             }
 
@@ -108,6 +108,6 @@ internal val json = Json {
 
 inline fun <reified T : TValue> deserializeTypstValue(input: String): T {
     val js = transform(JSParser.parseValue(input))
-    println(js.toString(4))
+//    println(js.toString(4))
     return json.decodeFromString<T>(js.toString())/*.convert().cast()*/
 }
