@@ -1,8 +1,11 @@
 package org.ldemetrios.typst4k
 
+import org.ldemetrios.typst4k.dsl.Typst
+import org.ldemetrios.typst4k.dsl.compile
 import org.ldemetrios.typst4k.orm.*
 import org.ldemetrios.typst4k.rt.*
 import java.io.File
+import java.nio.file.Path
 
 fun main() {
     val content = TSequence(
@@ -20,7 +23,5 @@ fun main() {
             mapOf("mode" to "markup".t)
         )
     )
-    File("example.typ").writeText("#set page(height:auto)\n #" + content.repr())
-    Typst("./typst").compile("example.typ", "example.png")
-    File("example.typ").delete()
+    Typst("./typst").compile("#set page(height:auto)\n #" + content.repr(), Path.of("example.png"))
 }

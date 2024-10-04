@@ -82,6 +82,7 @@ fun main() {
 class ModelParser(data: String) : BaseParser(data) {
     val primitives = mutableMapOf<String, Primitive>()
     val specformat = mutableListOf<String>()
+    val deprecated = mutableListOf<String>()
     val ignore = mutableListOf<String>()
     val classDefinitions = mutableMapOf<String, ClassDefinition>()
 
@@ -102,6 +103,8 @@ class ModelParser(data: String) : BaseParser(data) {
             } else if (lookup("class")) {
                 val cl = parseClass()
                 classDefinitions[cl.type.name] = cl
+            } else if (lookup("deprecate")){
+                deprecated.addAll(lineRemainder())
             } else {
                 throw error("Unknown token: ${this.toString().replace("\n", " ")}")
             }

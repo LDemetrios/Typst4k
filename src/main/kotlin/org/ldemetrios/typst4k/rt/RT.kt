@@ -1,8 +1,22 @@
 package org.ldemetrios.typst4k.rt
 
 import org.ldemetrios.typst4k.orm.*
+import org.ldemetrios.utilities.castOrNull
 
 typealias CommonInterfaceName = TValue
+
+data class ArgumentEntry(var variadic: Boolean, var name: String?, var value: TValue?) {
+    fun repr(): String? = when {
+        value == null -> null
+        variadic -> (".." + value!!.repr())
+        name != null -> (name + ": " + value!!.repr())
+        else -> (value!!.repr())
+    }
+
+    val first get() = variadic
+    val second get() = name
+    val third get() = value
+}
 
 object RT {
     fun <E : CommonInterfaceName> reprOf(value: List<E>): String = when (value.size) {
@@ -40,43 +54,33 @@ object RT {
 
     fun structRepr(
         name: String,
-        vararg elements: Triple<Boolean, String?, TValue?>, // vararg, name (null if positional), value
+        vararg elements: ArgumentEntry, // vararg, name (null if positional), value
     ): String {
-        if (name == "none" || name == "auto") return name
-        if (name == "text") {
-            val present = elements.filter { it.third != null }
-            if (present.size == 1 && !present[0].first && present[0].second == null && present[0].third is TStr) {
-                return present[0].third!!.repr()
+        when (name) {
+            "none", "auto" -> return name
+            "text" -> {
+                val present = elements.filter { it.third != null }
+                if (present.size == 1 && !present[0].first && present[0].second == null && present[0].third is TStr) {
+                    return present[0].third!!.repr()
+                }
+            }
+            "math.mat" -> {
+                elements.find { it.name == "delim" }?.let{ delim ->
+                    delim.value = delim.value.castOrNull<TArray<*>>()?.value?.get(0) ?: delim.value
+                }
+                elements.find { it.name == "augment" }?.let{ augment ->
+                    val asDict = augment.value as? TDictionary<*> ?: return@let
+                    val map = asDict.value.toMutableMap()
+                    if (map["stroke"] is TAuto) map.remove("stroke")
+                    augment.value = TDictionary(map)
+                }
             }
         }
 
-        val sb = StringBuilder(name)
-        sb.append("(")
-        val entries = mutableListOf<String>()
-        for (element in elements) {
-            if (!element.first) {
-                if (element.second != null) {
-                    if (element.third == null) {
-                        // skip
-                    } else {
-                        entries.add(element.second + ": " + element.third!!.repr())
-                    }
-                } else {
-                    if (element.third == null) {
-                        // skip???
-                    } else {
-                        entries.add(element.third!!.repr())
-                    }
-                }
-            } else {
-                if (element.third == null) {
-                    // skip???
-                } else {
-                    entries.add(".." + element.third!!.repr())
-                }
-            }
-        }
-        return name + "(" + entries.joinToString(", ") + ")"
+        return name +
+                "(" +
+                elements.mapNotNull { it.repr() }.joinToString(", ") +
+                ")"
     }
 
     private fun sumOfNotNull(vararg values: String?) = listOfNotNull(*values).run {
@@ -99,10 +103,10 @@ object RT {
 
     fun reprOf(value: TPattern): String = structRepr(
         "pattern",
-        Triple(false, "size", value.size),
-        Triple(false, "spacing", value.spacing),
-        Triple(false, "relative", value.relative),
-        Triple(false, null, value.body ?: TSpace),
+        ArgumentEntry(false, "size", value.size),
+        ArgumentEntry(false, "spacing", value.spacing),
+        ArgumentEntry(false, "relative", value.relative),
+        ArgumentEntry(false, null, value.body ?: TSpace),
     )
 
     fun reprOf(value: TCounter): String = when (value.value) {
@@ -157,4 +161,14 @@ object RT {
     fun reprOf(value: TType): String = value.name.value
     fun reprOf(value: TModule): String = value.name.value
     fun reprOf(value: TDirection): String = value.value.value
+
+    fun reprOf(value: TRoot): String = if (value.index == null) {
+        RT.structRepr("math.sqrt", ArgumentEntry(false, null, value.radicand))
+    } else {
+        RT.structRepr("math.root", ArgumentEntry(false, null, value.index), ArgumentEntry(false, null, value.radicand))
+    }
+
+    fun reprOf(value: TAlignPoint): String = "$ & $.body"
+
+    fun reprOf(value: TStyled): String = value.child.repr()
 }

@@ -1,5 +1,8 @@
 package org.ldemetrios.typst4k
 
+import org.ldemetrios.typst4k.dsl.Typst
+import org.ldemetrios.typst4k.dsl.compile
+import org.ldemetrios.typst4k.dsl.compileAndRead
 import org.ldemetrios.typst4k.orm.*
 import org.ldemetrios.typst4k.rt.*
 import java.io.File
@@ -42,7 +45,9 @@ fun main() {
             block = true.t
         )
     )
-    File("example.typ").writeText("#set page(height:auto)\n #" + content.repr())
-    Typst("./typst").compile("example.typ", "example.png")
-    File("example.typ").delete()
+    println(
+        Typst("./typst")
+            .compileAndRead("#set page(height:auto)\n #" + content.repr())
+            .map { it.single() }
+    )
 }

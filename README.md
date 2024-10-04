@@ -1,5 +1,6 @@
 # Typst4K — Kotlin bindings for Typst
 
+
 ## Quick introduction
 
 This library allows 
@@ -22,20 +23,25 @@ This library allows
     ```kt
     pattern.repr()
     ```
-    converts to 
+    which produces 
     ```typ
     pattern(size: (0.0em + 30.0pt, 0.0em + 30.0pt), { place(line(start: (0.0%, 0.0%), end: (100.0%, 100.0%))); place(line(start: (0.0%, 100.0%), end: (100.0%, 0.0%))); })
     ```
     
     (Some cosmetic improvements are planned, but not the first priority)
 
-- Accessing the Typst compiler (with a custom executable):
+- Accessing the Typst compiler:
 
     ```kt
     val typst = Typst("/home/user/.cargo/bin/typst")
-    typst.compile(Path.of("test.typ"), format = OutputFormat.SVG, ppi = 1440)
+    typst.compile(Path.of("test.typ")) {
+        format = OutputFormat.SVG
+        ppi = 1440
+    }
     ```
     
+    Optional arguments are provided via lambda configuration function.
+
     When no path for the typst compiler is provided, the default one is used.
     
     ```kt
@@ -44,6 +50,26 @@ This library allows
     ```
     
     More on queries later.
+    
+    Besides, default parameters can be configured while creating the `Typst` object:
+    
+    ```kt
+    Typst("typst", "./typst-custom-serial") {
+        root = Path.of("src/typ")
+        ppi = 1440
+        compile {
+            input("mode", "heavy")
+        }
+        query {
+            input("mode", "lite")
+        }
+        watch {
+            ppi = 144
+        }
+    }
+    ```
+  
+    `"./typst-custom-serial"` here is a separate executable for performing queries (see section on queries). Also, `watch` is not supported, plan on adding it in the next version.
 
 ## Complex example
 
@@ -120,6 +146,7 @@ Both of them produce the same picture:
 ![example.png](example.png)
 
 Unfortunately the `set` rules are not supported by Typst4k yet, but they will be.
+Can't say for sure, when. It's hard, but certainly doable. 
 
 Some part of the tree could be the actual code in typst: 
 
@@ -220,8 +247,8 @@ See [file](Changelog.md)
 
 ## Plans
 
-- [ ] Split arguments for calls into separate chunks (avoiding multiple overloads)
-- [ ] Add tests
+- [x] Split arguments for calls into separate chunks (avoiding multiple overloads)
+- [x] Add tests
 - [ ] Support `set` rules (`show` rules seem to be impossible to support)
 - [ ] Improve type checking during deserialization
 - [ ] Allow functions, which take primitive arguments (`int`, `str` etc) also accept corresponding Kotlin values (`Int`, `String`). 

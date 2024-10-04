@@ -17,7 +17,9 @@ open class BaseParser protected constructor(val source: String) {
         return IllegalArgumentException("$pos: $message; " + this.toString().replace("\n", " "))
     }
 
-    override fun toString(): String = source.substring(max(pos - 1, 0))
+    override fun toString(): String =
+        source.substring(max(pos - 11, 0), pos) + "$"+
+        source.substring(max(pos - 1, 0))
 
     init {
         take()

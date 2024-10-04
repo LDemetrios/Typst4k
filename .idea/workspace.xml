@@ -5,21 +5,215 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c967e36e-cb69-4fcb-bf98-4d403610b0b0" name="Changes" comment="Remove delegation from Array and Dictionary due to technical issues">
-      <change afterPath="$PROJECT_DIR$/typst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dir/test.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/NB.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/Utils.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/dsl/Compile.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/dsl/Config.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/dsl/Query.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/dsl/Stacktrace.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/dsl/Typst.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/dsl/TypstCompilerException.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/rt/Relatives.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/org/ldemetrios/typst4k/Suite.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/foundations/array.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/foundations/assert.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/foundations/bytes.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/foundations/calc.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/foundations/content.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/foundations/context.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/foundations/datetime.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/foundations/dict.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/foundations/duration.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/foundations/eval.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/foundations/float.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/foundations/int.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/foundations/label.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/foundations/panic.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/foundations/plugin.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/foundations/repr.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/foundations/std.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/foundations/str.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/foundations/type.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/foundations/version.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/introspection/counter.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/introspection/here.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/introspection/locate.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/introspection/query.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/introspection/state.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/align.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/angle.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/clip.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/columns.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/container.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/dir.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/flow/flow.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/flow/footnote.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/flow/invisibles.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/flow/orphan.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/flow/place.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/grid/cell.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/grid/colspan.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/grid/footers.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/grid/grid.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/grid/headers.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/grid/positioning.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/grid/rowspan.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/grid/rtl.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/grid/stroke.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/grid/styling.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/hide.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/inline/baseline.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/inline/bidi.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/inline/cjk.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/inline/hyphenate.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/inline/justify.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/inline/linebreak.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/inline/overhang.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/inline/shaping.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/inline/text.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/layout.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/length.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/limits.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/line-numbers.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/measure.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/pad.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/page.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/pagebreak.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/relative.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/repeat.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/spacing.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/stack.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/table.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/layout/transform.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/loading/csv.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/loading/json.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/loading/read.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/loading/toml.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/loading/xml.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/loading/yaml.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/math/accent.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/math/alignment.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/math/attach.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/math/call.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/math/cancel.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/math/cases.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/math/class.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/math/delimited.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/math/equation.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/math/frac.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/math/interactions.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/math/mat.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/math/multiline.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/math/op.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/math/primes.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/math/root.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/math/size.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/math/spacing.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/math/style.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/math/syntax.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/math/text.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/math/underover.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/math/vec.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/model/bibliography.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/model/cite.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/model/document.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/model/emph-strong.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/model/enum.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/model/figure.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/model/heading.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/model/link.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/model/list.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/model/numbering.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/model/outline.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/model/par.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/model/quote.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/model/ref.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/model/terms.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/playground.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/scripting/arguments.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/scripting/blocks.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/scripting/call.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/scripting/closure.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/scripting/destructuring.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/scripting/field.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/scripting/for.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/scripting/get-rule.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/scripting/if.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/scripting/import.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/scripting/include.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/scripting/let.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/scripting/loop.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/scripting/methods.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/scripting/module.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/scripting/modules/chap1.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/scripting/modules/chap2.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/scripting/modules/cycle1.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/scripting/modules/cycle2.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/scripting/ops.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/scripting/params.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/scripting/recursion.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/scripting/return.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/scripting/while.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/styling/fold.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/styling/set.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/styling/show-set.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/styling/show-text.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/styling/show-where.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/styling/show.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/symbols/symbol.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/syntax/backtracking.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/syntax/bugs.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/syntax/comment.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/syntax/embedded.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/syntax/escape.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/syntax/newlines.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/syntax/numbers.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/syntax/shorthand.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/text/case.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/text/coma.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/text/copy-paste.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/text/deco.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/text/edge.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/text/em.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/text/font.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/text/lang.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/text/lorem.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/text/raw.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/text/shift.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/text/smallcaps.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/text/smartquote.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/text/space.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/visualize/circle.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/visualize/color.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/visualize/ellipse.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/visualize/gradient.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/visualize/image.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/visualize/line.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/visualize/path.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/visualize/pattern.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/visualize/polygon.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/visualize/rect.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/visualize/square.typ" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/suite/visualize/stroke.typ" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Changelog.md" beforeDir="false" afterPath="$PROJECT_DIR$/Changelog.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/buildSrc/src/main/kotlin/generator/Generator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/kotlin/generator/Generator.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/kotlin/parsers/BaseParser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/kotlin/parsers/BaseParser.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/buildSrc/src/main/kotlin/parsers/ModelParser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/kotlin/parsers/ModelParser.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datamodel" beforeDir="false" afterPath="$PROJECT_DIR$/datamodel" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/Typst.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/Typst.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/Typst.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Alignment.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Angle.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Arguments.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Auto.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Color.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Content.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Counter.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/CounterKey.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Datetime.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Direction.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Duration.kt" beforeDir="false" />
@@ -34,6 +228,8 @@
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Ratio.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Regex.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Relative.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Selector.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/State.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Stroke.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Structural.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/Type.kt" beforeDir="false" />
@@ -131,17 +327,26 @@
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/V.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Vec.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/contents/Vline.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/counter_keys/PageCounterKey.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/counter_keys/SelectorCounterKey.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/counter_keys/StrCounterKey.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/gradients/Conic.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/gradients/Linear.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/gradients/Radial.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/selectors/AfterSelector.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/selectors/AndSelector.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/selectors/BeforeSelector.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/selectors/ElementSelector.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/selectors/LabelSelector.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/selectors/OrSelector.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/selectors/RegexSelector.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm/structurals/Document.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/rt/Deserializers.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/rt/Deserializers.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/rt/Ops.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/rt/Ops.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/rt/RT.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/rt/RT.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/selectors/BasicSelectors.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/selectors/Combinators.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/selectors/Selector.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/org/ldemetrios/typst4k/test.typ" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/org/ldemetrios/typst4k/test.typ" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/org/ldemetrios/typst4k/Document.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/org/ldemetrios/typst4k/Document.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/org/ldemetrios/typst4k/Document2.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/org/ldemetrios/typst4k/Document2.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/org/ldemetrios/typst4k/Manual.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/org/ldemetrios/typst4k/Manual.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/typst" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,8 +381,8 @@
         <option value="Kotlin Interface" />
         <option value="Interface" />
         <option value="Class" />
-        <option value="Kotlin File" />
         <option value="Kotlin Class" />
+        <option value="Kotlin File" />
       </list>
     </option>
   </component>
@@ -186,6 +391,9 @@
   </component>
   <component name="GitLabMergeRequestsSettings">{}</component>
   <component name="GithubPullRequestsUISettings">{}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jrt:///usr/lib/jvm/java-21-openjdk!/java.base/java/lang/StackTraceElement.class" root0="SKIP_INSPECTION" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -198,63 +406,73 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.tmp.Test.executor": "Run",
-    "Gradle.Build Typst4k.executor": "Run",
-    "Gradle.Download Sources.executor": "Run",
-    "Gradle.Typst4k [:Test.main()].executor": "Run",
-    "Gradle.Typst4k [generateModel].executor": "Run",
-    "Kotlin.AlignmentKt.executor": "Run",
-    "Kotlin.AngleKt.executor": "Run",
-    "Kotlin.CombinatorsKt.executor": "Run",
-    "Kotlin.CommonPoolKt.executor": "Run",
-    "Kotlin.ConversionsKt.executor": "Run",
-    "Kotlin.DeserKt.executor": "Run",
-    "Kotlin.DeserializersKt.executor": "Run",
-    "Kotlin.GeneratorKt.executor": "Run",
-    "Kotlin.MainKt.executor": "Run",
-    "Kotlin.MetadataKt.executor": "Run",
-    "Kotlin.ModelParserKt.executor": "Run",
-    "Kotlin.OpsKt.executor": "Run",
-    "Kotlin.PrimitiveRepresentationsKt.executor": "Run",
-    "Kotlin.ReflectionDeserializerKt.executor": "Run",
-    "Kotlin.TestKt.executor": "Run",
-    "Kotlin.TypstKt.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "/home/ldemetrios/Workspace/Typst4k/src/main/java",
-    "last_opened_file_path": "/home/ldemetrios/Workspace/libraries/Typst4k",
-    "onboarding.tips.debug.path": "/home/ldemetrios/Workspace/Typst4k/src/main/kotlin/Main.kt",
-    "project.structure.last.edited": "Problems",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.tmp.Test.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build Typst4k.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.OriginalTests (1).executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.OriginalTests.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.PropertyTest (1).executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.PropertyTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Typst4k [:Test.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Typst4k [generateModel].executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.AlignmentKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.AngleKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.CombinatorsKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.CommonPoolKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.ConversionsKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.DeserKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.DeserializersKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.GeneratorKt.executor&quot;: &quot;Debug&quot;,
+    &quot;Kotlin.MainKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.MetadataKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.ModelParserKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.OpsKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.PrimitiveRepresentationsKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.ReflectionDeserializerKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.TestKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.TypstCompilerExceptionKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.TypstKt.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;/home/ldemetrios/Workspace/Typst4k/src/main/java&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/ldemetrios/Workspace/ITMO/FP/homework-2-LDemetrios/hw2&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;/home/ldemetrios/Workspace/Typst4k/src/main/kotlin/Main.kt&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;Clojure.IDE&quot;
   },
-  "keyToStringList": {
-    "kotlin-gradle-user-dirs": [
-      "/home/ldemetrios/.gradle"
+  &quot;keyToStringList&quot;: {
+    &quot;kotlin-gradle-user-dirs&quot;: [
+      &quot;/home/ldemetrios/.gradle&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/dir" />
+      <recent name="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/dsl" />
       <recent name="$PROJECT_DIR$/src/test/resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k" />
+      <recent name="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/special" />
+      <recent name="$PROJECT_DIR$/src/test/resources" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/selector" />
-      <recent name="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/utils" />
-      <recent name="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers" />
-      <recent name="$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/orm" />
+    </key>
+    <key name="CreateKotlinClassDialog.RecentsKey">
+      <recent name="org.ldemetrios.typst4k.dsl" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="exp" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.TypstKt">
+  <component name="RunManager" selected="Gradle.OriginalTests (1)">
     <configuration default="true" type="Babashka" factoryName="BabashkaLocalRepl" activateToolWindowBeforeRun="false">
       <setting name="displayName" value="" />
       <setting name="bbPath" value="" />
@@ -285,29 +503,63 @@
       <setting name="urlFile" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="ConversionsKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.ldemetrios.typst4k.rt.ConversionsKt" />
-      <module name="typst4k.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="OriginalTests (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;org.ldemetrios.typst4k.OriginalTests&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
     </configuration>
-    <configuration name="DeserKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.ldemetrios.typst4k.rt.DeserKt" />
-      <module name="typst4k.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GeneratorKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="generator.GeneratorKt" />
-      <module name="typst4k.buildSrc.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="PropertyTest (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;org.ldemetrios.typst4k.PropertyTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
     </configuration>
     <configuration name="OpsKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.ldemetrios.typst4k.rt.OpsKt" />
+      <module name="typst4k.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TypstCompilerExceptionKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.ldemetrios.typst4k.dsl.TypstCompilerExceptionKt" />
       <module name="typst4k.main" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -326,6 +578,15 @@
         <option name="Gradle.BeforeRunTask" enabled="true" tasks="generateModel" externalProjectPath="$PROJECT_DIR$" vmOptions="" scriptParameters="" />
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration default="true" type="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <option name="AUTO_RESTART" value="false" />
+      <method v="2" />
     </configuration>
     <configuration default="true" type="aws.lambda" factoryName="Local">
       <option name="credentialProviderId" />
@@ -367,19 +628,19 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Gradle.OriginalTests (1)" />
+      <item itemvalue="Gradle.PropertyTest (1)" />
       <item itemvalue="Kotlin.OpsKt" />
-      <item itemvalue="Kotlin.ConversionsKt" />
-      <item itemvalue="Kotlin.DeserKt" />
-      <item itemvalue="Kotlin.GeneratorKt" />
+      <item itemvalue="Kotlin.TypstCompilerExceptionKt" />
       <item itemvalue="Kotlin.TypstKt" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.OriginalTests (1)" />
+        <item itemvalue="Gradle.PropertyTest (1)" />
         <item itemvalue="Kotlin.TypstKt" />
-        <item itemvalue="Kotlin.GeneratorKt" />
+        <item itemvalue="Kotlin.TypstCompilerExceptionKt" />
         <item itemvalue="Kotlin.OpsKt" />
-        <item itemvalue="Kotlin.ConversionsKt" />
-        <item itemvalue="Kotlin.DeserKt" />
       </list>
     </recent_temporary>
   </component>
@@ -537,43 +798,27 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers/CommonPool.kt</url>
-          <line>81</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers/ScriptingValueDeserializers.kt</url>
-          <line>113</line>
+          <url>file://$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/dsl/Stacktrace.kt</url>
+          <line>70</line>
           <properties>
             <option name="lambda-ordinal" value="-1" />
           </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/rt/Deserializers.kt</url>
+          <line>128</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/deserializers/Deserializers.kt</url>
-          <line>39</line>
-          <option name="timeStamp" value="10" />
+          <url>file://$PROJECT_DIR$/src/test/kotlin/org/ldemetrios/typst4k/Suite.kt</url>
+          <line>112</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/buildSrc/src/main/kotlin/parsers/ModelParser.kt</url>
-          <line>105</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/buildSrc/src/main/kotlin/generator/Generator.kt</url>
-          <line>83</line>
-          <option name="timeStamp" value="28" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <condition expression="type.toString().contains(&quot;state&quot;)" language="kotlin" />
-          <url>file://$PROJECT_DIR$/buildSrc/src/main/kotlin/parsers/ModelParser.kt</url>
-          <line>123</line>
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/rt/RT.kt</url>
-          <line>98</line>
-          <option name="timeStamp" value="38" />
+          <url>file://$PROJECT_DIR$/src/main/kotlin/org/ldemetrios/typst4k/dsl/Query.kt</url>
+          <line>43</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

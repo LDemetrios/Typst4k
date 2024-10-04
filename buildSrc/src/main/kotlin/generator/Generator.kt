@@ -1,5 +1,6 @@
 package generator
 
+import org.gradle.internal.impldep.org.hamcrest.CoreMatchers
 import org.ldemetrios.utilities.cast
 import org.ldemetrios.utilities.castOrNull
 import parsers.*
@@ -7,7 +8,11 @@ import java.io.File
 import java.util.*
 
 fun kebabToTitleCamel(string: String): String {
-    val words = string.split(".").last().split("-")
+    val qualifier = when(string.split(".").first()){
+        "list", "enum", "terms", "grid", "table" -> string.replace(".", "-")
+        else -> string
+    }
+       val words = qualifier.split(".").last().split("-")
     val result = StringBuilder()
     for (word in words) {
         result.append(word.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() })
@@ -40,6 +45,7 @@ fun generate(
 
     primitives: Map<String, Primitive>,
     specformat: List<String>,
+    deprecated: List<String>,
     classDefinitions: Map<String, ClassDefinition>,
 ) {
     val imports = """
@@ -55,6 +61,7 @@ fun generate(
         imports,
         primitives,
         specformat,
+        deprecated,
         classDefinitions
     )
 //
@@ -79,6 +86,7 @@ fun generateGeneric(
     imports: String,
     primitives: Map<String, Primitive>,
     specformat: List<String>,
+    deprecated: List<String>,
     classDefinitions: Map<String, ClassDefinition>,
 ) {
     val prelude = "package $pack\n\n$imports\n\n"
@@ -225,6 +233,10 @@ fun generateGeneric(
         val code = StringBuilder(
             prelude
         )
+
+        if (className in deprecated){
+            code.append("@Deprecated(\"$className is deprecated, exists only for deserialization compatibility\")\n")
+        }
         var serialName = when {
             className.startsWith("gradient.") -> className.drop("gradient.".length)
             className.startsWith("math.") -> className.drop("math.".length)
@@ -273,7 +285,7 @@ fun generateGeneric(
         } else {
             code.append("RT.structRepr(\"$className\", ")
             classDefinition.classElements.forEach {
-                code.append("Triple(")
+                code.append("ArgumentEntry(")
                 code.append(it.varargs)
                 code.append(", ")
                 if (it.positional) {
@@ -382,6 +394,7 @@ fun kindaMain(
         pack = packageName,
         primitives = parser.primitives,
         specformat = parser.specformat,
+        deprecated = parser.deprecated,
         classDefinitions = parser.classDefinitions,
     )
 }
@@ -391,10 +404,10 @@ fun <T> Set<T>.isSubsetOf(other: Set<T>) = this.all { it in other }
 fun main() {
     val rootDir = "/home/ldemetrios/Workspace/libraries/Typst4k"
     kindaMain(
-        datamodelFile = "$rootDir/datamodel",
+        datamodelFile = "datamodel",
         prefix = "T",
         commonInterfaceName = "TValue",
-        location = "$rootDir/src/main/kotlin/org/ldemetrios/typst4k/orm",
+        location = "src/main/kotlin/org/ldemetrios/typst4k/orm",
         packageName = "org.ldemetrios.typst4k.orm",
     )
 }

@@ -10,30 +10,32 @@ primitive str = String
 primitive array<out E> = interface List<E> @Serializable(with = CustomListSerializer::class)
 primitive dictionary<out V> = interface Map<String, V> @Serializable(with = CustomMapSerializer::class)
 
-specformat arguments sequence space alignment angle ratio fraction length relative pattern element-selector label-selector regex-selector before-selector after-selector and-selector or-selector counter type module direction
+specformat arguments sequence space alignment angle ratio fraction length relative pattern element-selector label-selector regex-selector before-selector after-selector and-selector or-selector counter type module direction relative-impl math.root math.align-point styled type
+
+deprecate styled
 
 class arguments<out A>(
 	req positional: array<A>,
 	req named: dictionary<A>,
 )
 
-class length(
-    pt: float,
-    em: float,
-)
-
 class angle(
     req deg: float,
 )
 
+class length(
+    pt: float,
+    em: float,
+) -> relative
+
 class ratio(
     req value: float,
-)
+) -> relative
 
-class relative(
+class relative-impl(
     rel: ratio,
     abs: length,
-)
+) -> relative
 
 class fraction(
     req value: float,
@@ -180,6 +182,7 @@ class emph(
 class figure(
 	req pos body: content,
 	placement: none|auto|alignment,
+	scope: str,
 	caption: none|content,
 	kind: auto|str|function,
 	supplement: none|auto|content|function,
@@ -212,6 +215,7 @@ class heading(
 	supplement: none|auto|content|function,
 	outlined: bool,
 	bookmarked: auto|bool,
+	hanging-indent: auto|length,
 ) -> content
 
 class highlight(
@@ -256,11 +260,20 @@ class overline(
 
 class par(
 	leading: length,
+	spacing: length,
 	justify: bool,
 	linebreaks: auto|str,
 	first-line-indent: length,
 	hanging-indent: length,
 	req pos body: content,
+) -> content
+
+class par.line(
+    numbering: none|str|function,
+    number-align: auto|alignment,
+    number-margin: alignment,
+    number-clearance: auto|length,
+    numbering-scope: str,
 ) -> content
 
 class parbreak() -> content
@@ -278,7 +291,7 @@ class raw(
 	lang: none|str,
 	align: alignment,
 	syntaxes: str|array<*>,
-	theme: none|str,
+	theme: none|str|auto,
 	tab-size: int,
 ) -> content
 
@@ -336,10 +349,8 @@ class underline(
 	background: bool,
 ) -> content
 
-
-
 class table(
-	req pos children: array<content>,
+	req pos ... children: array<content>,
 	columns: auto|int|relative|fraction|array<*>,
 	rows: auto|int|relative|fraction|array<*>,
 	gutter: auto|int|relative|fraction|array<*>,
@@ -376,7 +387,7 @@ class text(
 	hyphenate: auto|bool,
 	kerning: bool,
 	alternates: bool,
-	stylistic-set: none|int,
+	stylistic-set: none|int|array<int>,
 	ligatures: bool,
 	discretionary-ligatures: bool,
 	historical-ligatures: bool,
@@ -385,6 +396,7 @@ class text(
 	slashed-zero: bool,
 	fractions: bool,
 	features: array<str>|dictionary<int>,
+	costs: dictionary<ratio>,
 ) -> content
 
 class list(
@@ -393,7 +405,7 @@ class list(
 	indent: length,
 	body-indent: length,
 	spacing: auto|relative|fraction,
-	children: array<item>,
+	req pos ... children: array<list.item>,
 ) -> content
 
 class terms(
@@ -402,7 +414,7 @@ class terms(
 	indent: length,
 	hanging-indent: length,
 	spacing: auto|relative|fraction,
-	children: array<content|array<*>>, // Reconfigure later
+	req pos ... children: array<content|array<*>>,
 ) -> content
 
 class enum(
@@ -414,14 +426,21 @@ class enum(
 	body-indent: length,
 	spacing: auto|relative|fraction,
 	number-align: alignment,
-	children: array<content|array<*>>, // Reconfigure later
+	req pos ... children: array<content|array<*>>,
 ) -> content
 
-class item(
+class list.item(
+	req pos body: content,
+) -> content
+
+class enum.item(
 	pos number: none|int,
-	pos body: content,
-	pos term: content,
-	pos description: content,
+	req pos body: content,
+) -> content
+
+class terms.item(
+	req pos term: content,
+	req pos description: content,
 ) -> content
 
 class alignment(
@@ -470,8 +489,8 @@ class math.cancel(
 ) -> content
 
 class math.cases(
-	req pos children: array<content>,
-	delim: str,
+	req pos ... children: array<content>,
+	delim: none|str|array<none|str>,
 	reverse: bool,
 	gap: relative,
 ) -> content
@@ -504,9 +523,10 @@ class math.mid(
 ) -> content
 
 class math.mat(
-	req pos rows: array<array<content>>,
-	delim: none|str,
+	req pos ... rows: array<array<content>>,
+	delim: none|str|array<none|str>,
 	augment: none|int|dictionary<*>,
+	align: alignment,
 	gap: relative,
 	row-gap: relative,
 	column-gap: relative,
@@ -517,7 +537,7 @@ class math.primes(
 ) -> content
 
 class math.root(
-	req pos index: none|content,
+	pos index: none|content,
 	req pos radicand: content,
 ) -> content
 
@@ -550,10 +570,27 @@ class math.overbracket(
 ) -> content
 
 class math.vec(
-	req pos children: array<content>,
-	delim: none|str,
+	req pos ... children: array<content>,
+	delim: none|str|array<none|str>,
+	align: alignment,
 	gap: relative,
 ) -> content
+
+class math.op(
+    req pos text: content,
+    limits: bool,
+) -> content
+
+class math.scripts(
+    req pos body: content,
+) -> content
+
+class math.binom(
+    req pos upper: content,
+    req pos ... lower: array<content>,
+) -> content
+
+class math.align-point() -> content
 
 class align(
 	req pos alignment: alignment,
@@ -561,9 +598,9 @@ class align(
 ) -> content
 
 class block(
-	req pos body: none|content,
-	width: auto|relative,
-	height: auto|relative,
+	pos body: none|content,
+	width: auto|relative|fraction,
+	height: auto|relative|fraction,
 	breakable: bool,
 	fill: none|color|gradient|pattern,
 	stroke: none|length|color|gradient|stroke|pattern|dictionary<*>,
@@ -574,12 +611,13 @@ class block(
 	above: relative|fraction,
 	below: relative|fraction,
 	clip: bool,
+	sticky: bool,
 ) -> content
 
 class box(
-	req pos body: none|content,
+	pos body: none|content,
 	width: auto|relative|fraction,
-	height: auto|relative,
+	height: auto|relative|fraction,
 	baseline: relative,
 	fill: none|color|gradient|pattern,
 	stroke: none|length|color|gradient|stroke|pattern|dictionary<*>,
@@ -600,7 +638,7 @@ class columns(
 ) -> content
 
 class grid(
-	req pos children: array<content>,
+	req pos ... children: array<content>,
 	columns: auto|int|relative|fraction|array<*>,
 	rows: auto|int|relative|fraction|array<*>,
 	gutter: auto|int|relative|fraction|array<*>,
@@ -642,12 +680,12 @@ class grid.vline(
 ) -> content
 
 class grid.header(
-	req pos children: array<content>,
+	req pos ... children: array<content>,
 	repeat: bool,
 ) -> content
 
 class grid.footer(
-	req pos children: array<content>,
+	req pos ... children: array<content>,
 	repeat: bool,
 ) -> content
 
@@ -684,9 +722,9 @@ class page(
 	fill: none|color|gradient|pattern,
 	numbering: none|str|function,
 	number-align: alignment,
-	header: none|content,
+	header: none|content|auto,
 	header-ascent: relative,
-	footer: none|content,
+	footer: none|content|auto,
 	footer-descent: relative,
 	background: none|content,
 	foreground: none|content,
@@ -695,6 +733,7 @@ class page(
 class place(
 	pos alignment: auto|alignment,
 	req pos body: content,
+	scope: str,
 	float: bool,
 	clearance: length,
 	dx: relative,
@@ -702,7 +741,9 @@ class place(
 ) -> content
 
 class repeat(
-	req pos body: content
+	req pos body: content,
+	gap: length,
+    justify: bool,
 ) -> content
 
 class rotate(
@@ -714,16 +755,16 @@ class rotate(
 
 class scale(
 	req pos body: content,
-	x: ratio,
-	y: ratio,
+    x: auto|length|ratio,
+    y: auto|length|ratio,
 	origin: alignment,
 	reflow: bool,
 ) -> content
 
 class stack(
+	req pos ... children: array<relative|fraction|content>,
 	dir: direction,
 	spacing: none|relative|fraction,
-	children: array<relative|fraction|content>,
 ) -> content
 
 class circle(
@@ -765,22 +806,24 @@ class line(
 ) -> content
 
 class path(
-	req pos vertices: array<array<*>>,
+	req pos ... vertices: array<array<*>>,
 	fill: none|color|gradient|pattern,
+	fill-rule: str,
 	stroke: none|auto|length|color|gradient|stroke|pattern|dictionary<*>,
 	closed: bool,
 ) -> content
 
 class polygon(
-	req pos vertices:   array<array<relative>>,
+	req pos ... vertices: array<array<relative>>,
 	fill: none|color|gradient|pattern,
+	fill-rule: str,
 	stroke: none|auto|length|color|gradient|stroke|pattern|dictionary<*>,
 ) -> content
 
 class rect(
 	pos body: none|content,
-	width: auto|relative,
-	height: auto|relative,
+	width: auto|relative|fraction,
+	height: auto|relative|fraction,
 	fill: none|color|gradient|pattern,
 	stroke: none|auto|length|color|gradient|stroke|pattern|dictionary<*>,
 	radius: relative|dictionary<*>,
@@ -859,4 +902,106 @@ class str-counter-key(
 class state(
     req pos key: str,
     pos init: *,
+)
+
+class smallcaps(
+    req pos body: content
+) -> content
+
+class math.limits(
+    req pos body: content,
+    inline: bool,
+) -> content
+
+class figure.caption(
+    req pos body: content,
+    position: alignment,
+    separator: auto|content,
+) -> content
+
+class table.vline(
+    x: auto|int,
+    start: int,
+    end: none|int,
+    stroke: none|length|color|gradient|stroke|pattern|dictionary<*>,
+    position: alignment,
+) -> content
+
+class table.hline(
+    y: auto|int,
+    start: int,
+    end: none|int,
+    stroke: none|length|color|gradient|stroke|pattern|dictionary<*>,
+    position: alignment,
+) -> content
+
+class table.header(
+    req pos ... children: array<content>,
+    repeat: bool,
+) -> content
+
+class table.footer(
+    req pos ... children: array<content>,
+    repeat: bool,
+) -> content
+
+class table.cell(
+    req pos body: content,
+    x: auto|int,
+    y: auto|int,
+    colspan: int,
+    rowspan: int,
+    fill: none|auto|color|gradient|pattern,
+    align: auto|alignment,
+    inset: auto|relative|dictionary<auto|relative>,
+    stroke: none|length|color|gradient|stroke|pattern|dictionary<*>,
+    breakable: auto|bool,
+) -> content
+
+class pagebreak(
+    weak: bool,
+    to: none|str,
+) -> content
+
+class styled(
+    req child: content,
+) -> content
+
+class math.overparen(
+    req pos body: content,
+    pos annotation: none|content,
+) -> content
+
+class math.underparen(
+    req pos body: content,
+    pos annotation: none|content,
+) -> content
+
+class math.overshell(
+    req pos body: content,
+    pos annotation: none|content,
+) -> content
+
+class math.undershell(
+    req pos body: content,
+    pos annotation: none|content,
+) -> content
+
+class place.flush() -> content
+
+class skew(
+    req pos body: content,
+    ax: angle,
+    ay: angle,
+    origin: alignment,
+    reflow: bool,
+) -> content
+
+class math.stretch(
+    req pos body: content,
+    size: auto|relative,
+) -> content
+
+class decimal(
+    pos value: str,
 )
