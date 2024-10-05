@@ -185,18 +185,18 @@ Then include it to your project:
 <dependency>
     <groupId>org.ldemetrios</groupId>
     <artifactId>typst4k</artifactId>
-    <version>0.1.0</version>
+    <version>0.3.0</version>
 </dependency>
 ```
 
 ### Gradle 
 Kotlin DSL:
 ```kt
-implementation("org.ldemetrios:typst4k:0.1.0")
+implementation("org.ldemetrios:typst4k:0.3.0")
 ```
 Groovy DSL:
 ```groovy
-implementation 'org.ldemetrios:typst4k:0.1.0'
+implementation 'org.ldemetrios:typst4k:0.3.0'
 ```
 
 ## Specifics about queries
