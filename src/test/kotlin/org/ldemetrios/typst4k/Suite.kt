@@ -1,13 +1,13 @@
 package org.ldemetrios.typst4k
 
 import io.kotest.assertions.fail
-import io.kotest.core.spec.style.StringSpec
+import io.kotest.core.spec.style.FreeSpec
+import io.kotest.core.spec.style.scopes.FreeSpecContainerScope
 import io.kotest.matchers.collections.shouldBeSingleton
 import kotlinx.serialization.SerializationException
 import org.ldemetrios.typst4k.dsl.*
 import org.ldemetrios.typst4k.orm.TContent
 import org.ldemetrios.typst4k.orm.TMetadata
-import org.ldemetrios.utilities.invoke
 import java.io.File
 
 val TEST_SEPARATOR = Regex("--- [a-z0-9A-Z-]+ ---")
@@ -23,7 +23,7 @@ val typst = Typst(
     "./typst-custom-serial",
 )
 
-class OriginalTests : StringSpec({
+class OriginalTests : FreeSpec({
     val cases = SUITE_ROOT
         .walkTopDown()
         .filter { it.isFile }
@@ -51,12 +51,100 @@ class OriginalTests : StringSpec({
             )
         }
 
-    for (case in cases) {
-        case.testName {
-            knownBugsGuard(case)
-        }
+    runContextually(cases, { it.testName.split("/") }) {
+        knownBugsGuard(it)
     }
 })
+
+sealed interface Tests<T> {
+    suspend fun execute(function: (T) -> Unit, scope: FreeSpecContainerScope)
+
+    fun execute(function: (T) -> Unit, scope: FreeSpec)
+
+    fun register(list: List<String>, value: T): Boolean
+}
+
+data class SingleTest<T>(val name: String, val value: T) : Tests<T> {
+    override suspend fun execute(function: (T) -> Unit, scope: FreeSpecContainerScope) {
+        with(scope) {
+            name {
+                function(value)
+            }
+        }
+    }
+
+    override fun execute(function: (T) -> Unit, scope: FreeSpec) {
+        with(scope) {
+            name {
+                function(value)
+            }
+        }
+    }
+
+    override fun register(list: List<String>, value: T): Boolean = false
+}
+
+data class TestGroup<T>(val ctxName: String?, val subs: MutableMap<String, Tests<T>> = mutableMapOf()) : Tests<T> {
+    override suspend fun execute(function: (T) -> Unit, scope: FreeSpecContainerScope) = with(scope) {
+        if (ctxName != null) {
+            ctxName - {
+                subs.values.forEach {
+                    it.execute(function, this)
+                }
+            }
+        } else {
+            subs.values.forEach {
+                it.execute(function, scope)
+            }
+        }
+    }
+
+    override fun execute(function: (T) -> Unit, scope: FreeSpec) = with(scope) {
+        if (ctxName != null) {
+            ctxName - {
+                subs.values.forEach {
+                    it.execute(function, this)
+                }
+            }
+        } else {
+            subs.values.forEach {
+                it.execute(function, scope)
+            }
+        }
+    }
+
+    override fun register(list: List<String>, value: T): Boolean {
+        if (list.isEmpty()) throw AssertionError()
+        if (list.size == 1) {
+            if (list[0] in subs) return false
+            subs[list[0]] = SingleTest(list[0], value)
+            return true
+        } else {
+            return subs.computeIfAbsent(list[0]) {
+                TestGroup(list[0])
+            }.register(list.drop(1), value)
+        }
+    }
+}
+
+context(FreeSpec) fun <T> runContextually(
+    cases: Sequence<T>,
+    nameSelector: (T) -> List<String>,
+    func: (T) -> Unit
+) {
+    val group = TestGroup<T>(null)
+
+    for (i in cases) {
+        val name = nameSelector(i)
+        if (!group.register(name, i)) {
+            throw AssertionError("Couldn't register $name, already present")
+        }
+    }
+
+    group.execute(func, implicit())
+}
+
+fun <A> A.implicit() = this
 
 const val SKIP_GPU_OVERLOAD = true
 const val SKIP_STATE_MANIPULATIONS = true
@@ -120,8 +208,7 @@ fun testCase(case: Case) {
         return
     }
 
-    val meta = // try {
-        typst.query<TMetadata<TContent>>("#metadata[\n${case.text}\n] <lbl>", "<lbl>")
+    val meta = typst.query<TMetadata<TContent>>("#metadata[\n${case.text}\n] <lbl>", "<lbl>")
     if (!meta.success) {
         meta.trace.print()
         fail("Compilation succeeded, but query #metadata[content] failed")

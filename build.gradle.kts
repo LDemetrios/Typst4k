@@ -1,4 +1,5 @@
 import generator.kindaMain
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.9.22"
@@ -54,6 +55,10 @@ tasks.withType<Javadoc> {
     options.encoding = "UTF-8"
 }
 
+//tasks.withType<KotlinCompile> {
+//    dependsOn("generateModel")
+//}
+
 tasks.test {
     useJUnitPlatform()
 }
@@ -72,3 +77,16 @@ tasks.register("generateModel") {
     }
 }
 
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    kotlinOptions {
+        // General options for main source sets, no special flags needed for context receivers
+    }
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().matching {
+    it.name.contains("Test") // Only target KotlinCompile tasks for test sources
+}.configureEach {
+    kotlinOptions {
+        freeCompilerArgs += "-Xcontext-receivers"
+    }
+}
